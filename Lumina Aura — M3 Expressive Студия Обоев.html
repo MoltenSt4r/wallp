@@ -1,0 +1,3264 @@
+<!DOCTYPE html>
+<html lang="ru" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Lumina Aura — M3 Expressive Студия Обоев</title>
+    <!-- Подключение Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Шрифты Material Design 3 Expressive: Outfit, Plus Jakarta Sans, JetBrains Mono и Material Symbols Rounded -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,300..600,0..1,0" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Outfit', 'Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+                        sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* === MATERIAL DESIGN 3 EXPRESSIVE TOKENS (PURE TONAL, ZERO HARSH BORDERS) === */
+        :root {
+            --md-primary: #e4e1e6;
+            --md-on-primary: #1b1b1f;
+            --md-primary-container: #38383f;
+            --md-on-primary-container: #f2eff5;
+            --md-secondary-container: #2c2c33;
+            --md-on-secondary-container: #e8e5ec;
+            --md-tertiary: #d5c2d8;
+            --md-tertiary-container: #463849;
+            --md-on-tertiary-container: #f3dff5;
+            --md-surface: #0e0e11;
+            --md-surface-container-low: #16161a;
+            --md-surface-container: #1f1f25;
+            --md-surface-container-high: #282830;
+            --md-surface-container-highest: #33333d;
+            --md-on-surface: #e8e7ec;
+            --md-on-surface-variant: #a8a7b0;
+            --md-outline: #797881;
+
+            /* Пружинящие кривые M3 Expressive */
+            --md-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --md-ease-emphasized: cubic-bezier(0.2, 0.0, 0.0, 1.0);
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #09090b;
+            color: var(--md-on-surface);
+            user-select: none;
+        }
+
+        /* Иконки Material Symbols Rounded */
+        .material-symbols-rounded {
+            font-family: 'Material Symbols Rounded';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 20px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-smoothing: antialiased;
+            font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+            transition: font-variation-settings 0.22s ease, transform 0.3s var(--md-spring);
+        }
+        .icon-filled {
+            font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Чистые тональные поверхности M3 Expressive без рамок */
+        .m3-surface-glass {
+            background-color: color-mix(in srgb, var(--md-surface-container-low) 88%, transparent);
+            backdrop-filter: blur(28px) saturate(145%);
+            -webkit-backdrop-filter: blur(28px) saturate(145%);
+            transition: background-color 0.4s ease;
+        }
+
+        .m3-card {
+            background-color: var(--md-surface-container);
+            border-radius: 28px;
+            transition: background-color 0.35s ease, transform 0.25s var(--md-spring);
+        }
+
+        /* Пружинящие кнопки M3 Expressive */
+        .m3-btn-spring {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s var(--md-spring), background-color 0.25s ease, color 0.22s ease, border-radius 0.26s var(--md-spring);
+        }
+        .m3-btn-spring:active:not(:disabled) {
+            transform: scale(0.94);
+            border-radius: 16px !important;
+        }
+
+        /* Ripple-волна при касании */
+        .m3-ripple-wave {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.26) 0%, rgba(255, 255, 255, 0) 72%);
+            pointer-events: none;
+            animation: m3RippleAnim 0.52s cubic-bezier(0.2, 0, 0, 1) forwards;
+        }
+        @keyframes m3RippleAnim {
+            to {
+                transform: scale(2.6);
+                opacity: 0;
+            }
+        }
+
+        /* Морфинг карточек фигур MD3 (Круг -> Сквиркл при выборе) */
+        .md3-shape-card {
+            background-color: var(--md-surface-container);
+            color: var(--md-on-surface-variant);
+            border-radius: 26px;
+            transition: all 0.26s var(--md-ease-emphasized);
+        }
+        .md3-shape-card:hover {
+            background-color: var(--md-surface-container-high);
+            color: var(--md-on-surface);
+        }
+        .md3-shape-card.active {
+            background-color: var(--md-primary);
+            color: var(--md-on-primary);
+            border-radius: 18px;
+        }
+
+        /* Скользящий индикатор вкладок */
+        .m3-sliding-pill {
+            transition: transform 0.36s var(--md-spring), background-color 0.35s ease;
+            will-change: transform;
+        }
+
+        /* Направленная анимация переключения вкладок */
+        @keyframes m3TabSlideRight {
+            0% { opacity: 0; transform: translateX(16px) scale(0.985); }
+            100% { opacity: 1; transform: translateX(0) scale(1); }
+        }
+        @keyframes m3TabSlideLeft {
+            0% { opacity: 0; transform: translateX(-16px) scale(0.985); }
+            100% { opacity: 1; transform: translateX(0) scale(1); }
+        }
+        .tab-enter-right {
+            animation: m3TabSlideRight 0.32s var(--md-ease-emphasized) forwards;
+        }
+        .tab-enter-left {
+            animation: m3TabSlideLeft 0.32s var(--md-ease-emphasized) forwards;
+        }
+
+        /* Каскадное появление карточек */
+        @keyframes m3CardPopIn {
+            0% { opacity: 0; transform: translateY(10px) scale(0.95); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .m3-card-stagger {
+            opacity: 0;
+            animation: m3CardPopIn 0.34s var(--md-spring) forwards;
+            animation-delay: calc(var(--stagger, 0) * 30ms);
+        }
+
+        /* Анимация искры на кнопке Микс */
+        @keyframes m3SparkleBurst {
+            0% { transform: rotate(0deg) scale(1); }
+            45% { transform: rotate(195deg) scale(1.26); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        .sparkle-burst {
+            animation: m3SparkleBurst 0.52s var(--md-spring);
+        }
+
+        /* Кастомный скроллбар */
+        .m3-scroll {
+            overscroll-behavior: contain;
+            -webkit-overflow-scrolling: touch;
+        }
+        .m3-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .m3-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .m3-scroll::-webkit-scrollbar-thumb {
+            background: var(--md-surface-container-highest);
+            border-radius: 9999px;
+        }
+
+        /* === ANDROID 16 / MATERIAL DESIGN 3 EXPRESSIVE SPLIT-TRACK SLIDERS === */
+        .m3-slider-card {
+            background-color: var(--md-surface-container);
+            border-radius: 26px;
+            padding: 14px 18px 14px;
+            transition: background-color 0.35s ease;
+        }
+
+        .m3-slider-wrapper {
+            position: relative;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            touch-action: pan-x;
+            --pct: 50%;
+        }
+
+        /* Всплывающий пузырёк точного значения над пальцем */
+        .m3-slider-bubble {
+            position: absolute;
+            bottom: 36px;
+            left: var(--pct);
+            transform: translateX(-50%) translateY(6px) scale(0.75);
+            opacity: 0;
+            pointer-events: none;
+            padding: 3px 9px;
+            border-radius: 9999px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            background-color: var(--md-primary);
+            color: var(--md-on-primary);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
+            transition: opacity 0.16s ease, transform 0.22s var(--md-spring);
+            z-index: 20;
+            white-space: nowrap;
+        }
+        .m3-slider-wrapper.is-sliding .m3-slider-bubble {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0) scale(1);
+        }
+
+        .m3-slider-visual {
+            position: relative;
+            width: 100%;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            pointer-events: none;
+        }
+
+        .m3-slider-active {
+            height: 16px;
+            width: calc(var(--pct) - 8px);
+            background-color: var(--md-primary);
+            border-radius: 999px 4px 4px 999px;
+            transition: background-color 0.3s ease;
+            min-width: 0;
+        }
+
+        .m3-slider-thumb-gap {
+            width: 16px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .m3-slider-thumb {
+            width: 4px;
+            height: 32px;
+            background-color: var(--md-primary);
+            border-radius: 999px;
+            transition: width 0.15s ease, height 0.15s ease, background-color 0.3s ease;
+        }
+
+        .m3-slider-wrapper:active .m3-slider-thumb,
+        .m3-slider-wrapper.is-sliding .m3-slider-thumb {
+            width: 6px;
+            height: 36px;
+        }
+
+        .m3-slider-inactive {
+            height: 16px;
+            background-color: var(--md-surface-container-low);
+            border-radius: 4px 999px 999px 4px;
+            flex: 1;
+            min-width: 0;
+            transition: background-color 0.3s ease;
+        }
+
+        .m3-slider-ticks {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            pointer-events: none;
+        }
+
+        .m3-tick-dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            transition: background-color 0.2s ease, opacity 0.2s ease;
+        }
+
+        .m3-slider-input {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+            margin: 0;
+            z-index: 10;
+        }
+
+        /* Спектральный слайдер оттенка */
+        .m3-hue-track {
+            position: absolute;
+            inset: 0;
+            height: 16px;
+            margin: auto 0;
+            border-radius: 999px;
+            background: linear-gradient(to right,
+                hsl(0, 82%, 58%),
+                hsl(45, 82%, 58%),
+                hsl(90, 82%, 58%),
+                hsl(135, 82%, 58%),
+                hsl(180, 82%, 58%),
+                hsl(225, 82%, 58%),
+                hsl(270, 82%, 58%),
+                hsl(315, 82%, 58%),
+                hsl(360, 82%, 58%)
+            );
+            pointer-events: none;
+        }
+
+        .m3-hue-thumb {
+            position: absolute;
+            top: 50%;
+            width: 24px;
+            height: 24px;
+            border-radius: 999px;
+            transform: translate(-50%, -50%);
+            background-color: var(--md-primary);
+            box-shadow: 0 0 0 3px var(--md-surface-container), 0 3px 10px rgba(0, 0, 0, 0.5);
+            pointer-events: none;
+            transition: transform 0.15s ease;
+        }
+
+        .m3-slider-wrapper:active .m3-hue-thumb {
+            transform: translate(-50%, -50%) scale(1.16);
+        }
+
+        /* Пружинная физика для мобильной шторки (Bottom Sheet) */
+        @media (max-width: 639px) {
+            #studio-panel {
+                height: var(--sheet-h, 53dvh);
+                max-height: 86dvh;
+                min-height: 146px;
+            }
+            #studio-panel.sheet-spring {
+                transition: height 0.42s var(--md-spring), transform 0.38s var(--md-spring);
+            }
+            #studio-panel.sheet-dragging {
+                transition: none !important;
+            }
+            #mobile-fab-mix {
+                bottom: calc(var(--sheet-h, 53dvh) + 12px);
+            }
+            #mobile-fab-mix.fab-spring {
+                transition: bottom 0.42s var(--md-spring), transform 0.32s var(--md-spring), opacity 0.25s ease;
+            }
+            #mobile-fab-mix.fab-dragging {
+                transition: transform 0.32s var(--md-spring), opacity 0.25s ease !important;
+            }
+        }
+
+        /* Круглые свотчи цвета без рамок */
+        .color-swatch-circle {
+            position: relative;
+            width: 44px;
+            height: 44px;
+            border-radius: 999px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.22s var(--md-spring), border-radius 0.22s ease;
+        }
+        .color-swatch-circle:hover {
+            transform: scale(1.08);
+            border-radius: 16px;
+        }
+        .color-swatch-circle input[type="color"] {
+            position: absolute;
+            top: -12px;
+            left: -12px;
+            width: 72px;
+            height: 72px;
+            border: none;
+            padding: 0;
+            background: none;
+            cursor: pointer;
+        }
+
+        .seed-swatch-hero {
+            position: relative;
+            width: 52px;
+            height: 52px;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: transform 0.22s var(--md-spring), border-radius 0.22s ease;
+        }
+        .seed-swatch-hero:hover {
+            transform: scale(1.06);
+            border-radius: 26px;
+        }
+        .seed-swatch-hero input[type="color"] {
+            position: absolute;
+            top: -14px;
+            left: -14px;
+            width: 80px;
+            height: 80px;
+            border: none;
+            padding: 0;
+            background: none;
+            cursor: pointer;
+        }
+
+        /* Анимация M3 Snackbar */
+        @keyframes m3SnackbarIn {
+            0% { opacity: 0; transform: translate(-50%, 18px) scale(0.92); }
+            100% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+        }
+        .m3-snackbar-enter {
+            animation: m3SnackbarIn 0.32s var(--md-spring) forwards;
+        }
+
+        /* Импульс от двойного нажатия по холсту */
+        @keyframes focusPulse {
+            0% { transform: translate(-50%, -50%) scale(0.35); opacity: 0.95; }
+            100% { transform: translate(-50%, -50%) scale(1.9); opacity: 0; }
+        }
+        .focus-tap-ring {
+            animation: focusPulse 0.65s var(--md-ease-emphasized) forwards;
+        }
+
+        /* Плавное морфирование логотипа */
+        @keyframes slowMorph {
+            0%, 100% { border-radius: 42% 58% 62% 38% / 45% 42% 58% 55%; }
+            50% { border-radius: 58% 42% 38% 62% / 55% 58% 42% 45%; }
+        }
+        .m3-logo-blob {
+            animation: slowMorph 7s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="relative w-screen h-[100dvh] overflow-hidden font-sans antialiased">
+
+    <!-- Основной WebGL холст -->
+    <div id="canvas-wrapper" class="relative w-full h-full flex items-center justify-center overflow-hidden">
+        <canvas id="gl-canvas" class="block w-full h-full cursor-grab active:cursor-grabbing touch-none"></canvas>
+
+        <!-- Рамка предпросмотра пропорций + Макет экрана блокировки -->
+        <div id="aspect-frame" class="pointer-events-none fixed inset-0 flex items-center justify-center transition-opacity duration-300 opacity-0 z-10">
+            <div id="aspect-box" class="relative rounded-[32px] shadow-[0_0_0_9999px_rgba(0,0,0,0.58)] transition-all duration-300">
+                <!-- Бейдж формата сверху -->
+                <div class="absolute -top-8 left-1/2 -translate-x-1/2 px-3.5 py-1 rounded-full text-[11px] font-mono tracking-wide whitespace-nowrap shadow-lg"
+                     style="background-color: var(--md-surface-container-high); color: var(--md-on-surface);"
+                     id="aspect-label">9:19.5 • 1290×2796</div>
+
+                <!-- Оверлей макета экрана блокировки -->
+                <div id="lockscreen-overlay" class="hidden absolute inset-0 flex flex-col justify-between p-5 sm:p-6 text-white/95 select-none">
+                    <div class="flex flex-col items-center text-center pt-1">
+                        <div class="w-full flex items-center justify-between text-[10px] font-medium opacity-80 px-1 mb-3">
+                            <span>9:41</span>
+                            <div class="w-14 h-3.5 rounded-full bg-black/70"></div>
+                            <div class="flex items-center gap-1">
+                                <span class="material-symbols-rounded !text-[13px]">signal_cellular_alt</span>
+                                <span class="material-symbols-rounded !text-[13px]">battery_full</span>
+                            </div>
+                        </div>
+                        <span class="material-symbols-rounded !text-[16px] opacity-75 mb-1">lock</span>
+                        <div class="text-[11px] font-medium tracking-wide opacity-85">Среда, 18 ноября</div>
+                        <div class="font-display text-5xl sm:text-6xl font-bold tracking-tight leading-none mt-1 drop-shadow-[0_2px_16px_rgba(0,0,0,0.45)]">09:41</div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between px-2">
+                            <div class="w-9 h-9 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center">
+                                <span class="material-symbols-rounded !text-[17px]">flashlight_on</span>
+                            </div>
+                            <div class="w-9 h-9 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center">
+                                <span class="material-symbols-rounded !text-[17px]">photo_camera</span>
+                            </div>
+                        </div>
+                        <div class="w-24 h-1 rounded-full bg-white/75 mx-auto"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Верхняя плавающая панель M3 Expressive (Pure Tonal, Zero Borders) -->
+    <header id="top-bar" class="fixed top-3 left-3 right-3 sm:top-5 sm:left-5 sm:right-auto z-30 flex items-center justify-between sm:justify-start gap-2 transition-all duration-300">
+        <!-- Капсула бренда -->
+        <div class="flex items-center gap-2.5 pl-2 pr-3.5 py-1.5 sm:py-2 rounded-full m3-surface-glass shadow-2xl min-w-0">
+            <div class="w-8 h-8 m3-logo-blob flex items-center justify-center shrink-0 shadow-md"
+                 style="background: linear-gradient(135deg, var(--md-primary), var(--md-tertiary));">
+                <div class="w-3.5 h-3.5 rounded-full" style="background-color: var(--md-on-primary);"></div>
+            </div>
+            <div class="min-w-0">
+                <div class="flex items-center gap-1.5">
+                    <h1 class="font-display text-[13px] sm:text-[15px] font-bold tracking-tight leading-none truncate" style="color: var(--md-on-surface);">Lumina Aura</h1>
+                    <span class="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full"
+                          style="background-color: var(--md-primary-container); color: var(--md-on-primary-container);">M3</span>
+                </div>
+                <p class="text-[11px] leading-tight mt-0.5 hidden md:block" style="color: var(--md-on-surface-variant);">Световая студия обоев</p>
+            </div>
+        </div>
+
+        <!-- M3 Floating Toolbar -->
+        <div class="flex items-center gap-0.5 sm:gap-1 p-1 sm:p-1.5 rounded-full m3-surface-glass shadow-2xl shrink-0">
+            <button id="btn-undo" title="Отменить (Ctrl+Z)" disabled
+                    class="m3-btn-spring w-10 h-10 sm:w-9 sm:h-9 rounded-full flex items-center justify-center disabled:opacity-35 hover:bg-white/10 cursor-pointer disabled:cursor-default"
+                    style="color: var(--md-on-surface);">
+                <span class="material-symbols-rounded !text-[19px]">undo</span>
+            </button>
+            <button id="btn-redo" title="Повторить (Ctrl+Y)" disabled
+                    class="m3-btn-spring w-10 h-10 sm:w-9 sm:h-9 rounded-full flex items-center justify-center disabled:opacity-35 hover:bg-white/10 cursor-pointer disabled:cursor-default"
+                    style="color: var(--md-on-surface);">
+                <span class="material-symbols-rounded !text-[19px]">redo</span>
+            </button>
+
+            <button id="btn-randomize" title="Случайная световая композиция"
+                    class="hidden sm:flex m3-btn-spring h-9 px-3.5 rounded-full font-display font-semibold text-xs items-center gap-1.5 shadow-sm cursor-pointer"
+                    style="background-color: var(--md-primary-container); color: var(--md-on-primary-container);">
+                <span class="mix-sparkle-icon material-symbols-rounded icon-filled !text-[18px]">auto_awesome</span>
+                <span>Микс</span>
+            </button>
+
+            <button id="btn-lockscreen-toggle" title="Макет экрана блокировки"
+                    class="m3-btn-spring w-10 h-10 sm:w-9 sm:h-9 rounded-full flex items-center justify-center hover:bg-white/10 cursor-pointer"
+                    style="color: var(--md-on-surface-variant);">
+                <span class="material-symbols-rounded !text-[19px]">smartphone</span>
+            </button>
+
+            <button id="btn-animate" title="Плавная анимация света"
+                    class="m3-btn-spring w-10 h-10 sm:w-auto sm:h-9 sm:px-3 rounded-full text-xs font-medium flex items-center justify-center gap-1.5 hover:bg-white/10 cursor-pointer"
+                    style="color: var(--md-on-surface-variant);">
+                <span id="anim-icon" class="material-symbols-rounded !text-[19px]">motion_photos_on</span>
+                <span class="hidden lg:inline">Движение</span>
+            </button>
+
+            <button id="btn-hide-ui" title="Скрыть интерфейс (клавиша H)"
+                    class="m3-btn-spring w-10 h-10 sm:w-9 sm:h-9 rounded-full flex items-center justify-center hover:bg-white/10 cursor-pointer"
+                    style="color: var(--md-on-surface);">
+                <span class="material-symbols-rounded !text-[19px]">visibility_off</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Подсказка жестов на мобильных устройствах -->
+    <div id="gesture-hint-pill"
+         class="sm:hidden pointer-events-none fixed top-16 left-1/2 -translate-x-1/2 z-20 px-3.5 py-1.5 rounded-full m3-surface-glass text-[11px] font-medium whitespace-nowrap shadow-lg transition-all duration-500"
+         style="color: var(--md-on-surface-variant);">
+        Тяните свет • Щипок — размер • 2× тап — фокус
+    </div>
+
+    <!-- Мобильный Extended FAB "Микс" под большой палец -->
+    <button id="mobile-fab-mix" title="Случайная световая композиция"
+            class="sm:hidden fab-spring m3-btn-spring fixed right-4 z-30 h-12 px-4 rounded-2xl font-display font-bold text-xs shadow-[0_10px_28px_rgba(0,0,0,0.55)] flex items-center gap-2 cursor-pointer"
+            style="background-color: var(--md-primary-container); color: var(--md-on-primary-container);">
+        <span class="mix-sparkle-icon material-symbols-rounded icon-filled !text-[20px]">auto_awesome</span>
+        <span>Микс</span>
+    </button>
+
+    <!-- Кнопка возврата интерфейса -->
+    <button id="btn-show-ui"
+            class="hidden fixed top-4 right-4 z-40 m3-btn-spring h-11 px-4 rounded-full m3-surface-glass font-display text-xs font-semibold shadow-2xl flex items-center gap-2 cursor-pointer"
+            style="color: var(--md-on-surface);">
+        <span class="material-symbols-rounded icon-filled !text-[19px]" style="color: var(--md-primary);">tune</span>
+        <span>Студия</span>
+    </button>
+
+    <!-- Минималистичная студийная панель M3 Expressive (Pure Tonal Surfaces, 3 вкладки без пресетов) -->
+    <aside id="studio-panel"
+           class="sheet-spring fixed bottom-0 left-0 right-0 sm:top-4 sm:right-4 sm:bottom-4 sm:left-auto sm:w-[396px] z-30 flex flex-col rounded-t-[32px] sm:rounded-[32px] m3-surface-glass shadow-[0_24px_64px_rgba(0,0,0,0.85)]">
+
+        <!-- Зона перетаскивания мобильной шторки -->
+        <div id="mobile-drag-header" class="sm:hidden flex flex-col items-center justify-center pt-2.5 pb-1.5 cursor-grab active:cursor-grabbing touch-none">
+            <div class="w-11 h-1.5 rounded-full opacity-45 transition-all" style="background-color: var(--md-on-surface-variant);"></div>
+        </div>
+
+        <!-- Шапка панели и 3 M3 Expressive вкладки -->
+        <div id="studio-panel-header" class="px-4 pt-1 sm:pt-4 pb-3 shrink-0 space-y-2.5 touch-none sm:touch-auto">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <span class="font-display text-sm font-bold tracking-tight" style="color: var(--md-on-surface);">Конструктор света</span>
+                    <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full"
+                          style="background-color: var(--md-surface-container-high); color: var(--md-on-surface-variant);">WebGL 4K</span>
+                </div>
+
+                <div class="flex items-center gap-1">
+                    <button id="btn-reset-pos" title="Центрировать фигуру"
+                            class="m3-btn-spring h-9 sm:h-8 px-3 sm:px-2.5 rounded-full text-[11px] font-semibold flex items-center gap-1 hover:bg-white/10 cursor-pointer"
+                            style="color: var(--md-primary);">
+                        <span class="material-symbols-rounded !text-[16px]">filter_center_focus</span>
+                        <span>Центр</span>
+                    </button>
+
+                    <button id="btn-toggle-drawer" class="sm:hidden m3-btn-spring w-9 h-9 rounded-full flex items-center justify-center hover:bg-white/10 cursor-pointer"
+                            aria-label="Изменить высоту панели" style="color: var(--md-on-surface);">
+                        <span id="drawer-chevron" class="material-symbols-rounded !text-[21px] transition-transform duration-300">keyboard_arrow_down</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 3 Expressive вкладки со скользящим M3-индикатором -->
+            <nav class="relative grid grid-cols-3 p-1.5 rounded-full" style="background-color: var(--md-surface-container);" role="tablist">
+                <div id="tab-indicator" class="m3-sliding-pill absolute top-1.5 bottom-1.5 left-1.5 w-[calc(33.333%-4px)] rounded-full pointer-events-none"
+                     style="background-color: var(--md-secondary-container);"></div>
+                <button data-tab="shape" data-tab-index="0" class="m3-tab-btn m3-btn-spring relative z-10 py-2.5 sm:py-2 px-2 rounded-full text-xs font-display font-semibold flex items-center justify-center gap-1.5 cursor-pointer">
+                    <span class="material-symbols-rounded !text-[17px]">shapes</span>
+                    <span>Форма</span>
+                </button>
+                <button data-tab="light" data-tab-index="1" class="m3-tab-btn m3-btn-spring relative z-10 py-2.5 sm:py-2 px-2 rounded-full text-xs font-display font-semibold flex items-center justify-center gap-1.5 cursor-pointer">
+                    <span class="material-symbols-rounded !text-[17px]">palette</span>
+                    <span>Свет</span>
+                </button>
+                <button data-tab="export" data-tab-index="2" class="m3-tab-btn m3-btn-spring relative z-10 py-2.5 sm:py-2 px-2 rounded-full text-xs font-display font-semibold flex items-center justify-center gap-1.5 cursor-pointer">
+                    <span class="material-symbols-rounded !text-[17px]">wallpaper</span>
+                    <span>Экспорт</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- Рабочая область вкладок -->
+        <div id="drawer-content" class="m3-scroll overflow-y-auto px-4 pb-4 flex-1">
+
+            <!-- ==================== ВКЛАДКА 1: ФОРМА (СВЕТООРЕОЛЫ + ВСЕ 35 MD3 ФИГУР) ==================== -->
+            <div id="tab-panel-shape" class="tab-panel space-y-4">
+                <!-- Компактная карточка умного микса с фиксацией -->
+                <div class="m3-card p-3.5 flex items-center justify-between gap-2">
+                    <div class="flex items-center gap-1.5 flex-1 min-w-0">
+                        <button id="chip-lock-shape" data-locked="false"
+                                class="m3-filter-chip m3-btn-spring flex-1 h-9 px-2.5 rounded-full text-[11px] font-semibold flex items-center justify-center gap-1 cursor-pointer truncate">
+                            <span class="material-symbols-rounded !text-[14px] chip-icon">lock_open</span>
+                            <span>Фикс. форму</span>
+                        </button>
+                        <button id="chip-lock-color" data-locked="false"
+                                class="m3-filter-chip m3-btn-spring flex-1 h-9 px-2.5 rounded-full text-[11px] font-semibold flex items-center justify-center gap-1 cursor-pointer truncate">
+                            <span class="material-symbols-rounded !text-[14px] chip-icon">lock_open</span>
+                            <span>Фикс. цвет</span>
+                        </button>
+                    </div>
+                    <button id="btn-panel-mix"
+                            class="m3-btn-spring h-9 px-3.5 rounded-full font-display font-semibold text-xs flex items-center gap-1.5 shrink-0 cursor-pointer"
+                            style="background-color: var(--md-primary); color: var(--md-on-primary);">
+                        <span class="material-symbols-rounded icon-filled !text-[16px]">casino</span>
+                        <span>Микс</span>
+                    </button>
+                </div>
+
+                <!-- Сетка 38 световых фигур с морфингом (Круг -> Сквиркл) -->
+                <div class="space-y-2.5">
+                    <div class="flex items-center justify-between gap-2 px-1">
+                        <span class="text-[11px] font-bold uppercase tracking-wider truncate" style="color: var(--md-on-surface-variant);">Библиотека форм (38)</span>
+                        <!-- Переключатель Ореол / Контур -->
+                        <div class="inline-flex p-1 rounded-full shrink-0" style="background-color: var(--md-surface-container);">
+                            <button data-hollow="0" class="hollow-btn m3-btn-spring px-2.5 py-1 rounded-full text-[11px] font-semibold cursor-pointer">Ореол</button>
+                            <button data-hollow="1" class="hollow-btn m3-btn-spring px-2.5 py-1 rounded-full text-[11px] font-semibold cursor-pointer">Контур</button>
+                        </div>
+                    </div>
+
+                    <!-- Фильтр категорий фигур -->
+                    <div class="flex items-center gap-1.5 overflow-x-auto pb-0.5">
+                        <button data-shape-cat="all" class="shape-cat-btn m3-btn-spring px-3 py-1 rounded-full text-[11px] font-semibold whitespace-nowrap cursor-pointer">Все 38</button>
+                        <button data-shape-cat="organic" class="shape-cat-btn m3-btn-spring px-3 py-1 rounded-full text-[11px] font-semibold whitespace-nowrap cursor-pointer">Плавные + Cookie</button>
+                        <button data-shape-cat="geo" class="shape-cat-btn m3-btn-spring px-3 py-1 rounded-full text-[11px] font-semibold whitespace-nowrap cursor-pointer">Геометрия и Pixel</button>
+                    </div>
+
+                    <div id="md3-shapes-grid" class="m3-scroll grid grid-cols-5 gap-2 max-h-[248px] overflow-y-auto pr-1"></div>
+                </div>
+
+                <!-- Интерактивный 360° Компас угла резкого края -->
+                <div class="m3-card p-4 flex items-center gap-4">
+                    <div id="focus-dial" class="relative w-24 h-24 rounded-full shrink-0 flex items-center justify-center cursor-pointer touch-none"
+                         style="background-color: var(--md-surface-container-highest);">
+                        <div class="w-12 h-12 rounded-full border border-dashed opacity-35" style="border-color: var(--md-on-surface-variant);"></div>
+                        <div id="dial-arm" class="absolute inset-0 pointer-events-none">
+                            <div class="absolute top-1/2 left-1/2 w-[42%] h-0.5 origin-left -translate-y-1/2 rounded-full"
+                                 style="background-color: var(--md-primary);"></div>
+                            <div class="absolute top-1/2 right-1.5 w-4 h-4 -translate-y-1/2 rounded-full shadow-md flex items-center justify-center"
+                                 style="background-color: var(--md-primary);">
+                                <div class="w-1.5 h-1.5 rounded-full" style="background-color: var(--md-on-primary);"></div>
+                            </div>
+                        </div>
+                        <span id="dial-readout" class="relative z-10 font-mono text-[11px] font-semibold px-2 py-0.5 rounded-full"
+                              style="background-color: var(--md-surface-container); color: var(--md-on-surface);">-38°</span>
+                    </div>
+
+                    <div class="flex-1 min-w-0 space-y-2">
+                        <div>
+                            <div class="font-display text-xs font-bold" style="color: var(--md-on-surface);">Направление фокуса</div>
+                            <p class="text-[11px] leading-snug mt-0.5" style="color: var(--md-on-surface-variant);">Потяните диск или 2× нажмите на холст для выбора резкого края.</p>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <button data-angle="135" class="quick-angle-btn m3-btn-spring flex-1 py-1.5 rounded-full text-[11px] font-mono cursor-pointer" style="background-color: var(--md-surface-container-high);">↖</button>
+                            <button data-angle="45" class="quick-angle-btn m3-btn-spring flex-1 py-1.5 rounded-full text-[11px] font-mono cursor-pointer" style="background-color: var(--md-surface-container-high);">↗</button>
+                            <button data-angle="-45" class="quick-angle-btn m3-btn-spring flex-1 py-1.5 rounded-full text-[11px] font-mono cursor-pointer" style="background-color: var(--md-surface-container-high);">↘</button>
+                            <button data-angle="-135" class="quick-angle-btn m3-btn-spring flex-1 py-1.5 rounded-full text-[11px] font-mono cursor-pointer" style="background-color: var(--md-surface-container-high);">↙</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Слайдеры геометрии (Android 16 Expressive Split-Track) -->
+                <div class="space-y-3">
+                    <div class="m3-slider-card">
+                        <div class="flex justify-between items-center text-xs mb-1.5">
+                            <span class="font-medium" style="color: var(--md-on-surface);">Масштаб фигуры</span>
+                            <span id="val-scale" class="font-mono text-xs font-bold" style="color: var(--md-primary);">0.31</span>
+                        </div>
+                        <div class="m3-slider-wrapper" data-ticks="5">
+                            <div class="m3-slider-bubble">0.31</div>
+                            <div class="m3-slider-visual">
+                                <div class="m3-slider-active"></div>
+                                <div class="m3-slider-thumb-gap"><div class="m3-slider-thumb"></div></div>
+                                <div class="m3-slider-inactive"></div>
+                                <div class="m3-slider-ticks"></div>
+                            </div>
+                            <input type="range" class="m3-range m3-slider-input" id="ctrl-scale" min="0.12" max="0.72" step="0.005" value="0.31">
+                        </div>
+                    </div>
+
+                    <div class="m3-slider-card">
+                        <div class="flex justify-between items-center text-xs mb-1.5">
+                            <span class="font-medium" style="color: var(--md-on-surface);">Перспектива / Сжатие</span>
+                            <span id="val-aspect" class="font-mono text-xs font-bold" style="color: var(--md-primary);">0.64</span>
+                        </div>
+                        <div class="m3-slider-wrapper" data-ticks="5">
+                            <div class="m3-slider-bubble">0.64</div>
+                            <div class="m3-slider-visual">
+                                <div class="m3-slider-active"></div>
+                                <div class="m3-slider-thumb-gap"><div class="m3-slider-thumb"></div></div>
+                                <div class="m3-slider-inactive"></div>
+                                <div class="m3-slider-ticks"></div>
+                            </div>
+                            <input type="range" class="m3-range m3-slider-input" id="ctrl-aspect" min="0.25" max="1.0" step="0.01" value="0.64">
+                        </div>
+                    </div>
+
+                    <div class="m3-slider-card">
+                        <div class="flex justify-between items-center text-xs mb-1.5">
+                            <span class="font-medium" style="color: var(--md-on-surface);">Наклон фигуры</span>
+                            <span id="val-rotation" class="font-mono text-xs font-bold" style="color: var(--md-primary);">-36°</span>
+                        </div>
+                        <div class="m3-slider-wrapper" data-ticks="5">
+                            <div class="m3-slider-bubble">-36°</div>
+                            <div class="m3-slider-visual">
+                                <div class="m3-slider-active"></div>
+                                <div class="m3-slider-thumb-gap"><div class="m3-slider-thumb"></div></div>
+                                <div class="m3-slider-inactive"></div>
+                                <div class="m3-slider-ticks"></div>
+                            </div>
+                            <input type="range" class="m3-range m3-slider-input" id="ctrl-rotation" min="-180" max="180" step="1" value="-36">
+                        </div>
+                    </div>
+
+                    <div class="m3-slider-card">
+                        <div class="flex justify-between items-center text-xs mb-1.5">
+                            <span class="font-medium" style="color: var(--md-on-surface);">Органическая пластика</span>
+                            <span id="val-morph" class="font-mono text-xs font-bold" style="color: var(--md-primary);">0.08</span>
+                        </div>
+                        <div class="m3-slider-wrapper" data-ticks="5">
+                            <div class="m3-slider-bubble">0.08</div>
+                            <div class="m3-slider-visual">
+                                <div class="m3-slider-active"></div>
+                                <div class="m3-slider-thumb-gap"><div class="m3-slider-thumb"></div></div>
+                                <div class="m3-slider-inactive"></div>
+                                <div class="m3-slider-ticks"></div>
+                            </div>
+                            <input type="range" class="m3-range m3-slider-input" id="ctrl-morph" min="0.0" max="1.0" step="0.01" value="0.08">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== ВКЛАДКА 2: СВЕТ, ЛЁГКИЙ ПОДБОР ЦВЕТА И ОПТИКА ==================== -->
+            <div id="tab-panel-light" class="tab-panel hidden space-y-3.5">
+                <!-- Упрощённый подбор цвета по базовому оттенку + 4 тона -->
+                <div class="m3-card p-4 space-y-3.5">
+                    <div class="flex items-center justify-between gap-3">
+                        <div class="flex items-center gap-3 min-w-0">
+                            <label class="seed-swatch-hero" id="seed-swatch-wrapper" style="background-color: #b4b4ba;" title="Выбрать базовый оттенок">
+                                <input type="color" id="seed-color-input" value="#b4b4ba" aria-label="Базовый оттенок">
+                                <span class="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-black/45 text-white flex items-center justify-center pointer-events-none">
+                                    <span class="material-symbols-rounded !text-[13px]">colorize</span>
+                                </span>
+                            </label>
+                            <div class="min-w-0">
+                                <div class="font-display text-xs font-bold truncate" style="color: var(--md-on-surface);">Тональная палитра</div>
+                                <div class="text-[11px] truncate" style="color: var(--md-on-surface-variant);">Спектр или ручная настройка слоёв</div>
+                            </div>
+                        </div>
+
+                        <button id="btn-swap-roles"
+                                class="m3-btn-spring h-8 px-3 rounded-full text-[11px] font-semibold flex items-center gap-1 cursor-pointer shrink-0"
+                                style="background-color: var(--md-tertiary-container); color: var(--md-on-tertiary-container);"
+                                title="Поменять местами цвета шлейфа, ореола и ядра">
+                            <span class="material-symbols-rounded !text-[15px]">swap_horiz</span>
+                            <span>Роли</span>
+                        </button>
+                    </div>
+
+                    <!-- Спектральный ползунок оттенка -->
+                    <div>
+                        <div class="flex justify-between items-center text-xs mb-1">
+                            <span class="font-medium" style="color: var(--md-on-surface-variant);">Спектр оттенка</span>
+                            <span id="val-seed-hue" class="font-mono text-xs font-bold" style="color: var(--md-primary);">240°</span>
+                        </div>
+                        <div class="m3-slider-wrapper">
+                            <div class="m3-hue-track"></div>
+                            <div class="m3-hue-thumb" id="seed-hue-thumb" style="left: 66%;"></div>
+                            <input type="range" class="m3-slider-input" id="ctrl-seed-hue" min="0" max="360" step="1" value="240">
+                        </div>
+                    </div>
+
+                    <!-- Слайдер насыщенности оттенка -->
+                    <div>
+                        <div class="flex justify-between items-center text-xs mb-1">
+                            <span class="font-medium" style="color: var(--md-on-surface-variant);">Насыщенность</span>
+                            <span id="val-seed-sat" class="font-mono text-xs font-bold" style="color: var(--md-primary);">62%</span>
+                        </div>
+                        <div class="m3-slider-wrapper" data-ticks="5">
+                            <div class="m3-slider-bubble">62%</div>
+                            <div class="m3-slider-visual">
+                                <div class="m3-slider-active"></div>
+                                <div class="m3-slider-thumb-gap"><div class="m3-slider-thumb"></div></div>
+                                <div class="m3-slider-inactive"></div>
+                                <div class="m3-slider-ticks"></div>
+                            </div>
+                            <input type="range" class="m3-slider-input" id="ctrl-seed-sat" min="0" max="100" step="1" value="62">
+                        </div>
+                    </div>
+
+                    <!-- Характер свечения в 1 касание -->
+                    <div class="grid grid-cols-4 gap-1.5">
+                        <button data-mood-mode="soft" class="mood-mode-btn m3-btn-spring py-2 px-2 rounded-2xl text-[11px] font-semibold cursor-pointer">Мягкий</button>
+                        <button data-mood-mode="deep" class="mood-mode-btn m3-btn-spring py-2 px-2 rounded-2xl text-[11px] font-semibold cursor-pointer">Глубокий</button>
+                        <button data-mood-mode="neon" class="mood-mode-btn m3-btn-spring py-2 px-2 rounded-2xl text-[11px] font-semibold cursor-pointer">Неон</button>
+                        <button data-mood-mode="mono" class="mood-mode-btn m3-btn-spring py-2 px-2 rounded-2xl text-[11px] font-semibold cursor-pointer">Монохром</button>
+                    </div>
+
+                    <!-- 4 круглых свотча точной подстройки слоёв -->
+                    <div class="flex items-center justify-around pt-1">
+                        <label class="flex flex-col items-center gap-1.5 cursor-pointer">
+                            <div class="color-swatch-circle" id="swatch-bg" style="background-color: #121213;">
+                                <input type="color" id="col-bg" value="#121213">
+                            </div>
+                            <span class="text-[10px] font-semibold" style="color: var(--md-on-surface-variant);">Фон</span>
+                        </label>
+                        <label class="flex flex-col items-center gap-1.5 cursor-pointer">
+                            <div class="color-swatch-circle" id="swatch-outer" style="background-color: #56565c;">
+                                <input type="color" id="col-outer" value="#56565c">
+                            </div>
+                            <span class="text-[10px] font-semibold" style="color: var(--md-on-surface-variant);">Шлейф</span>
+                        </label>
+                        <label class="flex flex-col items-center gap-1.5 cursor-pointer">
+                            <div class="color-swatch-circle" id="swatch-mid" style="background-color: #b4b4ba;">
+                                <input type="color" id="col-mid" value="#b4b4ba">
+                            </div>
+                            <span class="text-[10px] font-semibold" style="color: var(--md-on-surface-variant);">Ореол</span>
+                        </label>
+                        <label class="flex flex-col items-center gap-1.5 cursor-pointer">
+                            <div class="color-swatch-circle" id="swatch-core" style="background-color: #ffffff;">
+                                <input type="color" id="col-core" value="#ffffff">
+                            </div>
+                            <span class="text-[10px] font-semibold" style="color: var(--md-on-surface-variant);">Ядро</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Оптическое рассеивание (Android 16 Expressive Sliders) -->
+                <div class="m3-slider-card">
+                    <div class="flex justify-between items-center text-xs mb-1.5">
+                        <span class="font-medium" style="color: var(--md-on-surface);">Резкость каустики</span>
+                        <span id="val-sharpness" class="font-mono text-xs font-bold" style="color: var(--md-primary);">0.96</span>
+                    </div>
+                    <div class="m3-slider-wrapper" data-ticks="5">
+                        <div class="m3-slider-bubble">0.96</div>
+                        <div class="m3-slider-visual">
+                            <div class="m3-slider-active"></div>
+                            <div class="m3-slider-thumb-gap"><div class="m3-slider-thumb"></div></div>
+                            <div class="m3-slider-inactive"></div>
+                            <div class="m3-slider-ticks"></div>
+                        </div>
+                        <input type="range" class="m3-range m3-slider-input" id="ctrl-sharpness" min="0.1" max="1.0" step="0.01" value="0.96">
+                    </div>
+                </div>
+
+                <div class="m3-slider-card">
+                    <div class="flex justify-between items-center text-xs mb-1.5">
+                        <span class="font-medium" style="color: var(--md-on-surface);">Дымка рассеивания</span>
+                        <span id="val-diffusion" class="font-mono text-xs font-bold" style="color: var(--md-primary);">0.88</span>
+                    </div>
+                    <div class="m3-slider-wrapper" data-ticks="5">
+                        <div class="m3-slider-bubble">0.88</div>
+                        <div class="m3-slider-visual">
+                            <div class="m3-slider-active"></div>
+                            <div class="m3-slider-thumb-gap"><div class="m3-slider-thumb"></div></div>
+                            <div class="m3-slider-inactive"></div>
+                            <div class="m3-slider-ticks"></div>
+                        </div>
+                        <input type="range" class="m3-range m3-slider-input" id="ctrl-diffusion" min="0.05" max="1.4" step="0.01" value="0.88">
+                    </div>
+                </div>
+
+                <div class="m3-slider-card">
+                    <div class="flex justify-between items-center text-xs mb-1.5">
+                        <span class="font-medium" style="color: var(--md-on-surface);">Вытяжение шлейфа</span>
+                        <span id="val-drift" class="font-mono text-xs font-bold" style="color: var(--md-primary);">0.56</span>
+                    </div>
+                    <div class="m3-slider-wrapper" data-ticks="5">
+                        <div class="m3-slider-bubble">0.56</div>
+                        <div class="m3-slider-visual">
+                            <div class="m3-slider-active"></div>
+                            <div class="m3-slider-thumb-gap"><div class="m3-slider-thumb"></div></div>
+                            <div class="m3-slider-inactive"></div>
+                            <div class="m3-slider-ticks"></div>
+                        </div>
+                        <input type="range" class="m3-range m3-slider-input" id="ctrl-drift" min="0.0" max="1.0" step="0.01" value="0.56">
+                    </div>
+                </div>
+
+                <div class="m3-slider-card">
+                    <div class="flex justify-between items-center text-xs mb-1.5">
+                        <span class="font-medium" style="color: var(--md-on-surface);">Яркость экспозиции</span>
+                        <span id="val-intensity" class="font-mono text-xs font-bold" style="color: var(--md-primary);">1.18</span>
+                    </div>
+                    <div class="m3-slider-wrapper" data-ticks="5">
+                        <div class="m3-slider-bubble">1.18</div>
+                        <div class="m3-slider-visual">
+                            <div class="m3-slider-active"></div>
+                            <div class="m3-slider-thumb-gap"><div class="m3-slider-thumb"></div></div>
+                            <div class="m3-slider-inactive"></div>
+                            <div class="m3-slider-ticks"></div>
+                        </div>
+                        <input type="range" class="m3-range m3-slider-input" id="ctrl-intensity" min="0.4" max="2.0" step="0.02" value="1.18">
+                    </div>
+                </div>
+
+                <div class="m3-slider-card">
+                    <div class="flex justify-between items-center text-xs mb-1.5">
+                        <span class="font-medium" style="color: var(--md-on-surface);">Хроматический край</span>
+                        <span id="val-chromatic" class="font-mono text-xs font-bold" style="color: var(--md-primary);">0.00</span>
+                    </div>
+                    <div class="m3-slider-wrapper" data-ticks="5">
+                        <div class="m3-slider-bubble">0.00</div>
+                        <div class="m3-slider-visual">
+                            <div class="m3-slider-active"></div>
+                            <div class="m3-slider-thumb-gap"><div class="m3-slider-thumb"></div></div>
+                            <div class="m3-slider-inactive"></div>
+                            <div class="m3-slider-ticks"></div>
+                        </div>
+                        <input type="range" class="m3-range m3-slider-input" id="ctrl-chromatic" min="0.0" max="1.0" step="0.01" value="0.0">
+                    </div>
+                </div>
+
+                <div class="m3-slider-card">
+                    <div class="flex justify-between items-center text-xs mb-1.5">
+                        <span class="font-medium" style="color: var(--md-on-surface);">Аналоговое зерно</span>
+                        <span id="val-grain" class="font-mono text-xs font-bold" style="color: var(--md-primary);">0.048</span>
+                    </div>
+                    <div class="m3-slider-wrapper" data-ticks="5">
+                        <div class="m3-slider-bubble">0.048</div>
+                        <div class="m3-slider-visual">
+                            <div class="m3-slider-active"></div>
+                            <div class="m3-slider-thumb-gap"><div class="m3-slider-thumb"></div></div>
+                            <div class="m3-slider-inactive"></div>
+                            <div class="m3-slider-ticks"></div>
+                        </div>
+                        <input type="range" class="m3-range m3-slider-input" id="ctrl-grain" min="0.0" max="0.14" step="0.002" value="0.048">
+                    </div>
+                </div>
+
+                <div class="m3-slider-card">
+                    <div class="flex justify-between items-center text-xs mb-1.5">
+                        <span class="font-medium" style="color: var(--md-on-surface);">Глубина виньетки</span>
+                        <span id="val-vignette" class="font-mono text-xs font-bold" style="color: var(--md-primary);">0.22</span>
+                    </div>
+                    <div class="m3-slider-wrapper" data-ticks="5">
+                        <div class="m3-slider-bubble">0.22</div>
+                        <div class="m3-slider-visual">
+                            <div class="m3-slider-active"></div>
+                            <div class="m3-slider-thumb-gap"><div class="m3-slider-thumb"></div></div>
+                            <div class="m3-slider-inactive"></div>
+                            <div class="m3-slider-ticks"></div>
+                        </div>
+                        <input type="range" class="m3-range m3-slider-input" id="ctrl-vignette" min="0.0" max="0.8" step="0.01" value="0.22">
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== ВКЛАДКА 3: ЭКСПОРТ И ФОРМАТЫ ==================== -->
+            <div id="tab-panel-export" class="tab-panel hidden space-y-4">
+                <div class="space-y-2">
+                    <span class="text-[11px] font-bold uppercase tracking-wider px-1 block" style="color: var(--md-on-surface-variant);">Формат и разрешение обоев</span>
+                    <div id="format-cards-grid" class="grid grid-cols-1 gap-2"></div>
+                </div>
+
+                <!-- Переключатель макета экрана блокировки -->
+                <div class="m3-card p-4 flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl flex items-center justify-center shrink-0"
+                             style="background-color: var(--md-secondary-container); color: var(--md-on-secondary-container);">
+                            <span class="material-symbols-rounded !text-[20px]">lock_clock</span>
+                        </div>
+                        <div>
+                            <div class="font-display text-xs font-bold" style="color: var(--md-on-surface);">Экран блокировки</div>
+                            <div class="text-[11px]" style="color: var(--md-on-surface-variant);">Проверка композиции с часами</div>
+                        </div>
+                    </div>
+                    <button id="switch-lockscreen" role="switch" aria-checked="false"
+                            class="m3-btn-spring relative h-8 rounded-full p-1 transition-colors cursor-pointer shrink-0"
+                            style="width: 52px; background-color: var(--md-surface-container-highest);">
+                        <span id="switch-lockscreen-thumb" class="block w-6 h-6 rounded-full transition-transform duration-200"
+                              style="background-color: var(--md-outline);"></span>
+                    </button>
+                </div>
+
+                <!-- Импорт / Экспорт рецепта JSON -->
+                <div class="m3-card p-4 space-y-2.5">
+                    <span class="font-display text-xs font-bold block" style="color: var(--md-on-surface);">Обмен настройками (JSON)</span>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button id="btn-copy-recipe"
+                                class="m3-btn-spring h-9 px-3 rounded-full text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer"
+                                style="background-color: var(--md-secondary-container); color: var(--md-on-secondary-container);">
+                            <span class="material-symbols-rounded !text-[16px]">content_copy</span>
+                            <span>Скопировать</span>
+                        </button>
+                        <button id="btn-toggle-import"
+                                class="m3-btn-spring h-9 px-3 rounded-full text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer"
+                                style="background-color: var(--md-surface-container-high); color: var(--md-on-surface);">
+                            <span class="material-symbols-rounded !text-[16px]">content_paste</span>
+                            <span>Вставить код</span>
+                        </button>
+                    </div>
+
+                    <div id="import-box" class="hidden pt-1 space-y-2">
+                        <textarea id="import-textarea" rows="3" placeholder='Вставьте JSON-код настроек сюда...'
+                                  class="w-full rounded-2xl p-3 text-[11px] font-mono focus:outline-none resize-none"
+                                  style="background-color: var(--md-surface-container-highest); color: var(--md-on-surface);"></textarea>
+                        <button id="btn-apply-import"
+                                class="m3-btn-spring w-full h-9 rounded-full text-xs font-semibold cursor-pointer"
+                                style="background-color: var(--md-primary); color: var(--md-on-primary);">
+                            Применить параметры
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Постоянная нижняя панель с главной M3 Expressive кнопкой загрузки -->
+        <div class="px-3.5 pt-3 pb-[calc(0.875rem+env(safe-area-inset-bottom))] sm:p-4 shrink-0" style="background-color: color-mix(in srgb, var(--md-surface-container-low) 95%, transparent);">
+            <button id="btn-download"
+                    class="m3-btn-spring w-full h-12 px-5 rounded-full font-display font-bold text-[13px] tracking-wide shadow-lg flex items-center justify-between cursor-pointer"
+                    style="background-color: var(--md-primary); color: var(--md-on-primary);">
+                <span class="flex items-center gap-2">
+                    <span class="material-symbols-rounded icon-filled !text-[20px]">download</span>
+                    <span>Скачать обои PNG</span>
+                </span>
+                <span id="download-res-badge" class="text-[11px] font-mono font-semibold px-2.5 py-0.5 rounded-full opacity-85"
+                      style="background-color: color-mix(in srgb, var(--md-on-primary) 14%, transparent);">
+                    Экран
+                </span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Контейнер для всплывающих уведомлений M3 Snackbar -->
+    <div id="toast-container" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none flex flex-col items-center gap-2"></div>
+
+    <!-- Вершинный шейдер WebGL -->
+    <script id="vertex-shader" type="x-shader/x-vertex">
+        attribute vec2 a_position;
+        void main() {
+            gl_Position = vec4(a_position, 0.0, 1.0);
+        }
+    </script>
+
+    <!-- Фрагментный шейдер WebGL: оптические световые ореолы + 35 официальных фигур Material Design 3 -->
+    <script id="fragment-shader" type="x-shader/x-fragment">
+        precision highp float;
+
+        uniform vec2 u_resolution;
+        uniform float u_time;
+
+        uniform vec2 u_offset;
+        uniform float u_scale;
+        uniform float u_aspect;
+        uniform float u_rotation;
+        uniform float u_morph;
+        uniform float u_seed;
+        uniform int u_shapeType;
+        uniform int u_hollowMode;
+
+        uniform float u_focusAngle;
+        uniform float u_sharpness;
+        uniform float u_diffusion;
+        uniform float u_drift;
+
+        uniform vec3 u_bgColor;
+        uniform vec3 u_outerColor;
+        uniform vec3 u_midColor;
+        uniform vec3 u_coreColor;
+        uniform float u_intensity;
+        uniform float u_chromatic;
+
+        uniform float u_grain;
+        uniform float u_vignette;
+
+        float dot2(vec2 v) {
+            return dot(v, v);
+        }
+
+        mat2 rot2D(float a) {
+            float s = sin(a);
+            float c = cos(a);
+            return mat2(c, -s, s, c);
+        }
+
+        float smin(float a, float b, float k) {
+            float h = clamp(0.5 + 0.5 * (b - a) / k, 0.0, 1.0);
+            return mix(b, a, h) - k * h * (1.0 - h);
+        }
+
+        float hash12(vec2 p) {
+            vec3 p3 = fract(vec3(p.xyx) * 0.1031);
+            p3 += dot(p3, p3.yzx + 33.33);
+            return fract((p3.x + p3.y) * p3.z);
+        }
+
+        float valueNoise(vec2 p) {
+            vec2 i = floor(p);
+            vec2 f = fract(p);
+            f = f * f * (3.0 - 2.0 * f);
+            float a = hash12(i);
+            float b = hash12(i + vec2(1.0, 0.0));
+            float c = hash12(i + vec2(0.0, 1.0));
+            float d = hash12(i + vec2(1.0, 1.0));
+            return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
+        }
+
+        float sdEllipseApprox(vec2 p, vec2 ab) {
+            vec2 q = p / ab;
+            float r = length(q);
+            vec2 grad = q / ab;
+            float gLen = max(length(grad), 1e-4);
+            return (r - 1.0) / gLen;
+        }
+
+        float sdOrganicAura(vec2 p, float radius, float morphAmt, float seed, float time) {
+            vec2 c1 = vec2(-0.48, -0.02) * radius;
+            vec2 c2 = vec2(0.12, -0.22) * radius;
+            vec2 c3 = vec2(0.24, 0.24) * radius;
+
+            float s1 = sin(seed * 6.283 + time * 0.6) * 0.14 * morphAmt;
+            float s2 = cos(seed * 9.424 + time * 0.5) * 0.14 * morphAmt;
+
+            c1 += vec2(s1, s2) * radius;
+            c2 += vec2(-s2 * 0.7, s1 * 0.8) * radius;
+            c3 += vec2(s1 * 0.6, -s2 * 0.9) * radius;
+
+            float d1 = length(p - c1) - radius * (0.42 + 0.08 * morphAmt);
+            float d2 = length(p - c2) - radius * (0.56 + 0.06 * morphAmt);
+            float d3 = length(p - c3) - radius * (0.58 + 0.10 * morphAmt);
+
+            float k = radius * (0.48 + 0.25 * morphAmt);
+            float d = smin(d1, d2, k);
+            d = smin(d, d3, k * 1.1);
+
+            if (morphAmt > 0.01) {
+                float angle = atan(p.y, p.x + 1e-6);
+                float wave = sin(angle * 3.0 + seed * 12.0 + time * 0.4) * 0.035
+                           + cos(angle * 2.0 - seed * 7.0) * 0.025;
+                d += wave * radius * morphAmt;
+            }
+            return d;
+        }
+
+        // === ОФИЦИАЛЬНЫЕ 35 ФИГУР MATERIAL DESIGN 3 (GLSL ES 1.00 SDF) ===
+        float sdBox(vec2 p, vec2 b) {
+            vec2 d = abs(p) - b;
+            return length(max(d, 0.0)) + min(max(d.x, d.y), 0.0);
+        }
+
+        float sdRoundBox(vec2 p, vec2 b, vec4 r) {
+            r.xy = (p.x > 0.0) ? r.xy : r.zw;
+            r.x  = (p.y > 0.0) ? r.x  : r.y;
+            vec2 q = abs(p) - b + r.x;
+            return min(max(q.x, q.y), 0.0) + length(max(q, 0.0)) - r.x;
+        }
+
+        float sdRegularNgon(vec2 p, float circumR, float n, float roundR) {
+            float an = 3.14159265 / n;
+            float rIn = circumR * cos(an) - roundR;
+            float bn = mod(atan(p.x, p.y + 1e-6) + an, 2.0 * an) - an;
+            vec2 q = length(p) * vec2(cos(bn), abs(sin(bn)));
+            q -= rIn * vec2(1.0, tan(an));
+            q.y += clamp(-q.y, 0.0, rIn * tan(an));
+            return length(q) * sign(q.x) - roundR;
+        }
+
+        float sdStarN(vec2 p, float outerR, float innerR, float n, float roundR) {
+            float an = 3.14159265 / n;
+            float bn = mod(atan(p.x, p.y + 1e-6) + an, 2.0 * an) - an;
+            vec2 q = length(p) * vec2(cos(bn), abs(sin(bn)));
+            vec2 a = vec2(outerR, 0.0);
+            vec2 b = innerR * vec2(cos(an), sin(an));
+            vec2 ab = b - a;
+            float h = clamp(dot(q - a, ab) / dot(ab, ab), 0.0, 1.0);
+            vec2 proj = a + ab * h;
+            float s = ab.x * (q.y - a.y) - ab.y * (q.x - a.x);
+            return -length(q - proj) * sign(s) - roundR;
+        }
+
+        float sdMd3Arrow(vec2 p, float r) {
+            p.x = abs(p.x);
+            vec2 a = vec2(0.0, r * 0.88);
+            vec2 b = vec2(r * 0.84, -r * 0.62);
+            vec2 c = vec2(0.0, -r * 0.34);
+            vec2 pa = p - a, ba = b - a;
+            float h1 = clamp(dot(pa, ba) / dot(ba, ba), 0.0, 1.0);
+            float d1 = length(pa - ba * h1);
+            vec2 pb = p - b, cb = c - b;
+            float h2 = clamp(dot(pb, cb) / dot(cb, cb), 0.0, 1.0);
+            float d2 = length(pb - cb * h2);
+            float d = min(d1, d2);
+            float s1 = (p.x - a.x) * (b.y - a.y) - (p.y - a.y) * (b.x - a.x);
+            float s2 = (p.x - b.x) * (c.y - b.y) - (p.y - b.y) * (c.x - b.x);
+            float inside = (s1 >= 0.0 && s2 >= 0.0) ? -1.0 : 1.0;
+            return d * inside - r * 0.14;
+        }
+
+        float sdMd3Ghost(vec2 p, float r) {
+            float w = r * 0.78;
+            float h = r * 0.84;
+            float xNorm = clamp(p.x / w, -1.0, 1.0);
+            float skirtWave = 0.5 + 0.5 * cos(xNorm * 6.2831853);
+            float bottomY = -h * (0.76 + 0.18 * skirtWave);
+            float topY = h * 0.92;
+            float midY = 0.5 * (topY + bottomY);
+            float halfH = 0.5 * (topY - bottomY);
+            float topR = min(w, halfH);
+            float botR = min(w * 0.22, halfH);
+            return sdRoundBox(vec2(p.x, p.y - midY), vec2(w, halfH), vec4(topR, botR, topR, botR));
+        }
+
+        float sdMd3Semicircle(vec2 p, float r) {
+            float w = r * 0.92;
+            float h = r * 0.54;
+            float rBot = r * 0.16;
+            float dBox = sdRoundBox(p, vec2(w, h), vec4(rBot));
+            float dArc = length(p - vec2(0.0, h - w)) - w;
+            return max(dBox, dArc);
+        }
+
+        float sdMd3Fan(vec2 p, float r) {
+            float s = r * 0.82;
+            float rSmall = s * 0.22;
+            float dBox = sdRoundBox(p, vec2(s), vec4(rSmall));
+            float dArc = length(p - vec2(-s + rSmall)) - (2.0 * s - rSmall);
+            return max(dBox, dArc);
+        }
+
+        float sdMd3PixelCircle(vec2 p, float r) {
+            float s = r * 0.175;
+            float wUnit = s * 0.85;
+            float d = sdBox(p, vec2(6.0 * wUnit, 1.0 * s));
+            d = min(d, sdBox(p, vec2(5.0 * wUnit, 3.0 * s)));
+            d = min(d, sdBox(p, vec2(4.0 * wUnit, 4.0 * s)));
+            d = min(d, sdBox(p, vec2(2.0 * wUnit, 5.0 * s)));
+            return d;
+        }
+
+        float sdMd3PixelTriangle(vec2 p, float r) {
+            float hStep = (r * 1.7) / 11.0;
+            float wUnit = r * 0.24;
+            float leftX = -r * 0.72;
+            float d = 1e5;
+            for (int i = 0; i < 6; i++) {
+                float cols = float(6 - i);
+                float w = cols * wUnit;
+                float halfH = (float(i) + 0.5) * hStep;
+                vec2 center = vec2(leftX + w * 0.5, 0.0);
+                d = min(d, sdBox(p - center, vec2(w * 0.5, halfH)));
+            }
+            return d;
+        }
+
+        float sdMd3Bun(vec2 p, float r) {
+            float w = r * 0.84;
+            float h = r * 0.44;
+            float dTop = sdRoundBox(p - vec2(0.0, h * 0.92), vec2(w, h * 0.94), vec4(h * 0.94));
+            float dBot = sdRoundBox(p + vec2(0.0, h * 0.92), vec2(w, h * 0.94), vec4(h * 0.94));
+            return min(dTop, dBot);
+        }
+
+        float sdMd3Heart(vec2 p, float radius) {
+            float s = radius * 1.48;
+            vec2 q = p / s;
+            q.y += 0.46;
+            q.x = abs(q.x);
+            float d = 0.0;
+            if (q.y + q.x > 1.0) {
+                d = sqrt(dot2(q - vec2(0.25, 0.75))) - 0.35355339;
+            } else {
+                d = sqrt(min(dot2(q - vec2(0.0, 1.0)),
+                             dot2(q - 0.5 * max(q.x + q.y, 0.0)))) * sign(q.x - q.y);
+            }
+            return d * s;
+        }
+
+        float evalMd3Shape(int id, vec2 p, float r) {
+            float a = atan(p.y, p.x + 1e-6);
+            if (id == 3)  return length(p) - r * 0.90;
+            if (id == 4)  return sdRoundBox(p, vec2(r * 0.82), vec4(r * 0.36));
+            if (id == 5)  return sdRoundBox(vec2(p.x - p.y * 0.21, p.y), vec2(r * 0.76, r * 0.78), vec4(r * 0.24));
+            if (id == 6)  return sdRoundBox(p, vec2(r * 0.80, r * 0.88), vec4(r * 0.80, r * 0.20, r * 0.80, r * 0.20));
+            if (id == 7)  return sdMd3Semicircle(p, r);
+            if (id == 8)  return sdEllipseApprox(p, vec2(r * 0.62, r * 0.98));
+            if (id == 9)  return sdRoundBox(p, vec2(r * 0.64, r * 0.98), vec4(r * 0.64));
+            if (id == 10) return sdRegularNgon(p, r * 1.04, 3.0, r * 0.22);
+            if (id == 11) return sdMd3Arrow(p, r);
+            if (id == 12) return sdMd3Fan(p, r);
+            if (id == 13) return sdRegularNgon(vec2(p.x * 1.28, p.y), r * 0.96, 4.0, r * 0.20) * 0.85;
+            if (id == 14) return sdRegularNgon(vec2(p.y, p.x * 0.66), r * 0.62, 6.0, r * 0.18);
+            if (id == 15) return sdRegularNgon(p, r * 0.94, 5.0, r * 0.20);
+            if (id == 16) return sdRegularNgon(p, r * 0.94, 6.0, r * 0.20);
+            if (id == 17) return sdStarN(p, r * 0.92, r * 0.68, 8.0, r * 0.08);
+            if (id == 18) return sdStarN(p, r * 0.94, r * 0.56, 8.0, r * 0.09);
+            if (id == 19) return length(p) - r * (0.80 + 0.185 * cos(4.0 * (a - 0.785398)));
+            if (id == 20) return length(p) - r * (0.84 + 0.125 * cos(6.0 * (a - 1.570796)));
+            if (id == 21) return length(p) - r * (0.85 + 0.105 * cos(7.0 * (a + 1.570796)));
+            if (id == 22) return length(p) - r * (0.86 + 0.090 * cos(9.0 * (a + 1.570796)));
+            if (id == 23) return length(p) - r * (0.87 + 0.088 * cos(12.0 * a));
+            if (id == 24) return length(p) - r * (0.70 + 0.25 * pow(max(abs(cos(2.0 * (a - 0.785398))), 0.0001), 0.82));
+            if (id == 25) return length(p) - r * (0.78 + 0.16 * pow(max(abs(cos(4.0 * (a - 0.392699))), 0.0001), 0.82));
+            if (id == 26) return sdStarN(p, r * 0.95, r * 0.63, 12.0, r * 0.015);
+            if (id == 27) return sdStarN(p, r * 0.92, r * 0.65, 10.0, r * 0.07);
+            if (id == 28) return sdStarN(p, r * 0.97, r * 0.36, 16.0, r * 0.01);
+            if (id == 29) return length(p) - r * (0.40 + 0.54 * pow(max(0.5 + 0.5 * cos(16.0 * a), 0.0001), 0.65));
+            if (id == 30) return length(p) - r * (0.68 + 0.24 * cos(8.0 * a));
+            if (id == 31) {
+                vec2 qp = vec2(p.x / 1.06, p.y / 0.80);
+                float wave = abs(cos(6.0 * atan(qp.y, qp.x + 1e-6)));
+                return (length(qp) - r * (0.72 + 0.16 * pow(max(wave, 0.0001), 0.75))) * 0.90;
+            }
+            if (id == 32) {
+                float d = pow(max(abs(cos(a)), 0.0001), 1.3) + pow(max(abs(sin(a)), 0.0001), 1.3);
+                float base = 0.72 / pow(max(d, 0.0001), 0.45);
+                float bump = 0.14 * abs(cos(4.0 * a));
+                return length(p) - r * (base + bump);
+            }
+            if (id == 33) return sdMd3Ghost(p, r);
+            if (id == 34) return sdMd3PixelCircle(p, r);
+            if (id == 35) return sdMd3PixelTriangle(p, r);
+            if (id == 36) return sdMd3Bun(p, r);
+            return sdMd3Heart(p, r);
+        }
+
+        void main() {
+            float minDim = min(u_resolution.x, u_resolution.y);
+            vec2 uv = (gl_FragCoord.xy - 0.5 * u_resolution.xy) / minDim;
+
+            vec2 focusDir = vec2(cos(u_focusAngle), sin(u_focusAngle));
+            vec2 p = uv - u_offset;
+
+            float refSpan = max(u_scale * 1.15, 0.15);
+            float focusAlign = clamp(dot(p, focusDir) / refSpan, -1.2, 1.2);
+            float tDiff = smoothstep(0.85, -0.95, focusAlign);
+            float tDiffPow = pow(tDiff, 1.35);
+
+            vec2 plumeShift = focusDir * (u_drift * u_scale * 0.52 * pow(tDiff, 1.65));
+            vec2 pShape = p + plumeShift;
+            vec2 pRot = rot2D(-u_rotation) * pShape;
+
+            if (u_morph > 0.001 && u_shapeType != 1) {
+                float n = valueNoise(pRot * (3.2 / max(u_scale, 0.1)) + vec2(u_seed * 10.0, u_time * 0.25));
+                pRot += (n - 0.5) * u_scale * 0.16 * u_morph;
+            }
+
+            float dist = 0.0;
+            float interiorFill = 0.0;
+            float rimHalfWidth = mix(0.0035, 0.022, tDiffPow) * (u_scale / 0.34);
+
+            if (u_shapeType == 0) {
+                vec2 ab = vec2(u_scale, u_scale * u_aspect);
+                float dEll = sdEllipseApprox(pRot, ab);
+                dist = abs(dEll) - rimHalfWidth;
+            } else if (u_shapeType == 1) {
+                vec2 pAura = vec2(pRot.x, pRot.y / mix(0.75, 1.0, u_aspect));
+                dist = sdOrganicAura(pAura, u_scale, u_morph, u_seed, u_time);
+                interiorFill = smoothstep(0.015, -u_scale * 0.45, dist);
+            } else if (u_shapeType == 2) {
+                vec2 ab = vec2(u_scale, u_scale * u_aspect);
+                float dOuter = sdEllipseApprox(pRot, ab);
+                vec2 innerOffset = rot2D(-u_rotation) * (focusDir * u_scale * 0.14);
+                float dInner = sdEllipseApprox(pRot - innerOffset, ab * 0.86);
+                dist = max(dOuter, -dInner);
+                interiorFill = smoothstep(0.01, -u_scale * 0.16, dist) * 0.65;
+            } else {
+                vec2 pMd3 = vec2(pRot.x, pRot.y / mix(0.72, 1.0, u_aspect));
+                float rawD = evalMd3Shape(u_shapeType, pMd3, u_scale);
+
+                if (u_hollowMode == 1) {
+                    dist = abs(rawD) - rimHalfWidth;
+                } else {
+                    dist = rawD;
+                    interiorFill = smoothstep(0.015, -u_scale * 0.42, dist);
+                }
+            }
+
+            float sharpSigma = mix(0.048, 0.0028, u_sharpness) * (u_scale / 0.34);
+            float softSigma = mix(0.04, 0.36, u_diffusion) * (u_scale / 0.34);
+            float localSigma = mix(sharpSigma, softSigma, tDiffPow);
+
+            float posDist = max(dist, 0.0);
+
+            float coreGlow = exp(-pow(posDist / max(localSigma * 0.42, 0.0018), 2.0));
+            if (interiorFill > 0.0) {
+                coreGlow = max(coreGlow, interiorFill * (1.0 - 0.38 * tDiffPow));
+            }
+
+            float midSigma = mix(sharpSigma * 2.4, softSigma * 0.95, pow(tDiff, 1.1));
+            float midGlow = exp(-posDist / max(midSigma, 0.004));
+            if (interiorFill > 0.0 && u_hollowMode == 0 && u_shapeType != 2) {
+                midGlow = max(midGlow, smoothstep(0.05, -u_scale * 0.2, dist));
+            }
+
+            float wideSigma = mix(sharpSigma * 5.0, softSigma * 1.55, pow(tDiff, 0.85));
+            float wideGlow = 1.0 / (1.0 + pow(posDist / max(wideSigma, 0.01), 1.75));
+            wideGlow *= mix(0.28, 1.0, pow(tDiff, 0.75));
+
+            vec3 col = u_bgColor;
+
+            float outerEnergy = wideGlow * 0.62 * u_intensity;
+            col = mix(col, u_outerColor, clamp(outerEnergy, 0.0, 1.0));
+
+            float midEnergy = pow(midGlow, 1.15) * 0.88 * u_intensity;
+            if (u_chromatic > 0.01) {
+                float rimBand = smoothstep(0.0, 0.45, midGlow) * (1.0 - smoothstep(0.45, 0.95, coreGlow));
+                vec3 rimTint = u_outerColor * 1.35 + vec3(0.18, -0.04, 0.08) * u_chromatic;
+                col = mix(col, max(rimTint, vec3(0.0)), clamp(rimBand * u_chromatic * 0.85, 0.0, 1.0));
+            }
+            col = mix(col, u_midColor, clamp(midEnergy, 0.0, 1.0));
+
+            float coreEnergy = pow(coreGlow, 1.25) * u_intensity;
+            col += u_coreColor * coreEnergy * 0.92;
+
+            col = col / (1.0 + col * 0.22);
+            col = mix(col, smoothstep(0.0, 1.0, col), 0.14);
+
+            vec2 vigUV = gl_FragCoord.xy / u_resolution.xy - 0.5;
+            float vig = 1.0 - dot(vigUV, vigUV) * u_vignette * 1.35;
+            col *= clamp(vig, 0.35, 1.05);
+
+            vec2 grainCoord = gl_FragCoord.xy * (1080.0 / max(minDim, 1.0));
+            float n1 = hash12(grainCoord + fract(u_seed * 71.3) * 100.0);
+            float n2 = hash12(grainCoord * 1.37 + vec2(17.1, 31.7) + fract(u_seed * 33.7) * 100.0);
+            float grainNoise = (n1 + n2 - 1.0);
+
+            col += grainNoise * u_grain;
+            col = clamp(col, 0.0, 1.0);
+
+            gl_FragColor = vec4(col, 1.0);
+        }
+    </script>
+
+    <script>
+        /**
+         * Lumina Aura — Material Design 3 Expressive Wallpaper Studio
+         * Оптическая WebGL-симуляция световых ореолов, каустики и всех 35 фигур Material Design 3
+         */
+        (function () {
+            'use strict';
+
+            // === 1. ПОЛНАЯ БИБЛИОТЕКА ФОРМ (3 СВЕТОВЫЕ + ВСЕ 35 ОФИЦИАЛЬНЫХ MD3 SHAPES) ===
+            function drawRoundedPoly2D(ctx, pts, cornerRadius) {
+                const n = pts.length;
+                ctx.beginPath();
+                for (let i = 0; i < n; i++) {
+                    const p0 = pts[(i - 1 + n) % n];
+                    const p1 = pts[i];
+                    const p2 = pts[(i + 1) % n];
+                    const len1 = Math.hypot(p0.x - p1.x, p0.y - p1.y);
+                    const len2 = Math.hypot(p2.x - p1.x, p2.y - p1.y);
+                    const r = Math.min(cornerRadius, Math.min(len1, len2) * 0.48);
+                    if (i === 0) ctx.moveTo((p0.x + p1.x) / 2, (p0.y + p1.y) / 2);
+                    ctx.arcTo(p1.x, p1.y, (p1.x + p2.x) / 2, (p1.y + p2.y) / 2, r);
+                }
+                ctx.closePath();
+                ctx.fill();
+            }
+
+            function makePolyPts2D(sides, radius, rot = -Math.PI / 2) {
+                const pts = [];
+                for (let i = 0; i < sides; i++) {
+                    const a = (i * 2 * Math.PI) / sides + rot;
+                    pts.push({ x: Math.cos(a) * radius, y: Math.sin(a) * radius });
+                }
+                return pts;
+            }
+
+            function makeStarPts2D(points, outerR, innerR, rot = -Math.PI / 2) {
+                const pts = [];
+                for (let i = 0; i < points * 2; i++) {
+                    const rad = i % 2 === 0 ? outerR : innerR;
+                    const a = (i * Math.PI) / points + rot;
+                    pts.push({ x: Math.cos(a) * rad, y: Math.sin(a) * rad });
+                }
+                return pts;
+            }
+
+            function drawCookieWave2D(ctx, r, lobes, amp, baseRatio, rotOffset) {
+                ctx.beginPath();
+                for (let i = 0; i <= 180; i++) {
+                    const a = (i / 180) * Math.PI * 2;
+                    const rad = r * (baseRatio + amp * Math.cos(lobes * (a - rotOffset)));
+                    const x = Math.cos(a) * rad, y = Math.sin(a) * rad;
+                    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+                }
+                ctx.closePath();
+                ctx.fill();
+            }
+
+            function drawCloverLobes2D(ctx, r, lobes, amp, baseRatio, rotOffset) {
+                ctx.beginPath();
+                for (let i = 0; i <= 180; i++) {
+                    const a = (i / 180) * Math.PI * 2;
+                    const wave = Math.abs(Math.cos((lobes / 2) * (a - rotOffset)));
+                    const rad = r * (baseRatio + amp * Math.pow(wave, 0.82));
+                    const x = Math.cos(a) * rad, y = Math.sin(a) * rad;
+                    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+                }
+                ctx.closePath();
+                ctx.fill();
+            }
+
+            const SHAPE_ITEMS = [
+                // 3 оригинальные оптические формы
+                {
+                    id: 0, name: 'Кольцо', cat: 'organic',
+                    draw: (ctx, r) => {
+                        ctx.beginPath();
+                        ctx.ellipse(0, 0, r * 0.88, r * 0.62, -0.45, 0, Math.PI * 2);
+                        ctx.lineWidth = r * 0.22;
+                        ctx.stroke();
+                    }
+                },
+                {
+                    id: 1, name: 'Аура', cat: 'organic',
+                    draw: (ctx, r) => {
+                        ctx.beginPath();
+                        ctx.arc(-r * 0.18, -r * 0.1, r * 0.58, 0, Math.PI * 2);
+                        ctx.arc(r * 0.22, r * 0.14, r * 0.52, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                },
+                {
+                    id: 2, name: 'Месяц', cat: 'organic',
+                    draw: (ctx, r) => {
+                        ctx.beginPath();
+                        ctx.arc(0, 0, r * 0.84, -0.4, Math.PI + 0.4, false);
+                        ctx.arc(r * 0.24, -r * 0.14, r * 0.68, Math.PI + 0.3, -0.3, true);
+                        ctx.closePath();
+                        ctx.fill();
+                    }
+                },
+                // 35 официальных фигур Material Design 3
+                { id: 3,  name: 'Circle',         cat: 'organic', draw: (ctx, r) => { ctx.beginPath(); ctx.arc(0, 0, r * 0.86, 0, Math.PI * 2); ctx.fill(); } },
+                { id: 4,  name: 'Square',         cat: 'organic', draw: (ctx, r) => { const s = r * 0.78; ctx.beginPath(); ctx.roundRect(-s, -s, s * 2, s * 2, s * 0.44); ctx.fill(); } },
+                { id: 5,  name: 'Slanted',        cat: 'organic', draw: (ctx, r) => { const s = r * 0.74, k = r * 0.15; drawRoundedPoly2D(ctx, [{ x: -s + k, y: -s }, { x: s + k, y: -s }, { x: s - k, y: s }, { x: -s - k, y: s }], r * 0.24); } },
+                { id: 6,  name: 'Arch',           cat: 'organic', draw: (ctx, r) => { const w = r * 0.76, h = r * 0.84; ctx.beginPath(); ctx.roundRect(-w, -h, w * 2, h * 2, [w, w, w * 0.22, w * 0.22]); ctx.fill(); } },
+                { id: 7,  name: 'Semicircle',     cat: 'organic', draw: (ctx, r) => { const w = r * 0.88, h = r * 0.52; ctx.beginPath(); ctx.roundRect(-w, -h, w * 2, h * 2, [w, w, w * 0.18, w * 0.18]); ctx.fill(); } },
+                { id: 8,  name: 'Oval',           cat: 'organic', draw: (ctx, r) => { ctx.beginPath(); ctx.ellipse(0, 0, r * 0.58, r * 0.92, 0, 0, Math.PI * 2); ctx.fill(); } },
+                { id: 9,  name: 'Pill',           cat: 'organic', draw: (ctx, r) => { const w = r * 0.60, h = r * 0.92; ctx.beginPath(); ctx.roundRect(-w, -h, w * 2, h * 2, w); ctx.fill(); } },
+
+                { id: 10, name: 'Triangle',       cat: 'geo',     draw: (ctx, r) => drawRoundedPoly2D(ctx, makePolyPts2D(3, r * 0.98), r * 0.22) },
+                { id: 11, name: 'Arrow',          cat: 'geo',     draw: (ctx, r) => drawRoundedPoly2D(ctx, [{ x: 0, y: -r * 0.88 }, { x: r * 0.84, y: r * 0.64 }, { x: 0, y: r * 0.38 }, { x: -r * 0.84, y: r * 0.64 }], r * 0.22) },
+                { id: 12, name: 'Fan',            cat: 'organic', draw: (ctx, r) => { const s = r * 0.78; ctx.beginPath(); ctx.roundRect(-s, -s, s * 2, s * 2, [s * 0.22, s * 1.48, s * 0.22, s * 0.22]); ctx.fill(); } },
+                { id: 13, name: 'Diamond',        cat: 'geo',     draw: (ctx, r) => drawRoundedPoly2D(ctx, [{ x: 0, y: -r * 0.92 }, { x: r * 0.70, y: 0 }, { x: 0, y: r * 0.92 }, { x: -r * 0.70, y: 0 }], r * 0.20) },
+                { id: 14, name: 'Clamshell',      cat: 'geo',     draw: (ctx, r) => { const w = r * 0.90, h = r * 0.56; drawRoundedPoly2D(ctx, [{ x: -w * 0.62, y: -h }, { x: w * 0.62, y: -h }, { x: w, y: 0 }, { x: w * 0.62, y: h }, { x: -w * 0.62, y: h }, { x: -w, y: 0 }], r * 0.20); } },
+                { id: 15, name: 'Pentagon',       cat: 'geo',     draw: (ctx, r) => drawRoundedPoly2D(ctx, makePolyPts2D(5, r * 0.90), r * 0.20) },
+                { id: 16, name: 'Gem',            cat: 'geo',     draw: (ctx, r) => drawRoundedPoly2D(ctx, makePolyPts2D(6, r * 0.90), r * 0.20) },
+
+                { id: 17, name: 'Sunny',          cat: 'geo',     draw: (ctx, r) => drawRoundedPoly2D(ctx, makeStarPts2D(8, r * 0.92, r * 0.68), r * 0.14) },
+                { id: 18, name: 'Very sunny',     cat: 'geo',     draw: (ctx, r) => drawRoundedPoly2D(ctx, makeStarPts2D(8, r * 0.94, r * 0.56), r * 0.15) },
+                { id: 19, name: '4-cookie',       cat: 'organic', draw: (ctx, r) => drawCookieWave2D(ctx, r * 0.94, 4, 0.185, 0.80, Math.PI / 4) },
+                { id: 20, name: '6-cookie',       cat: 'organic', draw: (ctx, r) => drawCookieWave2D(ctx, r * 0.94, 6, 0.125, 0.84, Math.PI / 2) },
+                { id: 21, name: '7-cookie',       cat: 'organic', draw: (ctx, r) => drawCookieWave2D(ctx, r * 0.94, 7, 0.105, 0.85, -Math.PI / 2) },
+                { id: 22, name: '9-cookie',       cat: 'organic', draw: (ctx, r) => drawCookieWave2D(ctx, r * 0.94, 9, 0.09, 0.86, -Math.PI / 2) },
+                { id: 23, name: '12-cookie',      cat: 'organic', draw: (ctx, r) => drawCookieWave2D(ctx, r * 0.94, 12, 0.088, 0.87, 0) },
+
+                { id: 24, name: '4-clover',       cat: 'organic', draw: (ctx, r) => drawCloverLobes2D(ctx, r * 0.94, 4, 0.25, 0.70, Math.PI / 4) },
+                { id: 25, name: '8-clover',       cat: 'organic', draw: (ctx, r) => drawCloverLobes2D(ctx, r * 0.94, 8, 0.16, 0.78, Math.PI / 8) },
+                { id: 26, name: 'Burst',          cat: 'geo',     draw: (ctx, r) => drawRoundedPoly2D(ctx, makeStarPts2D(12, r * 0.92, r * 0.62), r * 0.02) },
+                { id: 27, name: 'Soft burst',     cat: 'geo',     draw: (ctx, r) => drawRoundedPoly2D(ctx, makeStarPts2D(10, r * 0.92, r * 0.65), r * 0.09) },
+                { id: 28, name: 'Boom',           cat: 'geo',     draw: (ctx, r) => drawRoundedPoly2D(ctx, makeStarPts2D(16, r * 0.94, r * 0.35), r * 0.015) },
+                { id: 29, name: 'Soft boom',      cat: 'geo',     draw: (ctx, r) => { ctx.beginPath(); for (let i = 0; i <= 180; i++) { const a = (i / 180) * Math.PI * 2; const w = 0.5 + 0.5 * Math.cos(16 * a); const rad = r * 0.94 * (0.40 + 0.54 * Math.pow(w, 0.65)); const x = Math.cos(a) * rad, y = Math.sin(a) * rad; if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y); } ctx.closePath(); ctx.fill(); } },
+                { id: 30, name: 'Flower',         cat: 'organic', draw: (ctx, r) => { ctx.beginPath(); for (let i = 0; i <= 180; i++) { const a = (i / 180) * Math.PI * 2; const rad = r * 0.94 * (0.68 + 0.24 * Math.cos(8 * a)); const x = Math.cos(a) * rad, y = Math.sin(a) * rad; if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y); } ctx.closePath(); ctx.fill(); } },
+
+                { id: 31, name: 'Puffy',          cat: 'organic', draw: (ctx, r) => { ctx.beginPath(); for (let i = 0; i <= 180; i++) { const a = (i / 180) * Math.PI * 2; const wave = Math.abs(Math.cos(6 * a)); const rad = r * 0.94 * (0.72 + 0.16 * Math.pow(wave, 0.75)); const x = Math.cos(a) * rad * 1.06, y = Math.sin(a) * rad * 0.80; if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y); } ctx.closePath(); ctx.fill(); } },
+                { id: 32, name: 'Puffy diamond',  cat: 'organic', draw: (ctx, r) => { ctx.beginPath(); for (let i = 0; i <= 180; i++) { const a = (i / 180) * Math.PI * 2; const d = Math.pow(Math.abs(Math.cos(a)), 1.3) + Math.pow(Math.abs(Math.sin(a)), 1.3); const rad = r * 0.94 * (0.72 / Math.pow(d, 0.45) + 0.14 * Math.abs(Math.cos(4 * a))); const x = Math.cos(a) * rad, y = Math.sin(a) * rad; if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y); } ctx.closePath(); ctx.fill(); } },
+                { id: 33, name: 'Ghost-ish',      cat: 'organic', draw: (ctx, r) => { const w = r * 0.78, h = r * 0.82; ctx.beginPath(); ctx.moveTo(-w, 0); ctx.arc(0, -h * 0.08, w, Math.PI, 0, false); ctx.lineTo(w, h * 0.58); ctx.bezierCurveTo(w, h * 0.96, w * 0.48, h * 0.96, w * 0.25, h * 0.74); ctx.bezierCurveTo(0, h * 0.54, 0, h * 0.54, -w * 0.25, h * 0.74); ctx.bezierCurveTo(-w * 0.48, h * 0.96, -w, h * 0.96, -w, h * 0.58); ctx.closePath(); ctx.fill(); } },
+                { id: 34, name: 'Pixel circle',   cat: 'geo',     draw: (ctx, r) => { const s = r * 0.165; const spans = [2, 4, 5, 5, 6, 6, 5, 5, 4, 2]; ctx.beginPath(); spans.forEach((hw, idx) => { const y = (idx - 5) * s; ctx.rect(-hw * s * 0.85, y, hw * 2 * s * 0.85, s * 1.04); }); ctx.fill(); } },
+                { id: 35, name: 'Pixel triangle', cat: 'geo',     draw: (ctx, r) => { const steps = 11, hStep = (r * 1.6) / steps, leftX = -r * 0.68; ctx.beginPath(); for (let i = 0; i < steps; i++) { const cols = 6 - Math.abs(i - 5); const w = cols * (r * 0.22); ctx.rect(leftX, -r * 0.8 + i * hStep, w, hStep * 1.04); } ctx.fill(); } },
+                { id: 36, name: 'Bun',            cat: 'organic', draw: (ctx, r) => { const w = r * 0.80, h = r * 0.42; ctx.beginPath(); ctx.roundRect(-w, -h * 1.90, w * 2, h * 1.98, h); ctx.roundRect(-w, -h * 0.08, w * 2, h * 1.98, h); ctx.fill(); } },
+                { id: 37, name: 'Heart',          cat: 'organic', draw: (ctx, r) => { const s = r * 0.86; ctx.beginPath(); ctx.moveTo(0, s * 0.86); ctx.bezierCurveTo(-s * 1.25, s * 0.14, -s * 1.08, -s * 0.88, 0, -s * 0.32); ctx.bezierCurveTo(s * 1.08, -s * 0.88, s * 1.25, s * 0.14, 0, s * 0.86); ctx.closePath(); ctx.fill(); } }
+            ];
+
+            // === 2. ФОРМАТЫ ЭКСПОРТА ===
+            const EXPORT_FORMATS = [
+                { id: 'screen',  name: 'Текущий экран',   desc: 'Адаптивно под окно браузера', icon: 'fit_screen',      w: null, h: null, ratio: null },
+                { id: 'phone',   name: 'Смартфон 9:19.5', desc: '1290 × 2796 px • iOS / Android', icon: 'smartphone',    w: 1290, h: 2796, ratio: 1290 / 2796 },
+                { id: 'square',  name: 'Квадрат 1:1',     desc: '2160 × 2160 px • Обложки и посты', icon: 'crop_square',  w: 2160, h: 2160, ratio: 1 },
+                { id: 'desktop', name: 'Десктоп 4K 16:9', desc: '3840 × 2160 px • Ultra HD монитор', icon: 'desktop_windows', w: 3840, h: 2160, ratio: 16 / 9 },
+                { id: 'tablet',  name: 'Планшет 4:3',     desc: '2732 × 2048 px • iPad / Планшеты', icon: 'tablet_mac',   w: 2732, h: 2048, ratio: 4 / 3 }
+            ];
+
+            const TAB_ORDER = ['shape', 'light', 'export'];
+
+            // === 3. СОСТОЯНИЕ И ИСТОРИЯ ===
+            const state = {
+                shapeType: 0,
+                hollowMode: 0,
+                offsetX: 0.01,
+                offsetY: 0.02,
+                scale: 0.31,
+                aspect: 0.64,
+                rotation: -36,
+                morph: 0.08,
+                focusAngle: -38,
+                sharpness: 0.96,
+                diffusion: 0.88,
+                drift: 0.56,
+                bgColor: '#121213',
+                outerColor: '#56565c',
+                midColor: '#b4b4ba',
+                coreColor: '#ffffff',
+                intensity: 1.18,
+                chromatic: 0.0,
+                grain: 0.048,
+                vignette: 0.22,
+                seed: 0.42,
+
+                seedHue: 240,
+                seedSat: 62,
+                moodMode: 'mono',
+                shapeCategory: 'all',
+                animate: false,
+                uiHidden: false,
+                sheetDetent: 'half',
+                activeTab: 'shape',
+                exportFormat: 'screen',
+                showLockscreen: false,
+                lockShapeOnMix: false,
+                lockColorOnMix: false
+            };
+
+            const SERIALIZABLE_KEYS = [
+                'shapeType', 'hollowMode', 'offsetX', 'offsetY', 'scale', 'aspect', 'rotation', 'morph',
+                'focusAngle', 'sharpness', 'diffusion', 'drift',
+                'bgColor', 'outerColor', 'midColor', 'coreColor', 'intensity', 'chromatic',
+                'grain', 'vignette', 'seed'
+            ];
+
+            const historyStack = [];
+            let historyIndex = -1;
+            let tweenAnim = null;
+
+            function snapshotState() {
+                const snap = {};
+                SERIALIZABLE_KEYS.forEach(k => { snap[k] = state[k]; });
+                return snap;
+            }
+
+            function pushHistory() {
+                const snap = snapshotState();
+                if (historyIndex >= 0) {
+                    const prev = historyStack[historyIndex];
+                    const isSame = SERIALIZABLE_KEYS.every(k => prev[k] === snap[k]);
+                    if (isSame) return;
+                }
+                historyStack.splice(historyIndex + 1);
+                historyStack.push(snap);
+                if (historyStack.length > 40) {
+                    historyStack.shift();
+                } else {
+                    historyIndex++;
+                }
+                updateHistoryButtons();
+            }
+
+            function undoHistory() {
+                if (historyIndex <= 0) return;
+                historyIndex--;
+                tweenAnim = null;
+                Object.assign(state, historyStack[historyIndex]);
+                syncUIControls();
+                renderFrame(canvas.width, canvas.height);
+                updateHistoryButtons();
+                showToast('Действие отменено');
+            }
+
+            function redoHistory() {
+                if (historyIndex >= historyStack.length - 1) return;
+                historyIndex++;
+                tweenAnim = null;
+                Object.assign(state, historyStack[historyIndex]);
+                syncUIControls();
+                renderFrame(canvas.width, canvas.height);
+                updateHistoryButtons();
+                showToast('Действие возвращено');
+            }
+
+            function updateHistoryButtons() {
+                const undoBtn = document.getElementById('btn-undo');
+                const redoBtn = document.getElementById('btn-redo');
+                if (undoBtn) undoBtn.disabled = historyIndex <= 0;
+                if (redoBtn) redoBtn.disabled = historyIndex >= historyStack.length - 1;
+            }
+
+            // === 4. MATERIAL YOU DYNAMIC COLOR ENGINE ===
+            function hexToRgbNorm(hex) {
+                const clean = (hex || '#000000').replace('#', '');
+                const num = parseInt(clean, 16) || 0;
+                return [
+                    ((num >> 16) & 255) / 255,
+                    ((num >> 8) & 255) / 255,
+                    (num & 255) / 255
+                ];
+            }
+
+            function hexToHsl(hex) {
+                let [r, g, b] = hexToRgbNorm(hex);
+                const max = Math.max(r, g, b);
+                const min = Math.min(r, g, b);
+                let h = 0;
+                let s = 0;
+                const l = (max + min) / 2;
+
+                if (max !== min) {
+                    const d = max - min;
+                    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                    switch (max) {
+                        case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                        case g: h = (b - r) / d + 2; break;
+                        case b: h = (r - g) / d + 4; break;
+                    }
+                    h /= 6;
+                }
+                return [Math.round(h * 360), Math.round(s * 100), Math.round(l * 100)];
+            }
+
+            function hslToHex(h, s, l) {
+                h = ((h % 360) + 360) % 360;
+                s = Math.max(0, Math.min(100, s)) / 100;
+                l = Math.max(0, Math.min(100, l)) / 100;
+                const a = s * Math.min(l, 1 - l);
+                const f = n => {
+                    const k = (n + h / 30) % 12;
+                    const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+                    return Math.round(255 * color).toString(16).padStart(2, '0');
+                };
+                return `#${f(0)}${f(8)}${f(4)}`;
+            }
+
+            function buildAuraPaletteFromHue(hue, sat, mode) {
+                const s = Math.max(0, Math.min(100, sat));
+                if (mode === 'mono') {
+                    return {
+                        bgColor: '#121213',
+                        outerColor: '#56565c',
+                        midColor: '#b4b4ba',
+                        coreColor: '#ffffff',
+                        chromatic: 0.0
+                    };
+                }
+                if (mode === 'deep') {
+                    return {
+                        bgColor: hslToHex(hue, Math.min(35, s * 0.42), 5),
+                        outerColor: hslToHex((hue - 12 + 360) % 360, Math.min(92, s * 1.15), 28),
+                        midColor: hslToHex(hue, s, 56),
+                        coreColor: hslToHex((hue + 14) % 360, Math.min(60, s * 0.65), 93),
+                        chromatic: 0.22
+                    };
+                }
+                if (mode === 'neon') {
+                    return {
+                        bgColor: hslToHex(hue, Math.min(38, s * 0.45), 5.5),
+                        outerColor: hslToHex((hue - 24 + 360) % 360, Math.min(96, s * 1.25), 38),
+                        midColor: hslToHex((hue + 14) % 360, Math.min(98, s * 1.25), 66),
+                        coreColor: hslToHex((hue + 24) % 360, Math.min(68, s * 0.75), 96),
+                        chromatic: 0.45
+                    };
+                }
+                // 'soft'
+                return {
+                    bgColor: hslToHex(hue, Math.min(28, s * 0.32), 6),
+                    outerColor: hslToHex((hue - 10 + 360) % 360, s, 34),
+                    midColor: hslToHex(hue, s, 68),
+                    coreColor: hslToHex((hue + 10) % 360, Math.min(48, s * 0.52), 96),
+                    chromatic: 0.16
+                };
+            }
+
+            let themePrimaryHex = '#e4e1e6';
+            let themeOnPrimaryHex = '#1b1b1f';
+
+            function updateMaterialDynamicTheme() {
+                const [hMid, sMid] = hexToHsl(state.midColor);
+                const [hOut, sOut] = hexToHsl(state.outerColor);
+
+                const isNeutral = sMid < 12 && sOut < 12;
+                const seedH = sMid >= sOut ? hMid : hOut;
+                const accentSat = isNeutral ? 6 : Math.min(82, Math.max(38, sMid));
+                const surfSat = isNeutral ? 5 : 14;
+                const tertH = (seedH + 42) % 360;
+
+                themePrimaryHex = hslToHex(seedH, accentSat, 82);
+                themeOnPrimaryHex = hslToHex(seedH, accentSat, 16);
+
+                const root = document.documentElement.style;
+                root.setProperty('--md-primary', themePrimaryHex);
+                root.setProperty('--md-on-primary', themeOnPrimaryHex);
+                root.setProperty('--md-primary-container', hslToHex(seedH, Math.min(68, accentSat), 28));
+                root.setProperty('--md-on-primary-container', hslToHex(seedH, accentSat, 92));
+
+                root.setProperty('--md-secondary-container', hslToHex(seedH, Math.min(36, surfSat + 16), 24));
+                root.setProperty('--md-on-secondary-container', hslToHex(seedH, Math.min(45, accentSat), 90));
+
+                root.setProperty('--md-tertiary', hslToHex(tertH, Math.min(65, accentSat), 80));
+                root.setProperty('--md-tertiary-container', hslToHex(tertH, Math.min(50, accentSat), 27));
+                root.setProperty('--md-on-tertiary-container', hslToHex(tertH, Math.min(65, accentSat), 92));
+
+                root.setProperty('--md-surface', hslToHex(seedH, surfSat, 7));
+                root.setProperty('--md-surface-container-low', hslToHex(seedH, surfSat, 10));
+                root.setProperty('--md-surface-container', hslToHex(seedH, surfSat, 14));
+                root.setProperty('--md-surface-container-high', hslToHex(seedH, surfSat, 18));
+                root.setProperty('--md-surface-container-highest', hslToHex(seedH, surfSat, 23));
+            }
+
+            // === 5. WEBGL ДВИЖОК ===
+            const canvas = document.getElementById('gl-canvas');
+            let gl = null;
+            let program = null;
+            let uniforms = {};
+            let animTime = 0;
+            let lastFrameTime = performance.now();
+
+            function compileShader(type, source) {
+                const shader = gl.createShader(type);
+                gl.shaderSource(shader, source);
+                gl.compileShader(shader);
+                if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+                    const info = gl.getShaderInfoLog(shader);
+                    gl.deleteShader(shader);
+                    throw new Error(info);
+                }
+                return shader;
+            }
+
+            function initWebGL() {
+                try {
+                    gl = canvas.getContext('webgl', {
+                        preserveDrawingBuffer: true,
+                        antialias: true,
+                        alpha: false
+                    }) || canvas.getContext('experimental-webgl', {
+                        preserveDrawingBuffer: true
+                    });
+
+                    if (!gl) {
+                        showToast('Ваш браузер не поддерживает WebGL', 'error');
+                        return false;
+                    }
+
+                    const vsSource = document.getElementById('vertex-shader').textContent;
+                    const fsSource = document.getElementById('fragment-shader').textContent;
+
+                    const vs = compileShader(gl.VERTEX_SHADER, vsSource);
+                    const fs = compileShader(gl.FRAGMENT_SHADER, fsSource);
+
+                    program = gl.createProgram();
+                    gl.attachShader(program, vs);
+                    gl.attachShader(program, fs);
+                    gl.linkProgram(program);
+
+                    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+                        throw new Error('Ошибка линковки шейдера: ' + gl.getProgramInfoLog(program));
+                    }
+
+                    gl.useProgram(program);
+
+                    const buffer = gl.createBuffer();
+                    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+                    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+                        -1, -1,  1, -1, -1,  1,
+                        -1,  1,  1, -1,  1,  1
+                    ]), gl.STATIC_DRAW);
+
+                    const posLoc = gl.getAttribLocation(program, 'a_position');
+                    gl.enableVertexAttribArray(posLoc);
+                    gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+                    const uniformNames = [
+                        'u_resolution', 'u_time',
+                        'u_offset', 'u_scale', 'u_aspect', 'u_rotation', 'u_morph', 'u_seed', 'u_shapeType', 'u_hollowMode',
+                        'u_focusAngle', 'u_sharpness', 'u_diffusion', 'u_drift',
+                        'u_bgColor', 'u_outerColor', 'u_midColor', 'u_coreColor', 'u_intensity', 'u_chromatic',
+                        'u_grain', 'u_vignette'
+                    ];
+                    uniformNames.forEach(name => {
+                        uniforms[name] = gl.getUniformLocation(program, name);
+                    });
+
+                    resizeCanvas();
+                    return true;
+                } catch (err) {
+                    console.error(err);
+                    showToast('Ошибка графики: ' + err.message, 'error');
+                    return false;
+                }
+            }
+
+            function resizeCanvas() {
+                if (!gl) return;
+                const dpr = Math.min(window.devicePixelRatio || 1, 2);
+                const width = Math.floor(window.innerWidth * dpr);
+                const height = Math.floor(window.innerHeight * dpr);
+
+                if (canvas.width !== width || canvas.height !== height) {
+                    canvas.width = width;
+                    canvas.height = height;
+                    gl.viewport(0, 0, width, height);
+                }
+                updateAspectGuide();
+                renderFrame(width, height);
+            }
+
+            function renderFrame(targetWidth, targetHeight) {
+                if (!gl || !program) return;
+
+                gl.useProgram(program);
+                gl.uniform2f(uniforms.u_resolution, targetWidth, targetHeight);
+                gl.uniform1f(uniforms.u_time, animTime);
+
+                gl.uniform2f(uniforms.u_offset, state.offsetX, state.offsetY);
+                gl.uniform1f(uniforms.u_scale, state.scale);
+                gl.uniform1f(uniforms.u_aspect, state.aspect);
+                gl.uniform1f(uniforms.u_rotation, (state.rotation * Math.PI) / 180);
+                gl.uniform1f(uniforms.u_morph, state.morph);
+                gl.uniform1f(uniforms.u_seed, state.seed);
+                gl.uniform1i(uniforms.u_shapeType, state.shapeType);
+                gl.uniform1i(uniforms.u_hollowMode, state.hollowMode || 0);
+
+                gl.uniform1f(uniforms.u_focusAngle, (state.focusAngle * Math.PI) / 180);
+                gl.uniform1f(uniforms.u_sharpness, state.sharpness);
+                gl.uniform1f(uniforms.u_diffusion, state.diffusion);
+                gl.uniform1f(uniforms.u_drift, state.drift);
+
+                const bg = hexToRgbNorm(state.bgColor);
+                const outer = hexToRgbNorm(state.outerColor);
+                const mid = hexToRgbNorm(state.midColor);
+                const core = hexToRgbNorm(state.coreColor);
+
+                gl.uniform3f(uniforms.u_bgColor, bg[0], bg[1], bg[2]);
+                gl.uniform3f(uniforms.u_outerColor, outer[0], outer[1], outer[2]);
+                gl.uniform3f(uniforms.u_midColor, mid[0], mid[1], mid[2]);
+                gl.uniform3f(uniforms.u_coreColor, core[0], core[1], core[2]);
+                gl.uniform1f(uniforms.u_intensity, state.intensity);
+                gl.uniform1f(uniforms.u_chromatic, state.chromatic);
+
+                gl.uniform1f(uniforms.u_grain, state.grain);
+                gl.uniform1f(uniforms.u_vignette, state.vignette);
+
+                gl.drawArrays(gl.TRIANGLES, 0, 6);
+            }
+
+            function lerpHexColor(hexA, hexB, t) {
+                const [r1, g1, b1] = hexToRgbNorm(hexA);
+                const [r2, g2, b2] = hexToRgbNorm(hexB);
+                const r = Math.round((r1 + (r2 - r1) * t) * 255).toString(16).padStart(2, '0');
+                const g = Math.round((g1 + (g2 - g1) * t) * 255).toString(16).padStart(2, '0');
+                const b = Math.round((b1 + (b2 - b1) * t) * 255).toString(16).padStart(2, '0');
+                return `#${r}${g}${b}`;
+            }
+
+            function animationLoop(now) {
+                const dt = (now - lastFrameTime) / 1000;
+                lastFrameTime = now;
+                let needsRender = false;
+
+                if (tweenAnim) {
+                    const elapsed = now - tweenAnim.start;
+                    const rawT = Math.min(1, elapsed / tweenAnim.duration);
+                    const t = 1 - Math.pow(1 - rawT, 3);
+
+                    for (const key of Object.keys(tweenAnim.to)) {
+                        const fromVal = tweenAnim.from[key];
+                        const toVal = tweenAnim.to[key];
+                        if (typeof toVal === 'number' && key !== 'shapeType' && key !== 'hollowMode') {
+                            if (key === 'focusAngle' || key === 'rotation') {
+                                let diff = ((toVal - fromVal + 540) % 360) - 180;
+                                state[key] = fromVal + diff * t;
+                            } else {
+                                state[key] = fromVal + (toVal - fromVal) * t;
+                            }
+                        } else if (typeof toVal === 'string' && toVal.startsWith('#')) {
+                            state[key] = lerpHexColor(fromVal, toVal, t);
+                        } else if (rawT >= 0.35) {
+                            state[key] = toVal;
+                        }
+                    }
+
+                    syncUIControls();
+                    needsRender = true;
+
+                    if (rawT >= 1) {
+                        Object.assign(state, tweenAnim.to);
+                        tweenAnim = null;
+                        syncUIControls();
+                        pushHistory();
+                    }
+                }
+
+                if (state.animate) {
+                    animTime += dt;
+                    needsRender = true;
+                }
+
+                if (needsRender) {
+                    renderFrame(canvas.width, canvas.height);
+                }
+
+                requestAnimationFrame(animationLoop);
+            }
+
+            // === 6. ПРИМЕНЕНИЕ СОСТОЯНИЯ И СИНХРОНИЗАЦИЯ ANDROID 16 СЛАЙДЕРОВ ===
+            function applyState(newPartial, { smooth = false, recordHistory = true } = {}) {
+                if (smooth) {
+                    const from = {};
+                    Object.keys(newPartial).forEach(k => { from[k] = state[k]; });
+                    tweenAnim = {
+                        from,
+                        to: { ...newPartial },
+                        start: performance.now(),
+                        duration: 380
+                    };
+                } else {
+                    tweenAnim = null;
+                    Object.assign(state, newPartial);
+                    syncUIControls();
+                    renderFrame(canvas.width, canvas.height);
+                    if (recordHistory) pushHistory();
+                }
+            }
+
+            function initExpressiveSliders() {
+                document.querySelectorAll('.m3-slider-wrapper[data-ticks]').forEach(wrap => {
+                    const tickCount = parseInt(wrap.dataset.ticks, 10) || 5;
+                    const ticksBox = wrap.querySelector('.m3-slider-ticks');
+                    if (!ticksBox) return;
+                    ticksBox.innerHTML = '';
+                    for (let i = 0; i < tickCount; i++) {
+                        const dot = document.createElement('span');
+                        dot.className = 'm3-tick-dot';
+                        ticksBox.appendChild(dot);
+                    }
+                });
+            }
+
+            function updateSliderTrackVisual(input, formattedText) {
+                const wrap = input.closest('.m3-slider-wrapper');
+                if (!wrap) return;
+                const min = parseFloat(input.min);
+                const max = parseFloat(input.max);
+                const val = parseFloat(input.value);
+                const pct = ((val - min) / (max - min)) * 100;
+                const clampedPct = Math.max(0, Math.min(100, pct));
+
+                wrap.style.setProperty('--pct', `${clampedPct}%`);
+                const bubble = wrap.querySelector('.m3-slider-bubble');
+                if (bubble && formattedText !== undefined) {
+                    bubble.textContent = formattedText;
+                }
+
+                const dots = wrap.querySelectorAll('.m3-tick-dot');
+                const count = dots.length;
+                dots.forEach((dot, idx) => {
+                    const dotPct = count > 1 ? (idx / (count - 1)) * 100 : 0;
+                    if (Math.abs(dotPct - clampedPct) < 6) {
+                        dot.style.opacity = '0';
+                    } else {
+                        dot.style.opacity = '0.85';
+                        dot.style.backgroundColor = dotPct < clampedPct ? 'var(--md-on-primary)' : 'var(--md-primary)';
+                    }
+                });
+            }
+
+            function syncUIControls(animateTabDirection = 0) {
+                updateMaterialDynamicTheme();
+
+                // 1. 3 вкладки навигации со скользящим индикатором M3
+                const tabIndex = TAB_ORDER.indexOf(state.activeTab);
+                const tabIndicator = document.getElementById('tab-indicator');
+                if (tabIndicator && tabIndex >= 0) {
+                    tabIndicator.style.transform = `translateX(${tabIndex * 100}%)`;
+                }
+
+                document.querySelectorAll('.m3-tab-btn').forEach(btn => {
+                    const isActive = btn.dataset.tab === state.activeTab;
+                    const icon = btn.querySelector('.material-symbols-rounded');
+                    if (isActive) {
+                        btn.style.color = 'var(--md-on-secondary-container)';
+                        if (icon) {
+                            icon.classList.add('icon-filled');
+                            icon.style.transform = 'scale(1.12)';
+                        }
+                    } else {
+                        btn.style.color = 'var(--md-on-surface-variant)';
+                        if (icon) {
+                            icon.classList.remove('icon-filled');
+                            icon.style.transform = 'scale(1)';
+                        }
+                    }
+                });
+
+                document.querySelectorAll('.tab-panel').forEach(panel => {
+                    const isTarget = panel.id === `tab-panel-${state.activeTab}`;
+                    const wasHidden = panel.classList.contains('hidden');
+                    panel.classList.toggle('hidden', !isTarget);
+                    if (isTarget && (wasHidden || animateTabDirection !== 0)) {
+                        panel.classList.remove('tab-enter-right', 'tab-enter-left');
+                        void panel.offsetWidth;
+                        panel.classList.add(animateTabDirection >= 0 ? 'tab-enter-right' : 'tab-enter-left');
+                    }
+                });
+
+                // 2. Карточки 38 фигур MD3 (Круг -> Сквиркл) и переключатель Ореол / Контур
+                renderMd3ShapesGrid();
+                document.querySelectorAll('.hollow-btn').forEach(btn => {
+                    const isMatch = parseInt(btn.dataset.hollow, 10) === (state.hollowMode || 0);
+                    btn.style.backgroundColor = isMatch ? 'var(--md-secondary-container)' : 'transparent';
+                    btn.style.color = isMatch ? 'var(--md-on-secondary-container)' : 'var(--md-on-surface-variant)';
+                });
+                document.querySelectorAll('.shape-cat-btn').forEach(btn => {
+                    const isMatch = btn.dataset.shapeCat === state.shapeCategory;
+                    btn.style.backgroundColor = isMatch ? 'var(--md-secondary-container)' : 'var(--md-surface-container)';
+                    btn.style.color = isMatch ? 'var(--md-on-secondary-container)' : 'var(--md-on-surface-variant)';
+                });
+
+                // 3. Обновление 360° компаса угла фокуса
+                const dialArm = document.getElementById('dial-arm');
+                const dialReadout = document.getElementById('dial-readout');
+                if (dialArm) {
+                    dialArm.style.transform = `rotate(${-state.focusAngle}deg)`;
+                }
+                if (dialReadout) {
+                    dialReadout.textContent = `${Math.round(state.focusAngle)}°`;
+                }
+
+                // 4. Слайдеры и числовые бейджи
+                const sliderMap = [
+                    { id: 'scale',     valId: 'val-scale',     fmt: v => Number(v).toFixed(2) },
+                    { id: 'aspect',    valId: 'val-aspect',    fmt: v => Number(v).toFixed(2) },
+                    { id: 'rotation',  valId: 'val-rotation',  fmt: v => `${Math.round(v)}°` },
+                    { id: 'morph',     valId: 'val-morph',     fmt: v => Number(v).toFixed(2) },
+                    { id: 'sharpness', valId: 'val-sharpness', fmt: v => Number(v).toFixed(2) },
+                    { id: 'diffusion', valId: 'val-diffusion', fmt: v => Number(v).toFixed(2) },
+                    { id: 'drift',     valId: 'val-drift',     fmt: v => Number(v).toFixed(2) },
+                    { id: 'intensity', valId: 'val-intensity', fmt: v => Number(v).toFixed(2) },
+                    { id: 'chromatic', valId: 'val-chromatic', fmt: v => Number(v).toFixed(2) },
+                    { id: 'grain',     valId: 'val-grain',     fmt: v => Number(v).toFixed(3) },
+                    { id: 'vignette',  valId: 'val-vignette',  fmt: v => Number(v).toFixed(2) }
+                ];
+
+                sliderMap.forEach(item => {
+                    const input = document.getElementById(`ctrl-${item.id}`);
+                    const label = document.getElementById(item.valId);
+                    const formatted = item.fmt(state[item.id]);
+                    if (input) {
+                        input.value = state[item.id];
+                        updateSliderTrackVisual(input, formatted);
+                    }
+                    if (label) {
+                        label.textContent = formatted;
+                    }
+                });
+
+                // 5. Спектральный ползунок оттенка, насыщенность + 4 свотча слоёв
+                const [hMid, sMid] = hexToHsl(state.midColor);
+                state.seedHue = hMid;
+                const hueInput = document.getElementById('ctrl-seed-hue');
+                const hueThumb = document.getElementById('seed-hue-thumb');
+                const hueVal = document.getElementById('val-seed-hue');
+                const satInput = document.getElementById('ctrl-seed-sat');
+                const satVal = document.getElementById('val-seed-sat');
+                const seedSwatch = document.getElementById('seed-swatch-wrapper');
+                const seedInput = document.getElementById('seed-color-input');
+
+                if (hueInput) hueInput.value = state.seedHue;
+                if (hueThumb) {
+                    hueThumb.style.left = `${(state.seedHue / 360) * 100}%`;
+                    hueThumb.style.backgroundColor = state.midColor;
+                }
+                if (hueVal) hueVal.textContent = `${Math.round(state.seedHue)}°`;
+
+                if (satInput) {
+                    satInput.value = state.seedSat;
+                    updateSliderTrackVisual(satInput, `${Math.round(state.seedSat)}%`);
+                }
+                if (satVal) satVal.textContent = `${Math.round(state.seedSat)}%`;
+
+                if (seedSwatch) seedSwatch.style.backgroundColor = state.midColor;
+                if (seedInput) seedInput.value = state.midColor;
+
+                document.querySelectorAll('.mood-mode-btn').forEach(btn => {
+                    const active = btn.dataset.moodMode === state.moodMode;
+                    btn.style.backgroundColor = active ? 'var(--md-primary)' : 'var(--md-surface-container-low)';
+                    btn.style.color = active ? 'var(--md-on-primary)' : 'var(--md-on-surface-variant)';
+                    btn.style.borderRadius = active ? '14px' : '20px';
+                });
+
+                document.getElementById('col-bg').value = state.bgColor;
+                document.getElementById('col-outer').value = state.outerColor;
+                document.getElementById('col-mid').value = state.midColor;
+                document.getElementById('col-core').value = state.coreColor;
+
+                document.getElementById('swatch-bg').style.backgroundColor = state.bgColor;
+                document.getElementById('swatch-outer').style.backgroundColor = state.outerColor;
+                document.getElementById('swatch-mid').style.backgroundColor = state.midColor;
+                document.getElementById('swatch-core').style.backgroundColor = state.coreColor;
+
+                // 6. Активный формат и блокировка
+                updateFormatCardsActiveState();
+                syncLockscreenControls();
+            }
+
+            function renderMd3ShapesGrid() {
+                const grid = document.getElementById('md3-shapes-grid');
+                if (!grid) return;
+                grid.innerHTML = '';
+
+                const filtered = SHAPE_ITEMS.filter(item => {
+                    if (state.shapeCategory === 'all') return true;
+                    return item.cat === state.shapeCategory;
+                });
+
+                filtered.forEach(item => {
+                    const isSelected = state.shapeType === item.id;
+                    const btn = document.createElement('button');
+                    btn.className = `md3-shape-card m3-btn-spring p-1.5 flex flex-col items-center justify-center gap-1 aspect-square cursor-pointer ${isSelected ? 'active' : ''}`;
+                    btn.title = item.name;
+
+                    const miniCanvas = document.createElement('canvas');
+                    miniCanvas.width = 88;
+                    miniCanvas.height = 88;
+                    miniCanvas.className = 'w-8 h-8 pointer-events-none';
+                    const mCtx = miniCanvas.getContext('2d');
+                    mCtx.translate(44, 44);
+                    const color = isSelected ? themeOnPrimaryHex : themePrimaryHex;
+                    mCtx.fillStyle = color;
+                    mCtx.strokeStyle = color;
+                    item.draw(mCtx, 33);
+
+                    const label = document.createElement('span');
+                    label.className = 'text-[9px] font-display font-semibold truncate w-full text-center leading-tight';
+                    label.textContent = item.name;
+
+                    btn.appendChild(miniCanvas);
+                    btn.appendChild(label);
+
+                    btn.addEventListener('click', () => {
+                        state.shapeType = item.id;
+                        if (item.id === 1 && state.morph < 0.2) {
+                            state.morph = 0.32;
+                        }
+                        syncUIControls();
+                        renderFrame(canvas.width, canvas.height);
+                        pushHistory();
+                    });
+
+                    grid.appendChild(btn);
+                });
+            }
+
+            function updateFormatCardsActiveState() {
+                const activeFmt = EXPORT_FORMATS.find(f => f.id === state.exportFormat) || EXPORT_FORMATS[0];
+                const badge = document.getElementById('download-res-badge');
+                if (badge) {
+                    badge.textContent = activeFmt.w ? `${activeFmt.w}×${activeFmt.h}` : 'Экран';
+                }
+
+                document.querySelectorAll('.format-card-btn').forEach(btn => {
+                    const isSelected = btn.dataset.formatId === state.exportFormat;
+                    if (isSelected) {
+                        btn.style.backgroundColor = 'var(--md-secondary-container)';
+                        btn.style.color = 'var(--md-on-secondary-container)';
+                        btn.style.borderRadius = '20px';
+                    } else {
+                        btn.style.backgroundColor = 'var(--md-surface-container)';
+                        btn.style.color = 'var(--md-on-surface)';
+                        btn.style.borderRadius = '26px';
+                    }
+                });
+            }
+
+            function syncLockscreenControls() {
+                const topBtn = document.getElementById('btn-lockscreen-toggle');
+                const sw = document.getElementById('switch-lockscreen');
+                const thumb = document.getElementById('switch-lockscreen-thumb');
+
+                if (topBtn) {
+                    const icon = topBtn.querySelector('.material-symbols-rounded');
+                    if (state.showLockscreen) {
+                        topBtn.style.backgroundColor = 'var(--md-secondary-container)';
+                        topBtn.style.color = 'var(--md-on-secondary-container)';
+                        if (icon) icon.classList.add('icon-filled');
+                    } else {
+                        topBtn.style.backgroundColor = 'transparent';
+                        topBtn.style.color = 'var(--md-on-surface-variant)';
+                        if (icon) icon.classList.remove('icon-filled');
+                    }
+                }
+
+                if (sw && thumb) {
+                    sw.setAttribute('aria-checked', state.showLockscreen ? 'true' : 'false');
+                    if (state.showLockscreen) {
+                        sw.style.backgroundColor = 'var(--md-primary)';
+                        thumb.style.backgroundColor = 'var(--md-on-primary)';
+                        thumb.style.transform = 'translateX(20px)';
+                    } else {
+                        sw.style.backgroundColor = 'var(--md-surface-container-highest)';
+                        thumb.style.backgroundColor = 'var(--md-outline)';
+                        thumb.style.transform = 'translateX(0px)';
+                    }
+                }
+            }
+
+            function renderFormatCardsUI() {
+                const grid = document.getElementById('format-cards-grid');
+                grid.innerHTML = '';
+
+                EXPORT_FORMATS.forEach((fmt, idx) => {
+                    const btn = document.createElement('button');
+                    btn.dataset.formatId = fmt.id;
+                    btn.style.setProperty('--stagger', idx);
+                    btn.className = 'format-card-btn m3-card-stagger m3-btn-spring flex items-center gap-3 p-3.5 rounded-[26px] text-left cursor-pointer';
+                    btn.innerHTML = `
+                        <div class="w-10 h-10 rounded-2xl flex items-center justify-center shrink-0"
+                             style="background-color: var(--md-surface-container-highest);">
+                            <span class="material-symbols-rounded !text-[20px]">${fmt.icon}</span>
+                        </div>
+                        <div class="min-w-0 flex-1">
+                            <div class="font-display text-xs font-bold">${fmt.name}</div>
+                            <div class="text-[11px] opacity-75 truncate">${fmt.desc}</div>
+                        </div>
+                        <span class="material-symbols-rounded !text-[18px] opacity-60">arrow_forward_ios</span>
+                    `;
+                    btn.addEventListener('click', () => {
+                        state.exportFormat = fmt.id;
+                        updateAspectGuide();
+                        syncUIControls();
+                    });
+                    grid.appendChild(btn);
+                });
+            }
+
+            // === 7. ПРИВЯЗКА ВСЕХ ЭЛЕМЕНТОВ УПРАВЛЕНИЯ ===
+            function bindControls() {
+                // Вкладки навигации
+                document.querySelectorAll('.m3-tab-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const prevIdx = TAB_ORDER.indexOf(state.activeTab);
+                        const nextIdx = TAB_ORDER.indexOf(btn.dataset.tab);
+                        const dir = nextIdx >= prevIdx ? 1 : -1;
+                        state.activeTab = btn.dataset.tab;
+                        if (window.innerWidth < 640 && state.sheetDetent === 'peek') {
+                            setMobileSheetDetent('half');
+                        }
+                        syncUIControls(dir);
+                    });
+                });
+
+                // Переключатель Ореол / Контур для фигур
+                document.querySelectorAll('.hollow-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        state.hollowMode = parseInt(btn.dataset.hollow, 10);
+                        syncUIControls();
+                        renderFrame(canvas.width, canvas.height);
+                        pushHistory();
+                    });
+                });
+
+                // Фильтр категорий фигур
+                document.querySelectorAll('.shape-cat-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        state.shapeCategory = btn.dataset.shapeCat;
+                        syncUIControls();
+                    });
+                });
+
+                // Слайдеры Android 16 Expressive
+                const numericKeys = [
+                    'scale', 'aspect', 'rotation', 'morph',
+                    'sharpness', 'diffusion', 'drift',
+                    'intensity', 'chromatic', 'grain', 'vignette'
+                ];
+                numericKeys.forEach(key => {
+                    const el = document.getElementById(`ctrl-${key}`);
+                    const wrap = el.closest('.m3-slider-wrapper');
+                    const showBubble = () => wrap && wrap.classList.add('is-sliding');
+                    const hideBubble = () => wrap && wrap.classList.remove('is-sliding');
+
+                    el.addEventListener('pointerdown', showBubble);
+                    el.addEventListener('pointerup', hideBubble);
+                    el.addEventListener('pointercancel', hideBubble);
+                    el.addEventListener('blur', hideBubble);
+
+                    el.addEventListener('input', () => {
+                        tweenAnim = null;
+                        showBubble();
+                        state[key] = parseFloat(el.value);
+                        syncUIControls();
+                        renderFrame(canvas.width, canvas.height);
+                    });
+                    el.addEventListener('change', () => {
+                        hideBubble();
+                        pushHistory();
+                    });
+                });
+
+                // 360° Компас угла фокуса
+                const dial = document.getElementById('focus-dial');
+                let draggingDial = false;
+
+                const updateDialFromPointer = (clientX, clientY) => {
+                    const rect = dial.getBoundingClientRect();
+                    const cx = rect.left + rect.width / 2;
+                    const cy = rect.top + rect.height / 2;
+                    const dx = clientX - cx;
+                    const dy = -(clientY - cy);
+                    const deg = Math.round((Math.atan2(dy, dx) * 180) / Math.PI);
+                    tweenAnim = null;
+                    state.focusAngle = deg;
+                    syncUIControls();
+                    renderFrame(canvas.width, canvas.height);
+                };
+
+                dial.addEventListener('pointerdown', (e) => {
+                    draggingDial = true;
+                    dial.setPointerCapture(e.pointerId);
+                    updateDialFromPointer(e.clientX, e.clientY);
+                });
+                dial.addEventListener('pointermove', (e) => {
+                    if (!draggingDial) return;
+                    updateDialFromPointer(e.clientX, e.clientY);
+                });
+                dial.addEventListener('pointerup', () => {
+                    if (draggingDial) {
+                        draggingDial = false;
+                        pushHistory();
+                    }
+                });
+
+                document.querySelectorAll('.quick-angle-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const angle = parseFloat(btn.dataset.angle);
+                        applyState({ focusAngle: angle }, { smooth: true });
+                    });
+                });
+
+                // Спектральный ползунок оттенка, насыщенность и базовый цвет
+                const hueSlider = document.getElementById('ctrl-seed-hue');
+                hueSlider.addEventListener('input', () => {
+                    tweenAnim = null;
+                    state.seedHue = parseInt(hueSlider.value, 10);
+                    if (state.moodMode === 'mono') state.moodMode = 'soft';
+                    const pal = buildAuraPaletteFromHue(state.seedHue, state.seedSat, state.moodMode);
+                    Object.assign(state, pal);
+                    syncUIControls();
+                    renderFrame(canvas.width, canvas.height);
+                });
+                hueSlider.addEventListener('change', pushHistory);
+
+                const satSlider = document.getElementById('ctrl-seed-sat');
+                const satWrap = satSlider.closest('.m3-slider-wrapper');
+                satSlider.addEventListener('pointerdown', () => satWrap && satWrap.classList.add('is-sliding'));
+                satSlider.addEventListener('pointerup', () => satWrap && satWrap.classList.remove('is-sliding'));
+                satSlider.addEventListener('input', () => {
+                    tweenAnim = null;
+                    if (satWrap) satWrap.classList.add('is-sliding');
+                    state.seedSat = parseInt(satSlider.value, 10);
+                    if (state.seedSat < 8) {
+                        state.moodMode = 'mono';
+                    } else if (state.moodMode === 'mono') {
+                        state.moodMode = 'soft';
+                    }
+                    const pal = buildAuraPaletteFromHue(state.seedHue, state.seedSat, state.moodMode);
+                    Object.assign(state, pal);
+                    syncUIControls();
+                    renderFrame(canvas.width, canvas.height);
+                });
+                satSlider.addEventListener('change', () => {
+                    if (satWrap) satWrap.classList.remove('is-sliding');
+                    pushHistory();
+                });
+
+                const seedInput = document.getElementById('seed-color-input');
+                seedInput.addEventListener('input', () => {
+                    tweenAnim = null;
+                    const [h, s] = hexToHsl(seedInput.value);
+                    state.seedHue = h;
+                    state.seedSat = s;
+                    state.moodMode = s < 8 ? 'mono' : (state.moodMode === 'mono' ? 'soft' : state.moodMode);
+                    const pal = buildAuraPaletteFromHue(h, s, state.moodMode);
+                    Object.assign(state, pal);
+                    syncUIControls();
+                    renderFrame(canvas.width, canvas.height);
+                });
+                seedInput.addEventListener('change', pushHistory);
+
+                // Кнопки характера палитры (Мягкий / Глубокий / Неон / Монохром)
+                document.querySelectorAll('.mood-mode-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        state.moodMode = btn.dataset.moodMode;
+                        if (state.moodMode !== 'mono' && state.seedSat < 20) {
+                            state.seedSat = 62;
+                        }
+                        const pal = buildAuraPaletteFromHue(state.seedHue, state.seedSat, state.moodMode);
+                        applyState(pal, { smooth: true });
+                    });
+                });
+
+                // Перестановка ролей цветов (Шлейф -> Ореол -> Ядро)
+                document.getElementById('btn-swap-roles').addEventListener('click', () => {
+                    applyState({
+                        outerColor: state.midColor,
+                        midColor: state.coreColor,
+                        coreColor: state.outerColor
+                    }, { smooth: true });
+                });
+
+                // 4 Колорпикера слоёв
+                [
+                    { elId: 'col-bg', key: 'bgColor' },
+                    { elId: 'col-outer', key: 'outerColor' },
+                    { elId: 'col-mid', key: 'midColor' },
+                    { elId: 'col-core', key: 'coreColor' }
+                ].forEach(({ elId, key }) => {
+                    const el = document.getElementById(elId);
+                    el.addEventListener('input', () => {
+                        tweenAnim = null;
+                        state[key] = el.value;
+                        syncUIControls();
+                        renderFrame(canvas.width, canvas.height);
+                    });
+                    el.addEventListener('change', pushHistory);
+                });
+
+                // Кнопки Микса
+                document.getElementById('btn-randomize').addEventListener('click', randomizeWallpaper);
+                document.getElementById('btn-panel-mix').addEventListener('click', randomizeWallpaper);
+                const mobileFabMix = document.getElementById('mobile-fab-mix');
+                if (mobileFabMix) {
+                    mobileFabMix.addEventListener('click', randomizeWallpaper);
+                }
+
+                // Чипы фиксации параметров
+                const updateChipVisual = (chip, locked) => {
+                    const icon = chip.querySelector('.chip-icon');
+                    if (locked) {
+                        chip.style.backgroundColor = 'var(--md-secondary-container)';
+                        chip.style.color = 'var(--md-on-secondary-container)';
+                        chip.style.borderRadius = '14px';
+                        if (icon) {
+                            icon.textContent = 'lock';
+                            icon.classList.add('icon-filled');
+                        }
+                    } else {
+                        chip.style.backgroundColor = 'var(--md-surface-container-low)';
+                        chip.style.color = 'var(--md-on-surface-variant)';
+                        chip.style.borderRadius = '999px';
+                        if (icon) {
+                            icon.textContent = 'lock_open';
+                            icon.classList.remove('icon-filled');
+                        }
+                    }
+                };
+
+                const chipShape = document.getElementById('chip-lock-shape');
+                const chipColor = document.getElementById('chip-lock-color');
+                updateChipVisual(chipShape, false);
+                updateChipVisual(chipColor, false);
+
+                chipShape.addEventListener('click', () => {
+                    state.lockShapeOnMix = !state.lockShapeOnMix;
+                    updateChipVisual(chipShape, state.lockShapeOnMix);
+                });
+
+                chipColor.addEventListener('click', () => {
+                    state.lockColorOnMix = !state.lockColorOnMix;
+                    updateChipVisual(chipColor, state.lockColorOnMix);
+                });
+
+                // Undo / Redo
+                document.getElementById('btn-undo').addEventListener('click', undoHistory);
+                document.getElementById('btn-redo').addEventListener('click', redoHistory);
+
+                // Центрирование
+                document.getElementById('btn-reset-pos').addEventListener('click', () => {
+                    applyState({ offsetX: 0, offsetY: 0 }, { smooth: true });
+                    showToast('Фигура выровнена по центру');
+                });
+
+                // Переключение макета экрана блокировки
+                const toggleLockscreen = () => {
+                    state.showLockscreen = !state.showLockscreen;
+                    if (state.showLockscreen && state.exportFormat === 'screen') {
+                        state.exportFormat = 'phone';
+                    }
+                    updateAspectGuide();
+                    syncUIControls();
+                };
+                document.getElementById('btn-lockscreen-toggle').addEventListener('click', toggleLockscreen);
+                document.getElementById('switch-lockscreen').addEventListener('click', toggleLockscreen);
+
+                // Анимация дыхания света
+                document.getElementById('btn-animate').addEventListener('click', () => {
+                    state.animate = !state.animate;
+                    const btn = document.getElementById('btn-animate');
+                    const icon = document.getElementById('anim-icon');
+                    if (state.animate) {
+                        btn.style.backgroundColor = 'var(--md-secondary-container)';
+                        btn.style.color = 'var(--md-on-secondary-container)';
+                        if (icon) icon.classList.add('icon-filled');
+                        showToast('Плавное движение света включено');
+                    } else {
+                        btn.style.backgroundColor = 'transparent';
+                        btn.style.color = 'var(--md-on-surface-variant)';
+                        if (icon) icon.classList.remove('icon-filled');
+                        showToast('Статичный режим');
+                    }
+                });
+
+                // Скрытие / показ интерфейса
+                const toggleUI = (hide) => {
+                    state.uiHidden = hide;
+                    const panel = document.getElementById('studio-panel');
+                    const topBar = document.getElementById('top-bar');
+                    const fab = document.getElementById('mobile-fab-mix');
+                    const showBtn = document.getElementById('btn-show-ui');
+
+                    if (window.innerWidth >= 640) {
+                        panel.classList.toggle('translate-x-[120%]', hide);
+                        panel.classList.toggle('opacity-0', hide);
+                    } else {
+                        panel.classList.toggle('translate-y-[115%]', hide);
+                        if (fab) {
+                            fab.classList.toggle('scale-75', hide);
+                            fab.classList.toggle('opacity-0', hide);
+                            fab.classList.toggle('pointer-events-none', hide);
+                        }
+                    }
+                    topBar.classList.toggle('-translate-y-4', hide);
+                    topBar.classList.toggle('opacity-0', hide);
+                    topBar.classList.toggle('pointer-events-none', hide);
+
+                    showBtn.classList.toggle('hidden', !hide);
+                };
+
+                document.getElementById('btn-hide-ui').addEventListener('click', () => toggleUI(true));
+                document.getElementById('btn-show-ui').addEventListener('click', () => toggleUI(false));
+
+                // Горячие клавиши
+                window.addEventListener('keydown', (e) => {
+                    if (e.target.tagName === 'TEXTAREA' || e.target.tagName === 'INPUT') return;
+                    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z') {
+                        e.preventDefault();
+                        if (e.shiftKey) redoHistory(); else undoHistory();
+                    } else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'y') {
+                        e.preventDefault();
+                        redoHistory();
+                    } else if (e.key.toLowerCase() === 'h' || e.key.toLowerCase() === 'р') {
+                        toggleUI(!state.uiHidden);
+                    }
+                });
+
+                // Мобильная шторка
+                initMobileBottomSheet();
+
+                // Экспорт и JSON
+                document.getElementById('btn-download').addEventListener('click', exportHighResWallpaper);
+                document.getElementById('btn-copy-recipe').addEventListener('click', copyRecipeToClipboard);
+
+                document.getElementById('btn-toggle-import').addEventListener('click', () => {
+                    document.getElementById('import-box').classList.toggle('hidden');
+                });
+
+                document.getElementById('btn-apply-import').addEventListener('click', () => {
+                    const raw = document.getElementById('import-textarea').value.trim();
+                    if (!raw) return;
+                    try {
+                        const parsed = JSON.parse(raw);
+                        const clean = {};
+                        SERIALIZABLE_KEYS.forEach(k => {
+                            if (parsed[k] !== undefined) clean[k] = parsed[k];
+                        });
+                        if (Object.keys(clean).length === 0) {
+                            throw new Error('Не найдены допустимые параметры');
+                        }
+                        applyState(clean, { smooth: true });
+                        document.getElementById('import-box').classList.add('hidden');
+                        showToast('Параметры успешно применены');
+                    } catch (err) {
+                        showToast('Некорректный JSON-код настроек', 'error');
+                    }
+                });
+            }
+
+            // === 8. ИНТЕРАКТИВНАЯ МОБИЛЬНАЯ ШТОРКА (SWIPE + 3 DETENTS) ===
+            function getDetentHeightPx(detent) {
+                const vh = window.innerHeight;
+                if (detent === 'peek') return 146;
+                if (detent === 'full') return Math.round(vh * 0.84);
+                return Math.round(vh * 0.53);
+            }
+
+            function setMobileSheetDetent(detent) {
+                state.sheetDetent = detent;
+                const panel = document.getElementById('studio-panel');
+                const fab = document.getElementById('mobile-fab-mix');
+                const chevron = document.getElementById('drawer-chevron');
+
+                if (window.innerWidth >= 640) {
+                    panel.style.removeProperty('--sheet-h');
+                    return;
+                }
+
+                const hPx = getDetentHeightPx(detent);
+                panel.classList.remove('sheet-dragging');
+                panel.classList.add('sheet-spring');
+                panel.style.setProperty('--sheet-h', `${hPx}px`);
+
+                if (fab) {
+                    fab.classList.remove('fab-dragging');
+                    fab.classList.add('fab-spring');
+                    fab.style.setProperty('--sheet-h', `${hPx}px`);
+                    fab.classList.toggle('opacity-90', detent === 'full');
+                }
+
+                if (chevron) {
+                    chevron.style.transform = detent === 'peek' ? 'rotate(180deg)' : 'rotate(0deg)';
+                }
+            }
+
+            function initMobileBottomSheet() {
+                const panel = document.getElementById('studio-panel');
+                const fab = document.getElementById('mobile-fab-mix');
+                const dragHandle = document.getElementById('mobile-drag-header');
+                const headerBar = document.getElementById('studio-panel-header');
+                const toggleBtn = document.getElementById('btn-toggle-drawer');
+
+                let startY = 0;
+                let startHeight = 0;
+                let lastY = 0;
+                let lastTime = 0;
+                let velocityY = 0;
+                let isDraggingSheet = false;
+                let hasDragged = false;
+
+                const onTouchStart = (e) => {
+                    if (window.innerWidth >= 640) return;
+                    if (e.target.closest('button')) return;
+
+                    isDraggingSheet = true;
+                    hasDragged = false;
+                    startY = e.touches[0].clientY;
+                    lastY = startY;
+                    lastTime = performance.now();
+                    velocityY = 0;
+                    startHeight = panel.getBoundingClientRect().height;
+
+                    panel.classList.remove('sheet-spring');
+                    panel.classList.add('sheet-dragging');
+                    if (fab) {
+                        fab.classList.remove('fab-spring');
+                        fab.classList.add('fab-dragging');
+                    }
+                };
+
+                const onTouchMove = (e) => {
+                    if (!isDraggingSheet || window.innerWidth >= 640) return;
+                    const currentY = e.touches[0].clientY;
+                    const dy = startY - currentY;
+                    if (Math.abs(dy) > 4) hasDragged = true;
+
+                    const now = performance.now();
+                    const dt = Math.max(now - lastTime, 1);
+                    velocityY = (lastY - currentY) / dt;
+                    lastY = currentY;
+                    lastTime = now;
+
+                    const minH = 146;
+                    const maxH = window.innerHeight * 0.86;
+                    let nextH = startHeight + dy;
+                    if (nextH < minH) nextH = minH - (minH - nextH) * 0.25;
+                    if (nextH > maxH) nextH = maxH + (nextH - maxH) * 0.25;
+
+                    panel.style.setProperty('--sheet-h', `${Math.round(nextH)}px`);
+                    if (fab) {
+                        fab.style.setProperty('--sheet-h', `${Math.round(nextH)}px`);
+                    }
+                };
+
+                const onTouchEnd = () => {
+                    if (!isDraggingSheet) return;
+                    isDraggingSheet = false;
+
+                    if (!hasDragged) {
+                        setMobileSheetDetent(state.sheetDetent);
+                        return;
+                    }
+
+                    const currentH = panel.getBoundingClientRect().height;
+                    const peekH = getDetentHeightPx('peek');
+                    const halfH = getDetentHeightPx('half');
+                    const fullH = getDetentHeightPx('full');
+
+                    if (velocityY > 0.45) {
+                        setMobileSheetDetent(currentH < halfH ? 'half' : 'full');
+                    } else if (velocityY < -0.45) {
+                        setMobileSheetDetent(currentH > halfH ? 'half' : 'peek');
+                    } else {
+                        const dists = [
+                            { id: 'peek', d: Math.abs(currentH - peekH) },
+                            { id: 'half', d: Math.abs(currentH - halfH) },
+                            { id: 'full', d: Math.abs(currentH - fullH) }
+                        ].sort((a, b) => a.d - b.d);
+                        setMobileSheetDetent(dists[0].id);
+                    }
+                };
+
+                [dragHandle, headerBar].forEach(el => {
+                    if (!el) return;
+                    el.addEventListener('touchstart', onTouchStart, { passive: true });
+                    el.addEventListener('touchmove', onTouchMove, { passive: true });
+                    el.addEventListener('touchend', onTouchEnd);
+                });
+
+                if (dragHandle) {
+                    dragHandle.addEventListener('click', () => {
+                        if (window.innerWidth >= 640) return;
+                        const next = state.sheetDetent === 'peek' ? 'half' : (state.sheetDetent === 'half' ? 'full' : 'peek');
+                        setMobileSheetDetent(next);
+                    });
+                }
+
+                if (toggleBtn) {
+                    toggleBtn.addEventListener('click', () => {
+                        const next = state.sheetDetent === 'peek' ? 'half' : 'peek';
+                        setMobileSheetDetent(next);
+                    });
+                }
+
+                setMobileSheetDetent('half');
+            }
+
+            // === 9. M3 EXPRESSIVE TOUCH RIPPLE ===
+            function initM3Ripples() {
+                document.addEventListener('pointerdown', (e) => {
+                    const target = e.target.closest('.m3-btn-spring');
+                    if (!target || target.disabled) return;
+
+                    const rect = target.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const ripple = document.createElement('span');
+                    ripple.className = 'm3-ripple-wave';
+                    ripple.style.width = `${size}px`;
+                    ripple.style.height = `${size}px`;
+                    ripple.style.left = `${e.clientX - rect.left - size / 2}px`;
+                    ripple.style.top = `${e.clientY - rect.top - size / 2}px`;
+
+                    target.appendChild(ripple);
+                    setTimeout(() => ripple.remove(), 580);
+                });
+            }
+
+            // === 10. ЖЕСТЫ НА ХОЛСТЕ ===
+            function pointFocusToScreenCoords(clientX, clientY) {
+                const minDim = Math.min(window.innerWidth, window.innerHeight);
+                const uvX = (clientX - 0.5 * window.innerWidth) / minDim;
+                const uvY = -(clientY - 0.5 * window.innerHeight) / minDim;
+
+                const dx = uvX - state.offsetX;
+                const dy = uvY - state.offsetY;
+                const deg = Math.round((Math.atan2(dy, dx) * 180) / Math.PI);
+
+                applyState({ focusAngle: deg }, { smooth: true });
+
+                const ring = document.createElement('div');
+                ring.className = 'focus-tap-ring pointer-events-none fixed w-12 h-12 rounded-full border-2 z-20';
+                ring.style.left = `${clientX}px`;
+                ring.style.top = `${clientY}px`;
+                ring.style.borderColor = 'var(--md-primary)';
+                document.body.appendChild(ring);
+                setTimeout(() => ring.remove(), 680);
+            }
+
+            function bindCanvasGestures() {
+                let isDragging = false;
+                let moved = false;
+                let lastX = 0;
+                let lastY = 0;
+                let initialPinchDist = null;
+                let initialScale = state.scale;
+
+                canvas.addEventListener('mousedown', (e) => {
+                    isDragging = true;
+                    moved = false;
+                    lastX = e.clientX;
+                    lastY = e.clientY;
+                });
+
+                window.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+                    tweenAnim = null;
+                    const minDim = Math.min(window.innerWidth, window.innerHeight);
+                    const dx = (e.clientX - lastX) / minDim;
+                    const dy = -(e.clientY - lastY) / minDim;
+                    if (Math.abs(e.clientX - lastX) > 2 || Math.abs(e.clientY - lastY) > 2) moved = true;
+                    lastX = e.clientX;
+                    lastY = e.clientY;
+
+                    if (e.shiftKey) {
+                        state.focusAngle = ((state.focusAngle + dx * 260 + 540) % 360) - 180;
+                        syncUIControls();
+                    } else {
+                        state.offsetX = Math.max(-0.85, Math.min(0.85, state.offsetX + dx));
+                        state.offsetY = Math.max(-0.85, Math.min(0.85, state.offsetY + dy));
+                    }
+                    renderFrame(canvas.width, canvas.height);
+                });
+
+                window.addEventListener('mouseup', () => {
+                    if (isDragging) {
+                        isDragging = false;
+                        if (moved) pushHistory();
+                    }
+                });
+
+                canvas.addEventListener('dblclick', (e) => {
+                    pointFocusToScreenCoords(e.clientX, e.clientY);
+                });
+
+                let wheelTimer = null;
+                canvas.addEventListener('wheel', (e) => {
+                    e.preventDefault();
+                    tweenAnim = null;
+                    const factor = e.deltaY > 0 ? -0.018 : 0.018;
+                    state.scale = Math.max(0.12, Math.min(0.72, state.scale + factor));
+                    syncUIControls();
+                    renderFrame(canvas.width, canvas.height);
+
+                    clearTimeout(wheelTimer);
+                    wheelTimer = setTimeout(pushHistory, 250);
+                }, { passive: false });
+
+                let lastTapTime = 0;
+                const dismissHintPill = () => {
+                    const hint = document.getElementById('gesture-hint-pill');
+                    if (hint) {
+                        hint.style.opacity = '0';
+                        hint.style.transform = 'translate(-50%, -8px)';
+                    }
+                };
+
+                canvas.addEventListener('touchstart', (e) => {
+                    dismissHintPill();
+                    if (window.innerWidth < 640 && state.sheetDetent === 'full') {
+                        setMobileSheetDetent('half');
+                    }
+
+                    if (e.touches.length === 1) {
+                        const now = performance.now();
+                        if (now - lastTapTime < 280) {
+                            pointFocusToScreenCoords(e.touches[0].clientX, e.touches[0].clientY);
+                            lastTapTime = 0;
+                            return;
+                        }
+                        lastTapTime = now;
+                        isDragging = true;
+                        moved = false;
+                        lastX = e.touches[0].clientX;
+                        lastY = e.touches[0].clientY;
+                    } else if (e.touches.length === 2) {
+                        isDragging = false;
+                        initialPinchDist = Math.hypot(
+                            e.touches[0].clientX - e.touches[1].clientX,
+                            e.touches[0].clientY - e.touches[1].clientY
+                        );
+                        initialScale = state.scale;
+                    }
+                }, { passive: false });
+
+                canvas.addEventListener('touchmove', (e) => {
+                    e.preventDefault();
+                    tweenAnim = null;
+                    if (e.touches.length === 1 && isDragging) {
+                        const minDim = Math.min(window.innerWidth, window.innerHeight);
+                        const dx = (e.touches[0].clientX - lastX) / minDim;
+                        const dy = -(e.touches[0].clientY - lastY) / minDim;
+                        lastX = e.touches[0].clientX;
+                        lastY = e.touches[0].clientY;
+                        moved = true;
+
+                        state.offsetX = Math.max(-0.85, Math.min(0.85, state.offsetX + dx));
+                        state.offsetY = Math.max(-0.85, Math.min(0.85, state.offsetY + dy));
+                        renderFrame(canvas.width, canvas.height);
+                    } else if (e.touches.length === 2 && initialPinchDist) {
+                        const currentDist = Math.hypot(
+                            e.touches[0].clientX - e.touches[1].clientX,
+                            e.touches[0].clientY - e.touches[1].clientY
+                        );
+                        const ratio = currentDist / initialPinchDist;
+                        state.scale = Math.max(0.12, Math.min(0.72, initialScale * ratio));
+                        moved = true;
+                        syncUIControls();
+                        renderFrame(canvas.width, canvas.height);
+                    }
+                }, { passive: false });
+
+                canvas.addEventListener('touchend', () => {
+                    if (isDragging || initialPinchDist) {
+                        if (moved) pushHistory();
+                    }
+                    isDragging = false;
+                    initialPinchDist = null;
+                });
+            }
+
+            // === 11. УМНЫЙ МИКС ===
+            function randomizeWallpaper() {
+                document.querySelectorAll('.mix-sparkle-icon').forEach(icon => {
+                    icon.classList.remove('sparkle-burst');
+                    void icon.offsetWidth;
+                    icon.classList.add('sparkle-burst');
+                });
+
+                const next = {};
+
+                if (!state.lockShapeOnMix) {
+                    const shapeType = Math.floor(Math.random() * SHAPE_ITEMS.length);
+                    next.shapeType = shapeType;
+                    next.hollowMode = shapeType >= 3 ? (Math.random() > 0.55 ? 1 : 0) : 0;
+                    next.seed = Math.random();
+                    next.offsetX = Number(((Math.random() - 0.5) * 0.12).toFixed(3));
+                    next.offsetY = Number(((Math.random() - 0.5) * 0.12).toFixed(3));
+                    next.scale = Number((0.28 + Math.random() * 0.11).toFixed(2));
+                    next.aspect = Number((shapeType >= 3 ? 0.80 + Math.random() * 0.18 : (shapeType === 1 ? 0.78 + Math.random() * 0.2 : 0.54 + Math.random() * 0.28)).toFixed(2));
+                    next.rotation = Math.round((Math.random() * 140) - 70);
+                    next.morph = Number((shapeType === 1 ? 0.24 + Math.random() * 0.35 : 0.03 + Math.random() * 0.12).toFixed(2));
+                    next.focusAngle = Math.round((Math.random() * 360) - 180);
+                    next.sharpness = Number((0.84 + Math.random() * 0.14).toFixed(2));
+                    next.diffusion = Number((0.72 + Math.random() * 0.34).toFixed(2));
+                    next.drift = Number((0.36 + Math.random() * 0.30).toFixed(2));
+                }
+
+                if (!state.lockColorOnMix) {
+                    const isMonochrome = Math.random() < 0.2;
+                    const hue = Math.floor(Math.random() * 360);
+                    const sat = isMonochrome ? 0 : (54 + Math.floor(Math.random() * 34));
+                    const mode = isMonochrome ? 'mono' : (Math.random() > 0.65 ? 'neon' : 'soft');
+                    state.seedHue = hue;
+                    state.seedSat = sat;
+                    state.moodMode = mode;
+                    const pal = buildAuraPaletteFromHue(hue, sat, mode);
+                    Object.assign(next, pal);
+                    next.intensity = Number((1.10 + Math.random() * 0.16).toFixed(2));
+                }
+
+                if (Object.keys(next).length === 0) {
+                    showToast('Отключите хотя бы один фильтр фиксации');
+                    return;
+                }
+
+                applyState(next, { smooth: true });
+                showToast('Новая световая композиция');
+            }
+
+            // === 12. РАМКА ПРОПОРЦИЙ, ЭКРАН БЛОКИРОВКИ И ЭКСПОРТ ===
+            function updateAspectGuide() {
+                const frame = document.getElementById('aspect-frame');
+                const box = document.getElementById('aspect-box');
+                const label = document.getElementById('aspect-label');
+                const lockOverlay = document.getElementById('lockscreen-overlay');
+                const fmt = EXPORT_FORMATS.find(f => f.id === state.exportFormat) || EXPORT_FORMATS[0];
+
+                if (!fmt.ratio) {
+                    frame.classList.add('opacity-0');
+                    lockOverlay.classList.add('hidden');
+                    return;
+                }
+
+                frame.classList.remove('opacity-0');
+                label.textContent = `${fmt.name} • ${fmt.w}×${fmt.h}`;
+                lockOverlay.classList.toggle('hidden', !state.showLockscreen);
+
+                const availW = window.innerWidth * (window.innerWidth >= 640 ? 0.52 : 0.84);
+                const availH = window.innerHeight * (window.innerWidth >= 640 ? 0.78 : 0.44);
+                let boxW = availW;
+                let boxH = boxW / fmt.ratio;
+
+                if (boxH > availH) {
+                    boxH = availH;
+                    boxW = boxH * fmt.ratio;
+                }
+
+                box.style.width = `${Math.round(boxW)}px`;
+                box.style.height = `${Math.round(boxH)}px`;
+            }
+
+            function exportHighResWallpaper() {
+                if (!gl) return;
+
+                const fmt = EXPORT_FORMATS.find(f => f.id === state.exportFormat) || EXPORT_FORMATS[0];
+                const dpr = Math.min(window.devicePixelRatio || 1, 2);
+                const targetW = fmt.w || Math.floor(window.innerWidth * dpr);
+                const targetH = fmt.h || Math.floor(window.innerHeight * dpr);
+
+                const prevW = canvas.width;
+                const prevH = canvas.height;
+
+                try {
+                    canvas.width = targetW;
+                    canvas.height = targetH;
+                    gl.viewport(0, 0, targetW, targetH);
+                    renderFrame(targetW, targetH);
+
+                    const dataUrl = canvas.toDataURL('image/png');
+                    const link = document.createElement('a');
+                    const timestamp = new Date().toISOString().slice(0, 19).replace(/[:T]/g, '-');
+                    link.download = `lumina-aura-${targetW}x${targetH}-${timestamp}.png`;
+                    link.href = dataUrl;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+
+                    showToast(`Обои сохранены (${targetW}×${targetH} PNG)`);
+                } catch (err) {
+                    console.error(err);
+                    showToast('Не удалось экспортировать изображение', 'error');
+                } finally {
+                    canvas.width = prevW;
+                    canvas.height = prevH;
+                    gl.viewport(0, 0, prevW, prevH);
+                    renderFrame(prevW, prevH);
+                }
+            }
+
+            function copyRecipeToClipboard() {
+                const payload = JSON.stringify(snapshotState());
+                const textarea = document.createElement('textarea');
+                textarea.value = payload;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+
+                try {
+                    document.execCommand('copy');
+                    showToast('JSON-код настроек скопирован');
+                } catch (e) {
+                    showToast('Не удалось скопировать настройки', 'error');
+                } finally {
+                    document.body.removeChild(textarea);
+                }
+            }
+
+            // === 13. M3 SNACKBAR УВЕДОМЛЕНИЯ ===
+            function showToast(message, type = 'info') {
+                const container = document.getElementById('toast-container');
+                const toast = document.createElement('div');
+                toast.className = 'm3-snackbar-enter px-4 py-2.5 rounded-full text-xs font-semibold shadow-2xl flex items-center gap-2';
+
+                if (type === 'error') {
+                    toast.style.backgroundColor = '#3f151b';
+                    toast.style.color = '#ffe4e6';
+                } else {
+                    toast.style.backgroundColor = 'var(--md-surface-container-highest)';
+                    toast.style.color = 'var(--md-on-surface)';
+                }
+
+                toast.textContent = message;
+                container.appendChild(toast);
+
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    toast.style.transform = 'translate(-50%, 8px)';
+                    toast.style.transition = 'all 0.25s ease';
+                    setTimeout(() => toast.remove(), 260);
+                }, 2300);
+            }
+
+            // === 14. ЗАПУСК ПРИ ЗАГРУЗКЕ ===
+            window.onload = function () {
+                initExpressiveSliders();
+                updateMaterialDynamicTheme();
+                renderFormatCardsUI();
+                bindControls();
+                bindCanvasGestures();
+                initM3Ripples();
+                syncUIControls();
+                pushHistory();
+
+                setTimeout(() => {
+                    const hint = document.getElementById('gesture-hint-pill');
+                    if (hint) {
+                        hint.style.opacity = '0';
+                        hint.style.transform = 'translate(-50%, -8px)';
+                    }
+                }, 4500);
+
+                if (initWebGL()) {
+                    window.addEventListener('resize', () => {
+                        resizeCanvas();
+                        setMobileSheetDetent(state.sheetDetent);
+                    });
+                    requestAnimationFrame(animationLoop);
+                }
+            };
+        })();
+    </script>
+</body>
+</html>
