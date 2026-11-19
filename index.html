@@ -75,20 +75,17 @@
             user-select: none;
         }
 
-        /* Доступный фокус с клавиатуры */
         button:focus-visible, input:focus-visible, textarea:focus-visible {
             outline: 2px solid var(--md-primary);
             outline-offset: 2px;
         }
 
-        /* Табулярные цифры Google Sans Flex */
         .font-mono {
             font-family: 'Google Sans Flex', system-ui, sans-serif !important;
             font-variant-numeric: tabular-nums;
             font-variation-settings: 'ROND' 50, 'wdth' 98;
         }
 
-        /* Фирменные двухстрочные часы Google Pixel на базе Google Sans Flex */
         .pixel-lock-clock {
             font-family: 'Google Sans Flex', system-ui, sans-serif;
             font-weight: 445;
@@ -105,7 +102,6 @@
             font-variant-numeric: tabular-nums;
         }
 
-        /* Иконки Material Symbols Rounded */
         .material-symbols-rounded {
             font-family: 'Material Symbols Rounded' !important;
             font-weight: normal;
@@ -126,7 +122,6 @@
             font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
         }
 
-        /* Чистые матовые тональные поверхности Material Design 3 */
         .m3-surface-tonal {
             background-color: var(--md-surface-container-low);
             box-shadow: 0 14px 36px rgba(0, 0, 0, 0.56);
@@ -190,7 +185,6 @@
             transform: scale(0.94);
         }
 
-        /* M3 State Layer Ripple */
         .m3-ripple-wave {
             position: absolute;
             border-radius: 50%;
@@ -207,7 +201,7 @@
             }
         }
 
-        /* Морфинг карточек фигур MD3 */
+        /* Карточки фигур в однострочной карусели */
         .md3-shape-card {
             background-color: var(--md-surface-container-low);
             color: var(--md-on-surface-variant);
@@ -226,7 +220,7 @@
             transform: scale(0.98);
         }
 
-        /* Горизонтальная карусель фигур (не перехватывает вертикальный скролл) */
+        /* Горизонтальная карусель (не перехватывает вертикальный скролл) */
         .m3-carousel {
             overscroll-behavior-x: contain;
             -webkit-overflow-scrolling: touch;
@@ -245,13 +239,12 @@
             display: none;
         }
 
-        /* Скользящие индикаторы (Вкладки и Сегментированные переключатели) */
+        /* Скользящие индикаторы */
         .m3-sliding-pill {
             transition: transform 0.38s var(--md-spring), width 0.34s var(--md-spring), background-color 0.35s ease;
             will-change: transform, width;
         }
 
-        /* Направленная анимация переключения вкладок */
         @keyframes m3TabSlideRight {
             0% { opacity: 0; transform: translateX(14px) scale(0.985); }
             100% { opacity: 1; transform: translateX(0) scale(1); }
@@ -267,7 +260,6 @@
             animation: m3TabSlideLeft 0.32s var(--md-ease-decelerate) forwards;
         }
 
-        /* Каскадное появление карточек */
         @keyframes m3CardPopIn {
             0% { opacity: 0; transform: translateY(8px) scale(0.96); }
             100% { opacity: 1; transform: translateY(0) scale(1); }
@@ -278,7 +270,7 @@
             animation-delay: calc(var(--stagger, 0) * 26ms);
         }
 
-        /* Плавный аккордеон (CSS Grid rows) */
+        /* Плавный аккордеон */
         .m3-accordion {
             display: grid;
             grid-template-rows: 0fr;
@@ -293,7 +285,6 @@
             overflow: hidden;
         }
 
-        /* Анимация искры на кнопке Микс */
         @keyframes m3SparkleBurst {
             0% { transform: rotate(0deg) scale(1); }
             45% { transform: rotate(195deg) scale(1.26); }
@@ -303,7 +294,6 @@
             animation: m3SparkleBurst 0.54s var(--md-spring);
         }
 
-        /* Импульс при сбросе значения */
         @keyframes m3ValuePop {
             0% { transform: scale(1); }
             40% { transform: scale(1.22); }
@@ -313,7 +303,6 @@
             animation: m3ValuePop 0.32s var(--md-spring);
         }
 
-        /* Скроллбар и мягкая маска прокрутки */
         .m3-scroll {
             overscroll-behavior: contain;
             -webkit-overflow-scrolling: touch;
@@ -328,10 +317,6 @@
         .m3-scroll::-webkit-scrollbar-thumb {
             background: var(--md-surface-container-highest);
             border-radius: 9999px;
-        }
-        .m3-scroll-fade {
-            mask-image: linear-gradient(to bottom, transparent 0%, black 10px, black calc(100% - 14px), transparent 100%);
-            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10px, black calc(100% - 14px), transparent 100%);
         }
 
         /* === ANDROID 16 / MATERIAL DESIGN 3 EXPRESSIVE SPLIT-TRACK SLIDERS === */
@@ -366,7 +351,6 @@
             --bubble-pct: 50%;
         }
 
-        /* Всплывающий пузырёк точного значения (с защитой от выхода за края) */
         .m3-slider-bubble {
             position: absolute;
             bottom: 35px;
@@ -471,7 +455,6 @@
             z-index: 10;
         }
 
-        /* Спектральный слайдер оттенка */
         .m3-hue-track {
             position: absolute;
             inset: 0;
@@ -510,7 +493,6 @@
             transform: translate(-50%, -50%) scale(1.18);
         }
 
-        /* Компас угла фокуса */
         #focus-dial {
             transition: transform 0.28s var(--md-spring), background-color 0.25s ease, box-shadow 0.25s ease;
         }
@@ -519,7 +501,7 @@
             box-shadow: 0 0 0 3px var(--md-primary-container);
         }
 
-        /* Пружинная физика для студийной панели и мобильной шторки */
+        /* Пружинная физика студийной панели и упрощённой мобильной шторки */
         @media (min-width: 640px) {
             #studio-panel {
                 transition: transform 0.44s var(--md-spring-soft), opacity 0.26s ease, background-color 0.35s ease;
@@ -555,7 +537,6 @@
             }
         }
 
-        /* Круглые свотчи цвета */
         .color-swatch-circle {
             position: relative;
             width: 40px;
@@ -610,7 +591,6 @@
             cursor: pointer;
         }
 
-        /* M3 Snackbar анимация без горизонтальных рывков */
         @keyframes m3SnackbarIn {
             0% { opacity: 0; transform: translateY(14px) scale(0.92); }
             100% { opacity: 1; transform: translateY(0) scale(1); }
@@ -624,7 +604,6 @@
             transition: opacity 0.22s ease, transform 0.22s ease !important;
         }
 
-        /* Импульс от двойного нажатия по холсту */
         @keyframes focusPulse {
             0% { transform: translate(-50%, -50%) scale(0.32); opacity: 0.95; }
             100% { transform: translate(-50%, -50%) scale(1.95); opacity: 0; }
@@ -633,12 +612,10 @@
             animation: focusPulse 0.65s var(--md-ease-emphasized) forwards;
         }
 
-        /* Магнитные направляющие центра */
         .center-guide-line {
             transition: opacity 0.22s ease;
         }
 
-        /* Живой HUD-индикатор жестов на холсте */
         #canvas-hud {
             transition: opacity 0.22s ease, transform 0.3s var(--md-spring-soft);
         }
@@ -651,7 +628,6 @@
             transform: translate(-50%, 8px) scale(0.94);
         }
 
-        /* Модальное окно горячих клавиш */
         #shortcuts-modal {
             transition: opacity 0.24s ease;
         }
@@ -667,7 +643,6 @@
             opacity: 0;
         }
 
-        /* Анимация появления экрана блокировки */
         #lockscreen-overlay {
             transition: opacity 0.32s ease, transform 0.38s var(--md-spring-soft);
         }
@@ -692,7 +667,7 @@
                  style="background-color: var(--md-primary);"></div>
         </div>
 
-        <!-- Живой HUD-индикатор при перетаскивании / масштабировании / фокусе на холсте -->
+        <!-- Живой HUD-индикатор жестов на холсте -->
         <div id="canvas-hud"
              class="pointer-events-none fixed bottom-20 sm:bottom-6 left-1/2 z-20 px-3.5 py-1.5 rounded-full m3-surface-tonal flex items-center gap-2 text-xs font-mono font-semibold"
              style="color: var(--md-on-surface);">
@@ -700,16 +675,14 @@
             <span id="canvas-hud-text">По центру</span>
         </div>
 
-        <!-- Рамка предпросмотра пропорций + Экран блокировки в стиле Google Pixel -->
+        <!-- Рамка предпросмотра пропорций + Экран блокировки Google Pixel -->
         <div id="aspect-frame" class="pointer-events-none fixed inset-0 flex items-center justify-center transition-opacity duration-300 opacity-0 z-10">
             <div id="aspect-box" class="relative rounded-[34px] transition-all duration-300"
                  style="box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.62);">
-                <!-- Бейдж формата сверху -->
                 <div class="absolute -top-8 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-[11px] font-mono tracking-wide whitespace-nowrap"
                      style="background-color: var(--md-surface-container-high); color: var(--md-on-surface);"
                      id="aspect-label">9:19.5 • 1290×2796</div>
 
-                <!-- Аутентичный макет экрана блокировки Google Pixel -->
                 <div id="lockscreen-overlay"
                      class="lock-hidden absolute inset-0 flex flex-col justify-between select-none overflow-hidden rounded-[34px] pixel-ui-text"
                      style="font-size: 15px; padding: 0.95em 1.15em 0.65em; color: #f4f4f6;">
@@ -787,7 +760,6 @@
 
     <!-- Единая минималистичная верхняя панель M3 Floating App Bar -->
     <header id="top-bar" class="fixed top-3 left-3 right-3 sm:top-4 sm:left-4 sm:right-auto z-30 flex items-center justify-between sm:justify-start gap-1.5 p-1.5 rounded-full m3-surface-tonal">
-        <!-- Логотип Nimbus -->
         <div class="flex items-center gap-2 pl-1 pr-1.5 sm:pr-2 py-0.5 min-w-0">
             <div class="w-8 h-8 rounded-[11px] flex items-center justify-center shrink-0 overflow-hidden"
                  style="background-color: var(--md-on-primary); color: var(--md-primary); transition: background-color 0.35s ease, color 0.35s ease;">
@@ -802,7 +774,6 @@
 
         <div class="hidden sm:block w-px h-4 mx-0.5 opacity-15" style="background-color: var(--md-on-surface);"></div>
 
-        <!-- Компактная группа быстрых M3-действий -->
         <div class="flex items-center gap-0.5 sm:gap-1 shrink-0">
             <button id="btn-undo" title="Отменить (Ctrl+Z)" disabled
                     class="m3-btn-spring w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center disabled:opacity-30 cursor-pointer disabled:cursor-default"
@@ -857,7 +828,7 @@
         <span class="material-symbols-rounded icon-filled !text-[23px]">tune</span>
     </button>
 
-    <!-- Единая плавающая M3 Expressive панель генерации -->
+    <!-- Плавающая M3 Expressive панель генерации -->
     <div id="floating-mix-dock"
          class="dock-spring fixed right-3 sm:right-auto sm:left-4 sm:bottom-4 z-30 flex items-center gap-1 sm:gap-1.5 p-1 sm:p-1.5 rounded-full m3-surface-tonal">
         <button id="chip-lock-shape" data-locked="false" title="Зафиксировать форму при миксе"
@@ -878,7 +849,7 @@
         </button>
     </div>
 
-    <!-- Кнопка возврата интерфейса (плавное появление в Zen-режиме) -->
+    <!-- Кнопка возврата интерфейса из Zen-режима -->
     <button id="btn-show-ui"
             class="fixed top-4 right-4 z-40 m3-btn-spring h-10 px-4 rounded-full m3-surface-tonal font-display text-xs font-semibold flex items-center gap-2 cursor-pointer opacity-0 scale-90 -translate-y-2 pointer-events-none"
             style="color: var(--md-on-surface);">
@@ -895,7 +866,7 @@
             <div class="w-10 h-1 rounded-full opacity-40" style="background-color: var(--md-on-surface-variant);"></div>
         </div>
 
-        <!-- Минималистичная навигация M3 сверху панели -->
+        <!-- Верхняя навигация вкладок -->
         <div id="studio-panel-header" class="px-3.5 pt-1.5 sm:pt-3.5 pb-2.5 shrink-0 flex items-center gap-2 touch-none sm:touch-auto">
             <nav class="relative flex-1 grid grid-cols-3 p-1 rounded-full" style="background-color: var(--md-surface-container);" role="tablist">
                 <div id="tab-indicator" class="m3-sliding-pill absolute top-1 bottom-1 left-1 w-[calc(33.333%-2.67px)] rounded-full pointer-events-none"
@@ -927,17 +898,15 @@
 
             <!-- ==================== ВКЛАДКА 1: ФОРМА ==================== -->
             <div id="tab-panel-shape" class="tab-panel space-y-2.5 sm:space-y-3.5">
-                <!-- Библиотека 38 световых и MD3 форм в виде однострочной карусели -->
+                <!-- Карусель 38 форм в одну линию -->
                 <div class="m3-card p-2.5 sm:p-3 space-y-2">
                     <div class="flex items-center justify-between gap-2">
-                        <!-- Фильтр категорий -->
                         <div class="flex items-center gap-1 overflow-x-auto no-scrollbar">
                             <button data-shape-cat="all" class="shape-cat-btn m3-btn-spring px-2.5 py-1 rounded-full text-[11px] font-semibold whitespace-nowrap cursor-pointer">Все 38</button>
                             <button data-shape-cat="organic" class="shape-cat-btn m3-btn-spring px-2.5 py-1 rounded-full text-[11px] font-semibold whitespace-nowrap cursor-pointer">Плавные</button>
                             <button data-shape-cat="geo" class="shape-cat-btn m3-btn-spring px-2.5 py-1 rounded-full text-[11px] font-semibold whitespace-nowrap cursor-pointer">Геометрия</button>
                         </div>
 
-                        <!-- Переключатель Ореол / Контур со скользящим индикатором -->
                         <div class="relative inline-grid grid-cols-2 p-0.5 rounded-full shrink-0" style="background-color: var(--md-surface-container-low);">
                             <div id="hollow-indicator" class="m3-sliding-pill absolute top-0.5 bottom-0.5 left-0.5 w-[calc(50%-2px)] rounded-full pointer-events-none"
                                  style="background-color: var(--md-secondary-container);"></div>
@@ -948,7 +917,6 @@
 
                     <div id="md3-shapes-grid" class="m3-carousel m3-scroll-fade-x no-scrollbar flex flex-nowrap items-center gap-1.5 overflow-x-auto snap-x snap-proximity py-1 px-1"></div>
 
-                    <!-- Индикатор выбранной фигуры -->
                     <div class="flex items-center justify-between px-1 text-[11px]" style="color: var(--md-on-surface-variant);">
                         <span>Форма:</span>
                         <span id="active-shape-name" class="font-display font-bold px-2 py-0.5 rounded-full"
@@ -956,9 +924,8 @@
                     </div>
                 </div>
 
-                <!-- Android 16 Grouped Container: Направление фокуса + Геометрия -->
+                <!-- Направление фокуса + Геометрия -->
                 <div class="m3-group">
-                    <!-- Интерактивный 360° Компас угла фокуса -->
                     <div class="m3-group-item p-3.5 flex items-center gap-3.5">
                         <div id="focus-dial" class="relative w-20 h-20 rounded-full shrink-0 flex items-center justify-center cursor-pointer touch-none"
                              title="Тяните для поворота • Удерживайте Shift для шага 15°"
@@ -1095,7 +1062,6 @@
                         </button>
                     </div>
 
-                    <!-- Спектральный ползунок оттенка -->
                     <div>
                         <div class="flex justify-between items-center text-xs mb-0.5">
                             <span class="font-medium" style="color: var(--md-on-surface-variant);">Оттенок спектра</span>
@@ -1108,7 +1074,6 @@
                         </div>
                     </div>
 
-                    <!-- Слайдер насыщенности -->
                     <div>
                         <div class="flex justify-between items-center text-xs mb-0.5">
                             <span class="font-medium" style="color: var(--md-on-surface-variant);">Насыщенность</span>
@@ -1126,7 +1091,6 @@
                         </div>
                     </div>
 
-                    <!-- Режимы свечения со скользящим индикатором -->
                     <div class="relative grid grid-cols-4 p-0.5 rounded-full" style="background-color: var(--md-surface-container-low);">
                         <div id="mood-indicator" class="m3-sliding-pill absolute top-0.5 bottom-0.5 left-0.5 w-[calc(25%-1px)] rounded-full pointer-events-none"
                              style="background-color: var(--md-primary);"></div>
@@ -1136,7 +1100,6 @@
                         <button data-mood-mode="mono" class="mood-mode-btn m3-btn-spring relative z-10 py-1.5 px-1.5 rounded-full text-[11px] font-semibold cursor-pointer">Монохром</button>
                     </div>
 
-                    <!-- 4 круглых свотча точной подстройки слоёв -->
                     <div class="flex items-center justify-around pt-1">
                         <label class="flex flex-col items-center gap-1 cursor-pointer">
                             <div class="color-swatch-circle" id="swatch-bg" style="background-color: #121213;">
@@ -1165,7 +1128,7 @@
                     </div>
                 </div>
 
-                <!-- Android 16 Grouped Container 1: Оптическое рассеивание -->
+                <!-- Оптическое рассеивание -->
                 <div class="m3-group">
                     <div class="m3-group-item m3-slider-row" data-reset-key="sharpness" title="Двойной клик или нажатие на число — сброс">
                         <div class="flex justify-between items-center text-xs mb-1">
@@ -1244,8 +1207,30 @@
                     </div>
                 </div>
 
-                <!-- Android 16 Grouped Container 2: Атмосфера и текстура -->
+                <!-- Атмосфера и текстура -->
                 <div class="m3-group">
+                    <!-- Тумблер фильтра рифлёного стекла (Fluted Glass) -->
+                    <div class="m3-group-item p-3.5 flex items-center justify-between gap-3">
+                        <div class="flex items-center gap-3 min-w-0">
+                            <div class="w-9 h-9 rounded-2xl flex items-center justify-center shrink-0"
+                                 style="background-color: var(--md-secondary-container); color: var(--md-on-secondary-container);">
+                                <span class="material-symbols-rounded !text-[19px]">view_week</span>
+                            </div>
+                            <div class="min-w-0">
+                                <div class="font-display text-xs font-bold truncate" style="color: var(--md-on-surface);">Рифлёное стекло</div>
+                                <div class="text-[11px] truncate" style="color: var(--md-on-surface-variant);">Вертикальные цилиндрические линзы</div>
+                            </div>
+                        </div>
+                        <button id="switch-fluted-glass" role="switch" aria-checked="false" title="Включить фильтр рифлёного стекла (G)"
+                                class="m3-btn-spring relative h-8 rounded-full transition-colors cursor-pointer shrink-0 flex items-center px-1"
+                                style="width: 52px; background-color: var(--md-surface-container-highest); box-shadow: inset 0 0 0 2px var(--md-outline);">
+                            <span id="switch-fluted-thumb" class="w-4 h-4 rounded-full transition-all duration-250 flex items-center justify-center"
+                                  style="background-color: var(--md-outline); transform: translateX(4px); transition-timing-function: var(--md-spring);">
+                                <span id="switch-fluted-icon" class="material-symbols-rounded !text-[14px] opacity-0 transition-opacity" style="color: var(--md-primary);">check</span>
+                            </span>
+                        </button>
+                    </div>
+
                     <div class="m3-group-item m3-slider-row" data-reset-key="chromatic" title="Двойной клик или нажатие на число — сброс">
                         <div class="flex justify-between items-center text-xs mb-1">
                             <span class="font-medium" style="color: var(--md-on-surface);">Хроматический край</span>
@@ -1312,9 +1297,7 @@
                     <div id="format-cards-grid" class="m3-group"></div>
                 </div>
 
-                <!-- Android 16 Grouped Container: Предпросмотр и обмен JSON -->
                 <div class="m3-group">
-                    <!-- Переключатель макета экрана блокировки Pixel -->
                     <div class="m3-group-item p-3.5 flex items-center justify-between gap-3">
                         <div class="flex items-center gap-3">
                             <div class="w-9 h-9 rounded-2xl flex items-center justify-center shrink-0"
@@ -1330,13 +1313,12 @@
                                 class="m3-btn-spring relative h-8 rounded-full transition-colors cursor-pointer shrink-0 flex items-center px-1"
                                 style="width: 52px; background-color: var(--md-surface-container-highest); box-shadow: inset 0 0 0 2px var(--md-outline);">
                             <span id="switch-lockscreen-thumb" class="w-4 h-4 rounded-full transition-all duration-250 flex items-center justify-center"
-                                  style="background-color: var(--md-outline); transform: translateX(2px); transition-timing-function: var(--md-spring);">
+                                  style="background-color: var(--md-outline); transform: translateX(4px); transition-timing-function: var(--md-spring);">
                                 <span id="switch-lockscreen-icon" class="material-symbols-rounded !text-[14px] opacity-0 transition-opacity" style="color: var(--md-primary);">check</span>
                             </span>
                         </button>
                     </div>
 
-                    <!-- Импорт / Экспорт рецепта JSON с плавным аккордеоном -->
                     <div class="m3-group-item p-3.5">
                         <div class="flex items-center justify-between">
                             <span class="font-display text-xs font-bold" style="color: var(--md-on-surface);">Рецепт обоев (JSON)</span>
@@ -1376,7 +1358,7 @@
 
         </div>
 
-        <!-- Нижняя панель с мгновенным скачиванием и быстрым переключением формата -->
+        <!-- Нижняя панель скачивания и выбора формата -->
         <div class="px-3 sm:px-3.5 pt-2 pb-[calc(0.75rem+env(safe-area-inset-bottom))] sm:p-3.5 shrink-0 flex items-center gap-2 rounded-b-[32px]"
              style="background-color: var(--md-surface-container-low);">
             <button id="btn-cycle-format" title="Быстро сменить формат обоев"
@@ -1394,7 +1376,7 @@
         </div>
     </aside>
 
-    <!-- Модальное окно горячих клавиш и жестов M3 -->
+    <!-- Модальное окно горячих клавиш -->
     <div id="shortcuts-modal" class="is-hidden fixed inset-0 z-50 flex items-center justify-center p-4" style="background-color: rgba(0, 0, 0, 0.58);">
         <div id="shortcuts-modal-card" class="w-full max-w-sm rounded-[28px] p-5 m3-surface-tonal space-y-4">
             <div class="flex items-center justify-between">
@@ -1432,6 +1414,10 @@
                     <kbd class="font-mono text-[11px] font-bold px-2 py-0.5 rounded-lg" style="background-color: var(--md-surface-container-highest); color: var(--md-primary);">L / 0</kbd>
                 </div>
                 <div class="m3-group-item px-3.5 py-2.5 flex items-center justify-between">
+                    <span style="color: var(--md-on-surface-variant);">Рифлёное стекло</span>
+                    <kbd class="font-mono text-[11px] font-bold px-2 py-0.5 rounded-lg" style="background-color: var(--md-surface-container-highest); color: var(--md-primary);">G</kbd>
+                </div>
+                <div class="m3-group-item px-3.5 py-2.5 flex items-center justify-between">
                     <span style="color: var(--md-on-surface-variant);">Отмена / Повтор / Скачать</span>
                     <kbd class="font-mono text-[11px] font-bold px-2 py-0.5 rounded-lg" style="background-color: var(--md-surface-container-highest); color: var(--md-primary);">Ctrl+Z / Y / S</kbd>
                 </div>
@@ -1443,7 +1429,7 @@
         </div>
     </div>
 
-    <!-- Контейнер для всплывающих уведомлений M3 Snackbar -->
+    <!-- Контейнер уведомлений M3 Snackbar -->
     <div id="toast-container" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none flex flex-col items-center gap-2"></div>
 
     <!-- Вершинный шейдер WebGL -->
@@ -1454,7 +1440,7 @@
         }
     </script>
 
-    <!-- Фрагментный шейдер WebGL: оптические световые ореолы + 35 официальных фигур Material Design 3 -->
+    <!-- Фрагментный шейдер WebGL: оптические световые ореолы + 35 фигур MD3 + рифлёное стекло -->
     <script id="fragment-shader" type="x-shader/x-fragment">
         precision highp float;
 
@@ -1484,6 +1470,7 @@
 
         uniform float u_grain;
         uniform float u_vignette;
+        uniform float u_flutedGlass;
 
         float dot2(vec2 v) {
             return dot(v, v);
@@ -1734,10 +1721,8 @@
             return sdMd3Heart(p, r);
         }
 
-        void main() {
-            float minDim = min(u_resolution.x, u_resolution.y);
-            vec2 uv = (gl_FragCoord.xy - 0.5 * u_resolution.xy) / minDim;
-
+        // Расчёт исходной HDR-сцены световой фигуры в точке uv (до тонмаппинга и зерна)
+        vec3 evalAuraCore(vec2 uv) {
             vec2 focusDir = vec2(cos(u_focusAngle), sin(u_focusAngle));
             vec2 p = uv - u_offset;
 
@@ -1823,8 +1808,76 @@
             float coreEnergy = pow(coreGlow, 1.25) * u_intensity;
             col += u_coreColor * coreEnergy * 0.92;
 
-            col = col / (1.0 + col * 0.22);
-            col = mix(col, smoothstep(0.0, 1.0, col), 0.14);
+            return col;
+        }
+
+        void main() {
+            float minDim = min(u_resolution.x, u_resolution.y);
+            vec2 uv = (gl_FragCoord.xy - 0.5 * u_resolution.xy) / minDim;
+
+            vec3 col;
+
+            if (u_flutedGlass > 0.001) {
+                float fg = u_flutedGlass;
+
+                // ~29 вертикальных цилиндрических рёбер по ширине (пропорционально minDim)
+                float fluteFreq = 29.0;
+                float flutePhase = fract(uv.x * fluteFreq + 0.5);
+                float u = flutePhase * 2.0 - 1.0;
+                float absU = abs(u);
+
+                // Профиль цилиндрической линзы (купол в центре, крутой спад в канавки)
+                float dome = sqrt(max(0.0, 1.0 - u * u * 0.965));
+
+                // Вертикальное преломление: создаёт характерные высокие арки вдоль ярких контуров
+                float dy = -(dome - 0.54) * 0.118 * fg;
+
+                // Горизонтальное цилиндрическое преломление внутри ребра
+                float lensCurve = sin(u * 1.570796) * 0.60 + u * u * u * 0.40;
+                float dx = -lensCurve * 0.024 * fg;
+
+                vec2 baseUv = uv + vec2(dx, dy);
+
+                // 5-точечная оптическая выборка (гладкое стекло + тонкая дисперсия)
+                float disp = 0.0020 * u * fg;
+                float vBlur = 0.0048 * fg;
+
+                vec3 cCenter = evalAuraCore(baseUv);
+                vec3 cUp     = evalAuraCore(baseUv + vec2(disp,  vBlur));
+                vec3 cDown   = evalAuraCore(baseUv + vec2(-disp, -vBlur));
+                vec3 cUp2    = evalAuraCore(baseUv + vec2(0.0,   vBlur * 2.1));
+                vec3 cDown2  = evalAuraCore(baseUv + vec2(0.0,  -vBlur * 2.1));
+
+                vec3 colHdr = cCenter * 0.52
+                            + (cUp + cDown) * 0.18
+                            + (cUp2 + cDown2) * 0.06;
+
+                colHdr.r = mix(colHdr.r, (cUp.r + cCenter.r) * 0.5, 0.24 * absU * fg);
+                colHdr.b = mix(colHdr.b, (cDown.b + cCenter.b) * 0.5, 0.24 * absU * fg);
+
+                // HDR-затенение канавок между рёбрами
+                float groove = smoothstep(0.54, 0.98, absU);
+                float deepSeam = smoothstep(0.84, 1.0, absU);
+                float ribTrans = mix(1.12, 0.50, groove * fg) * mix(1.0, 0.70, deepSeam * fg);
+
+                colHdr *= ribTrans;
+                colHdr = mix(colHdr, pow(max(colHdr, vec3(0.0001)), vec3(1.24)), groove * 0.68 * fg);
+
+                col = colHdr / (1.0 + colHdr * 0.22);
+                col = mix(col, smoothstep(0.0, 1.0, col), 0.14);
+
+                // Объёмный рельеф и мягкий блик стеклянных цилиндров
+                float sheen = exp(-pow((u + 0.22) / 0.48, 2.0)) * (1.0 - deepSeam);
+                float rimCatch = exp(-pow((u + 0.54) / 0.16, 2.0)) * (1.0 - deepSeam);
+                vec3 glassTint = mix(vec3(1.0), max(u_midColor, vec3(0.25)), 0.42);
+                col += glassTint * (sheen * 0.036 + rimCatch * 0.020) * fg;
+
+                col *= mix(1.0, 0.62, deepSeam * fg);
+            } else {
+                vec3 colHdr = evalAuraCore(uv);
+                col = colHdr / (1.0 + colHdr * 0.22);
+                col = mix(col, smoothstep(0.0, 1.0, col), 0.14);
+            }
 
             vec2 vigUV = gl_FragCoord.xy / u_resolution.xy - 0.5;
             float vig = 1.0 - dot(vigUV, vigUV) * u_vignette * 1.35;
@@ -2029,6 +2082,7 @@
                 chromatic: 0.0,
                 grain: 0.048,
                 vignette: 0.22,
+                flutedGlass: false,
                 seed: 0.42,
 
                 seedHue: 240,
@@ -2049,12 +2103,20 @@
                 'shapeType', 'hollowMode', 'offsetX', 'offsetY', 'scale', 'aspect', 'rotation', 'morph',
                 'focusAngle', 'sharpness', 'diffusion', 'drift',
                 'bgColor', 'outerColor', 'midColor', 'coreColor', 'intensity', 'chromatic',
-                'grain', 'vignette', 'seed'
+                'grain', 'vignette', 'flutedGlass', 'seed'
             ];
 
             const historyStack = [];
             let historyIndex = -1;
             let tweenAnim = null;
+            let flutedMix = 0.0;
+            let lastLoopTime = performance.now();
+
+            // Кэш карусели фигур (чтобы не перерисовывать DOM на 60 FPS)
+            const shapeCardCache = new Map();
+            let lastShapeCategoryRendered = null;
+            let lastShapeThemeSignature = '';
+            let lastActiveShapeId = -1;
 
             function snapshotState() {
                 const snap = {};
@@ -2193,12 +2255,12 @@
 
             let themePrimaryHex = '#e4e1e6';
             let themeOnPrimaryHex = '#1b1b1f';
-            let lastThemeSignature = '';
+            let lastAppliedThemeKey = '';
 
             function updateMaterialDynamicTheme() {
-                const sig = `${state.midColor}|${state.outerColor}`;
-                if (sig === lastThemeSignature) return;
-                lastThemeSignature = sig;
+                const themeKey = `${state.midColor}_${state.outerColor}`;
+                if (themeKey === lastAppliedThemeKey) return;
+                lastAppliedThemeKey = themeKey;
 
                 const [hMid, sMid] = hexToHsl(state.midColor);
                 const [hOut, sOut] = hexToHsl(state.outerColor);
@@ -2298,7 +2360,7 @@
                         'u_offset', 'u_scale', 'u_aspect', 'u_rotation', 'u_morph', 'u_seed', 'u_shapeType', 'u_hollowMode',
                         'u_focusAngle', 'u_sharpness', 'u_diffusion', 'u_drift',
                         'u_bgColor', 'u_outerColor', 'u_midColor', 'u_coreColor', 'u_intensity', 'u_chromatic',
-                        'u_grain', 'u_vignette'
+                        'u_grain', 'u_vignette', 'u_flutedGlass'
                     ];
                     uniformNames.forEach(name => {
                         uniforms[name] = gl.getUniformLocation(program, name);
@@ -2328,7 +2390,7 @@
                 renderFrame(width, height);
             }
 
-            function renderFrame(targetWidth, targetHeight) {
+            function renderFrame(targetWidth, targetHeight, flutedOverride = null) {
                 if (!gl || !program) return;
 
                 gl.useProgram(program);
@@ -2363,6 +2425,7 @@
 
                 gl.uniform1f(uniforms.u_grain, state.grain);
                 gl.uniform1f(uniforms.u_vignette, state.vignette);
+                gl.uniform1f(uniforms.u_flutedGlass, flutedOverride !== null ? flutedOverride : flutedMix);
 
                 gl.drawArrays(gl.TRIANGLES, 0, 6);
             }
@@ -2377,46 +2440,66 @@
             }
 
             function animationLoop(now) {
+                const dt = Math.min(0.05, Math.max(0.001, (now - lastLoopTime) / 1000));
+                lastLoopTime = now;
+
+                let needsRender = false;
+
+                // Плавный переход фильтра рифлёного стекла
+                const targetFluted = state.flutedGlass ? 1.0 : 0.0;
+                if (Math.abs(flutedMix - targetFluted) > 0.001) {
+                    const step = 1 - Math.exp(-12 * dt);
+                    flutedMix += (targetFluted - flutedMix) * step;
+                    if (Math.abs(flutedMix - targetFluted) < 0.002) {
+                        flutedMix = targetFluted;
+                    }
+                    needsRender = true;
+                }
+
+                // Плавный твин параметров (Микс, Сброс, Импорт, Фокус)
                 if (tweenAnim) {
                     const elapsed = now - tweenAnim.start;
                     const rawT = Math.min(1, elapsed / tweenAnim.duration);
-                    // Плавная кривая замедления M3 Emphasized Decelerate
-                    const t = 1 - Math.pow(1 - rawT, 3.2);
+                    const t = 1 - Math.pow(1 - rawT, 3);
 
                     for (const key of Object.keys(tweenAnim.to)) {
                         const fromVal = tweenAnim.from[key];
                         const toVal = tweenAnim.to[key];
                         if (typeof toVal === 'number' && key !== 'shapeType' && key !== 'hollowMode') {
                             if (key === 'focusAngle' || key === 'rotation') {
-                                let diff = ((toVal - fromVal + 540) % 360) - 180;
+                                const diff = ((toVal - fromVal + 540) % 360) - 180;
                                 state[key] = fromVal + diff * t;
                             } else {
                                 state[key] = fromVal + (toVal - fromVal) * t;
                             }
                         } else if (typeof toVal === 'string' && toVal.startsWith('#')) {
                             state[key] = lerpHexColor(fromVal, toVal, t);
-                        } else if (rawT >= 0.3) {
+                        } else if (rawT >= 0.35) {
                             state[key] = toVal;
                         }
                     }
 
                     syncUIControls();
-                    renderFrame(canvas.width, canvas.height);
+                    needsRender = true;
 
                     if (rawT >= 1) {
+                        const doneCb = tweenAnim.onComplete;
                         Object.assign(state, tweenAnim.to);
-                        const onComplete = tweenAnim.onComplete;
                         tweenAnim = null;
                         syncUIControls();
                         pushHistory();
-                        if (onComplete) onComplete();
+                        if (doneCb) doneCb();
                     }
+                }
+
+                if (needsRender) {
+                    renderFrame(canvas.width, canvas.height);
                 }
 
                 requestAnimationFrame(animationLoop);
             }
 
-            // === 6. ПРИМЕНЕНИЕ СОСТОЯНИЯ И ОПТИМИЗИРОВАННАЯ СИНХРОНИЗАЦИЯ UI ===
+            // === 6. ПРИМЕНЕНИЕ СОСТОЯНИЯ И СИНХРОНИЗАЦИЯ UI ===
             function applyState(newPartial, { smooth = false, recordHistory = true, onComplete = null } = {}) {
                 if (smooth) {
                     const from = {};
@@ -2425,7 +2508,7 @@
                         from,
                         to: { ...newPartial },
                         start: performance.now(),
-                        duration: 420,
+                        duration: 380,
                         onComplete
                     };
                 } else {
@@ -2460,11 +2543,11 @@
                 const val = parseFloat(input.value);
                 const pct = ((val - min) / (max - min)) * 100;
                 const clampedPct = Math.max(0, Math.min(100, pct));
-                // Защита пузырька от обрезки по краям контейнера
                 const bubblePct = Math.max(8, Math.min(92, clampedPct));
 
                 wrap.style.setProperty('--pct', `${clampedPct}%`);
                 wrap.style.setProperty('--bubble-pct', `${bubblePct}%`);
+
                 const bubble = wrap.querySelector('.m3-slider-bubble');
                 if (bubble && formattedText !== undefined) {
                     bubble.textContent = formattedText;
@@ -2483,96 +2566,150 @@
                 });
             }
 
-            // Кэш сетки фигур для 60-120fps без перестройки DOM на каждом кадре
-            let builtShapeCategory = null;
-            let shapeCardCache = [];
-            let lastShapeRenderKey = '';
-
-            function buildMd3ShapesGrid(category) {
-                const grid = document.getElementById('md3-shapes-grid');
-                if (!grid) return;
-                grid.innerHTML = '';
-                shapeCardCache = [];
-                builtShapeCategory = category;
-
-                const filtered = SHAPE_ITEMS.filter(item => category === 'all' || item.cat === category);
-
-                filtered.forEach(item => {
-                    const btn = document.createElement('button');
-                    btn.className = 'md3-shape-card m3-btn-spring p-1.5 flex flex-col items-center justify-center gap-1 w-[66px] h-[66px] sm:w-[70px] sm:h-[70px] shrink-0 snap-center cursor-pointer';
-                    btn.title = item.name;
-                    btn.dataset.shapeId = item.id;
-
-                    const miniCanvas = document.createElement('canvas');
-                    miniCanvas.width = 96;
-                    miniCanvas.height = 96;
-                    miniCanvas.className = 'w-8 h-8 pointer-events-none';
-
-                    const label = document.createElement('span');
-                    label.className = 'text-[10px] font-display font-semibold truncate w-full text-center leading-tight';
-                    label.textContent = item.name;
-
-                    btn.appendChild(miniCanvas);
-                    btn.appendChild(label);
-
-                    btn.addEventListener('click', () => {
-                        state.shapeType = item.id;
-                        if (item.id === 1 && state.morph < 0.2) {
-                            state.morph = 0.32;
-                        }
-                        syncUIControls(0, { scrollToShape: true });
-                        renderFrame(canvas.width, canvas.height);
-                        pushHistory();
-                    });
-
-                    grid.appendChild(btn);
-                    shapeCardCache.push({ item, btn, ctx: miniCanvas.getContext('2d') });
-                });
-
-                lastShapeRenderKey = '';
+            function drawShapeThumbnail(entry, isSelected) {
+                const { item, canvas: miniCanvas } = entry;
+                const mCtx = miniCanvas.getContext('2d');
+                mCtx.clearRect(0, 0, miniCanvas.width, miniCanvas.height);
+                mCtx.save();
+                mCtx.translate(48, 48);
+                const color = isSelected ? themeOnPrimaryHex : themePrimaryHex;
+                mCtx.fillStyle = color;
+                mCtx.strokeStyle = color;
+                item.draw(mCtx, 36);
+                mCtx.restore();
             }
 
-            function syncMd3ShapesGrid(scrollToActive = false) {
-                if (builtShapeCategory !== state.shapeCategory) {
-                    buildMd3ShapesGrid(state.shapeCategory);
-                }
+            function scrollSelectedShapeIntoView() {
+                const entry = shapeCardCache.get(state.shapeType);
+                const grid = document.getElementById('md3-shapes-grid');
+                if (!entry || !grid || !grid.contains(entry.btn)) return;
+                const targetLeft = entry.btn.offsetLeft - (grid.clientWidth - entry.btn.clientWidth) / 2;
+                grid.scrollTo({ left: Math.max(0, targetLeft), behavior: 'smooth' });
+            }
 
-                const activeItem = SHAPE_ITEMS.find(s => s.id === state.shapeType);
-                const nameEl = document.getElementById('active-shape-name');
-                if (nameEl && activeItem) {
-                    nameEl.textContent = activeItem.name;
-                }
+            function syncShapeGrid({ scrollToActive = false } = {}) {
+                const grid = document.getElementById('md3-shapes-grid');
+                if (!grid) return;
 
-                const renderKey = `${state.shapeCategory}|${state.shapeType}|${themePrimaryHex}|${themeOnPrimaryHex}`;
-                if (renderKey !== lastShapeRenderKey) {
-                    lastShapeRenderKey = renderKey;
-                    shapeCardCache.forEach(({ item, btn, ctx }) => {
+                const themeSig = `${themePrimaryHex}_${themeOnPrimaryHex}`;
+                const needRebuild = lastShapeCategoryRendered !== state.shapeCategory || shapeCardCache.size === 0;
+                const themeChanged = lastShapeThemeSignature !== themeSig;
+                const activeChanged = lastActiveShapeId !== state.shapeType;
+
+                if (needRebuild) {
+                    grid.innerHTML = '';
+                    const filtered = SHAPE_ITEMS.filter(item =>
+                        state.shapeCategory === 'all' ? true : item.cat === state.shapeCategory
+                    );
+
+                    filtered.forEach(item => {
+                        let entry = shapeCardCache.get(item.id);
+                        if (!entry) {
+                            const btn = document.createElement('button');
+                            btn.type = 'button';
+                            btn.className = 'md3-shape-card m3-btn-spring shrink-0 snap-center w-[62px] h-[62px] sm:w-[68px] sm:h-[68px] p-1.5 flex flex-col items-center justify-center gap-0.5 cursor-pointer';
+                            btn.title = item.name;
+
+                            const miniCanvas = document.createElement('canvas');
+                            miniCanvas.width = 96;
+                            miniCanvas.height = 96;
+                            miniCanvas.className = 'w-8 h-8 sm:w-9 sm:h-9 pointer-events-none';
+
+                            const label = document.createElement('span');
+                            label.className = 'text-[9.5px] sm:text-[10px] font-display font-semibold truncate w-full text-center leading-tight';
+                            label.textContent = item.name;
+
+                            btn.appendChild(miniCanvas);
+                            btn.appendChild(label);
+
+                            btn.addEventListener('click', () => {
+                                state.shapeType = item.id;
+                                if (item.id === 1 && state.morph < 0.2) {
+                                    state.morph = 0.32;
+                                }
+                                syncUIControls();
+                                scrollSelectedShapeIntoView();
+                                renderFrame(canvas.width, canvas.height);
+                                pushHistory();
+                            });
+
+                            entry = { item, btn, canvas: miniCanvas };
+                            shapeCardCache.set(item.id, entry);
+                        }
                         const isSelected = state.shapeType === item.id;
-                        btn.classList.toggle('active', isSelected);
-
-                        ctx.clearRect(0, 0, 96, 96);
-                        ctx.save();
-                        ctx.translate(48, 48);
-                        const color = isSelected ? themeOnPrimaryHex : themePrimaryHex;
-                        ctx.fillStyle = color;
-                        ctx.strokeStyle = color;
-                        item.draw(ctx, 36);
-                        ctx.restore();
+                        entry.btn.classList.toggle('active', isSelected);
+                        drawShapeThumbnail(entry, isSelected);
+                        grid.appendChild(entry.btn);
                     });
+
+                    lastShapeCategoryRendered = state.shapeCategory;
+                    lastShapeThemeSignature = themeSig;
+                    lastActiveShapeId = state.shapeType;
+                } else {
+                    if (themeChanged) {
+                        shapeCardCache.forEach(entry => {
+                            const isSelected = state.shapeType === entry.item.id;
+                            entry.btn.classList.toggle('active', isSelected);
+                            drawShapeThumbnail(entry, isSelected);
+                        });
+                        lastShapeThemeSignature = themeSig;
+                        lastActiveShapeId = state.shapeType;
+                    } else if (activeChanged) {
+                        const prevEntry = shapeCardCache.get(lastActiveShapeId);
+                        if (prevEntry) {
+                            prevEntry.btn.classList.remove('active');
+                            drawShapeThumbnail(prevEntry, false);
+                        }
+                        const nextEntry = shapeCardCache.get(state.shapeType);
+                        if (nextEntry) {
+                            nextEntry.btn.classList.add('active');
+                            drawShapeThumbnail(nextEntry, true);
+                        }
+                        lastActiveShapeId = state.shapeType;
+                    }
+                }
+
+                const activeNameEl = document.getElementById('active-shape-name');
+                const activeItem = SHAPE_ITEMS.find(i => i.id === state.shapeType);
+                if (activeNameEl && activeItem) {
+                    activeNameEl.textContent = activeItem.name;
                 }
 
                 if (scrollToActive) {
-                    const activeEntry = shapeCardCache.find(entry => entry.item.id === state.shapeType);
-                    if (activeEntry) {
-                        activeEntry.btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-                    }
+                    scrollSelectedShapeIntoView();
+                }
+            }
+
+            function syncFlutedGlassSwitch() {
+                const sw = document.getElementById('switch-fluted-glass');
+                const thumb = document.getElementById('switch-fluted-thumb');
+                const checkIcon = document.getElementById('switch-fluted-icon');
+                if (!sw || !thumb) return;
+
+                sw.setAttribute('aria-checked', state.flutedGlass ? 'true' : 'false');
+                if (state.flutedGlass) {
+                    sw.style.backgroundColor = 'var(--md-primary)';
+                    sw.style.boxShadow = 'none';
+                    thumb.style.backgroundColor = 'var(--md-on-primary)';
+                    thumb.style.width = '24px';
+                    thumb.style.height = '24px';
+                    thumb.style.transform = 'translateX(20px)';
+                    if (checkIcon) checkIcon.style.opacity = '1';
+                } else {
+                    sw.style.backgroundColor = 'var(--md-surface-container-highest)';
+                    sw.style.boxShadow = 'inset 0 0 0 2px var(--md-outline)';
+                    thumb.style.backgroundColor = 'var(--md-outline)';
+                    thumb.style.width = '16px';
+                    thumb.style.height = '16px';
+                    thumb.style.transform = 'translateX(4px)';
+                    if (checkIcon) checkIcon.style.opacity = '0';
                 }
             }
 
             function syncUIControls(animateTabDirection = 0, { scrollToShape = false } = {}) {
                 updateMaterialDynamicTheme();
 
-                // 1. Вкладки навигации со скользящим индикатором M3
+                // 1. Вкладки со скользящим индикатором
                 const tabIndex = TAB_ORDER.indexOf(state.activeTab);
                 const tabIndicator = document.getElementById('tab-indicator');
                 if (tabIndicator && tabIndex >= 0) {
@@ -2608,24 +2745,25 @@
                     }
                 });
 
-                // 2. Сетка 38 фигур MD3 и скользящий переключатель Ореол / Контур
-                syncMd3ShapesGrid(scrollToShape);
+                // 2. Карусель фигур и переключатель Ореол / Контур
+                syncShapeGrid({ scrollToActive: scrollToShape });
 
-                const hollowInd = document.getElementById('hollow-indicator');
-                if (hollowInd) {
-                    hollowInd.style.transform = `translateX(${(state.hollowMode || 0) * 100}%)`;
+                const hollowIndicator = document.getElementById('hollow-indicator');
+                if (hollowIndicator) {
+                    hollowIndicator.style.transform = `translateX(${(state.hollowMode || 0) * 100}%)`;
                 }
                 document.querySelectorAll('.hollow-btn').forEach(btn => {
                     const isMatch = parseInt(btn.dataset.hollow, 10) === (state.hollowMode || 0);
                     btn.style.color = isMatch ? 'var(--md-on-secondary-container)' : 'var(--md-on-surface-variant)';
                 });
+
                 document.querySelectorAll('.shape-cat-btn').forEach(btn => {
                     const isMatch = btn.dataset.shapeCat === state.shapeCategory;
                     btn.style.backgroundColor = isMatch ? 'var(--md-secondary-container)' : 'var(--md-surface-container-low)';
                     btn.style.color = isMatch ? 'var(--md-on-secondary-container)' : 'var(--md-on-surface-variant)';
                 });
 
-                // 3. Обновление 360° компаса угла фокуса
+                // 3. 360° Компас угла фокуса
                 const dialArm = document.getElementById('dial-arm');
                 const dialReadout = document.getElementById('dial-readout');
                 if (dialArm) {
@@ -2635,7 +2773,7 @@
                     dialReadout.textContent = `${Math.round(state.focusAngle)}°`;
                 }
 
-                // 4. Слайдеры и числовые бейджи
+                // 4. Слайдеры и бейджи
                 const sliderMap = [
                     { id: 'scale',     valId: 'val-scale',     fmt: v => Number(v).toFixed(2) },
                     { id: 'aspect',    valId: 'val-aspect',    fmt: v => Number(v).toFixed(2) },
@@ -2663,7 +2801,7 @@
                     }
                 });
 
-                // 5. Спектральный ползунок оттенка, насыщенность, режимы и 4 свотча
+                // 5. Палитра Material You, режимы свечения и 4 свотча
                 const [hMid] = hexToHsl(state.midColor);
                 state.seedHue = hMid;
                 const hueInput = document.getElementById('ctrl-seed-hue');
@@ -2691,9 +2829,9 @@
                 if (seedInput) seedInput.value = state.midColor;
 
                 const moodIdx = Math.max(0, MOOD_ORDER.indexOf(state.moodMode));
-                const moodInd = document.getElementById('mood-indicator');
-                if (moodInd) {
-                    moodInd.style.transform = `translateX(${moodIdx * 100}%)`;
+                const moodIndicator = document.getElementById('mood-indicator');
+                if (moodIndicator) {
+                    moodIndicator.style.transform = `translateX(${moodIdx * 100}%)`;
                 }
                 document.querySelectorAll('.mood-mode-btn').forEach(btn => {
                     const active = btn.dataset.moodMode === state.moodMode;
@@ -2710,8 +2848,9 @@
                 document.getElementById('swatch-mid').style.backgroundColor = state.midColor;
                 document.getElementById('swatch-core').style.backgroundColor = state.coreColor;
 
-                // 6. Активный формат и блокировка
+                // 6. Активный формат, рифлёное стекло и экран блокировки
                 updateFormatCardsActiveState();
+                syncFlutedGlassSwitch();
                 syncLockscreenControls();
             }
 
@@ -2815,82 +2954,88 @@
                 });
             }
 
-            // === 7. ЖИВОЙ HUD НА ХОЛСТЕ И ЧАСЫ PIXEL ===
+            // === 7. ЖИВОЙ HUD, МАГНИТНЫЕ НАПРАВЛЯЮЩИЕ, ЧАСЫ PIXEL, ШПАРГАЛКА ===
             let hudHideTimer = null;
-            function showCanvasHUD(text, iconName = 'open_with') {
+            function showCanvasHud(text, icon = 'open_with', persist = false) {
                 const hud = document.getElementById('canvas-hud');
-                const hudText = document.getElementById('canvas-hud-text');
-                const hudIcon = document.getElementById('canvas-hud-icon');
-                if (!hud || !hudText || !hudIcon) return;
+                const iconEl = document.getElementById('canvas-hud-icon');
+                const textEl = document.getElementById('canvas-hud-text');
+                if (!hud || !textEl) return;
 
-                hudText.textContent = text;
-                hudIcon.textContent = iconName;
+                if (iconEl) iconEl.textContent = icon;
+                textEl.textContent = text;
                 hud.classList.add('is-visible');
 
                 clearTimeout(hudHideTimer);
-                hudHideTimer = setTimeout(() => {
-                    hud.classList.remove('is-visible');
-                }, 1150);
+                if (!persist) {
+                    hudHideTimer = setTimeout(() => {
+                        hud.classList.remove('is-visible');
+                    }, 950);
+                }
             }
 
-            function updateCenterGuides(snapX, snapY) {
+            function hideCanvasHud() {
+                clearTimeout(hudHideTimer);
+                const hud = document.getElementById('canvas-hud');
+                if (hud) hud.classList.remove('is-visible');
+            }
+
+            function setCenterGuides(snapX, snapY) {
                 const gx = document.getElementById('guide-x');
                 const gy = document.getElementById('guide-y');
-                if (gx) gx.style.opacity = snapX ? '0.32' : '0';
-                if (gy) gy.style.opacity = snapY ? '0.32' : '0';
+                if (gx) gx.style.opacity = snapX ? '0.45' : '0';
+                if (gy) gy.style.opacity = snapY ? '0.45' : '0';
             }
 
-            function updatePixelLockClock() {
+            function updateLivePixelClock() {
                 const now = new Date();
                 const hours = String(now.getHours()).padStart(2, '0');
                 const minutes = String(now.getMinutes()).padStart(2, '0');
-                const days = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
-                const months = ['янв.', 'февр.', 'мар.', 'апр.', 'мая', 'июн.', 'июл.', 'авг.', 'сент.', 'окт.', 'нояб.', 'дек.'];
-                const dateStr = `${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]}`;
-
                 const hEl = document.getElementById('pixel-clock-hours');
                 const mEl = document.getElementById('pixel-clock-minutes');
                 if (hEl) hEl.textContent = hours;
                 if (mEl) mEl.textContent = minutes;
+
+                const days = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+                const months = ['янв.', 'февр.', 'мар.', 'апр.', 'мая', 'июн.', 'июл.', 'авг.', 'сент.', 'окт.', 'нояб.', 'дек.'];
+                const dateStr = `${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]}`;
                 document.querySelectorAll('.pixel-date-text').forEach(el => {
                     el.textContent = dateStr;
                 });
             }
 
-            // === 8. ПРИВЯЗКА ВСЕХ ЭЛЕМЕНТОВ УПРАВЛЕНИЯ ===
-            function switchTabByName(tabName) {
+            function toggleShortcutsModal(show) {
+                const modal = document.getElementById('shortcuts-modal');
+                if (!modal) return;
+                modal.classList.toggle('is-hidden', !show);
+            }
+
+            function switchTab(nextTab) {
+                if (!TAB_ORDER.includes(nextTab)) return;
                 const prevIdx = TAB_ORDER.indexOf(state.activeTab);
-                const nextIdx = TAB_ORDER.indexOf(tabName);
-                if (nextIdx < 0) return;
+                const nextIdx = TAB_ORDER.indexOf(nextTab);
                 const dir = nextIdx >= prevIdx ? 1 : -1;
-                state.activeTab = tabName;
+                state.activeTab = nextTab;
                 syncUIControls(dir);
             }
 
-            function resetSliderKey(key) {
-                if (DEFAULT_VALUES[key] === undefined) return;
-                applyState({ [key]: DEFAULT_VALUES[key] }, { smooth: true });
-                const valEl = document.getElementById(`val-${key}`);
-                if (valEl) {
-                    valEl.classList.remove('value-pop');
-                    void valEl.offsetWidth;
-                    valEl.classList.add('value-pop');
-                }
-                showToast('Параметр сброшен', 'info', 'restart_alt');
-            }
-
-            function toggleShortcutsModal(forceState) {
-                const modal = document.getElementById('shortcuts-modal');
-                if (!modal) return;
-                const willHide = forceState !== undefined ? !forceState : !modal.classList.contains('is-hidden');
-                modal.classList.toggle('is-hidden', willHide);
-            }
-
+            // === 8. ПРИВЯЗКА ВСЕХ ЭЛЕМЕНТОВ УПРАВЛЕНИЯ ===
             function bindControls() {
                 // Вкладки навигации
                 document.querySelectorAll('.m3-tab-btn').forEach(btn => {
-                    btn.addEventListener('click', () => switchTabByName(btn.dataset.tab));
+                    btn.addEventListener('click', () => switchTab(btn.dataset.tab));
                 });
+
+                // Горизонтальная прокрутка карусели фигур колёсиком мыши на десктопе
+                const shapesCarousel = document.getElementById('md3-shapes-grid');
+                if (shapesCarousel) {
+                    shapesCarousel.addEventListener('wheel', (e) => {
+                        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+                            e.preventDefault();
+                            shapesCarousel.scrollLeft += e.deltaY;
+                        }
+                    }, { passive: false });
+                }
 
                 // Переключатель Ореол / Контур
                 document.querySelectorAll('.hollow-btn').forEach(btn => {
@@ -2909,17 +3054,6 @@
                         syncUIControls(0, { scrollToShape: true });
                     });
                 });
-
-                // Удобная горизонтальная прокрутка карусели фигур колёсиком мыши на десктопе
-                const shapesCarousel = document.getElementById('md3-shapes-grid');
-                if (shapesCarousel) {
-                    shapesCarousel.addEventListener('wheel', (e) => {
-                        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-                            e.preventDefault();
-                            shapesCarousel.scrollLeft += e.deltaY;
-                        }
-                    }, { passive: false });
-                }
 
                 // Слайдеры Android 16 Expressive
                 const numericKeys = [
@@ -2959,31 +3093,41 @@
                     });
                 });
 
-                // Сброс параметра двойным кликом по строке или нажатием на числовой бейдж
-                document.querySelectorAll('[data-reset-key]').forEach(row => {
-                    row.addEventListener('dblclick', () => resetSliderKey(row.dataset.resetKey));
-                });
+                // Сброс параметра: по клику на бейдж значения или по двойному клику на строку
+                const resetParam = (key) => {
+                    if (DEFAULT_VALUES[key] === undefined) return;
+                    applyState({ [key]: DEFAULT_VALUES[key] }, { smooth: true });
+                    const valEl = document.getElementById(`val-${key}`);
+                    if (valEl) {
+                        valEl.classList.remove('value-pop');
+                        void valEl.offsetWidth;
+                        valEl.classList.add('value-pop');
+                    }
+                    showToast('Параметр сброшен', 'info', 'restart_alt');
+                };
+
                 document.querySelectorAll('[data-reset-btn]').forEach(btn => {
                     btn.addEventListener('click', (e) => {
                         e.stopPropagation();
-                        resetSliderKey(btn.dataset.resetBtn);
+                        resetParam(btn.dataset.resetBtn);
                     });
                 });
+                document.querySelectorAll('[data-reset-key]').forEach(row => {
+                    row.addEventListener('dblclick', () => resetParam(row.dataset.resetKey));
+                });
 
-                // 360° Компас угла фокуса (удержание Shift фиксирует шаг 15°)
+                // 360° Компас угла фокуса (с шагом 15° при зажатом Shift)
                 const dial = document.getElementById('focus-dial');
                 let draggingDial = false;
 
-                const updateDialFromPointer = (clientX, clientY, snapToStep = false) => {
+                const updateDialFromPointer = (clientX, clientY, snapTo15 = false) => {
                     const rect = dial.getBoundingClientRect();
                     const cx = rect.left + rect.width / 2;
                     const cy = rect.top + rect.height / 2;
                     const dx = clientX - cx;
                     const dy = -(clientY - cy);
                     let deg = Math.round((Math.atan2(dy, dx) * 180) / Math.PI);
-                    if (snapToStep) {
-                        deg = Math.round(deg / 15) * 15;
-                    }
+                    if (snapTo15) deg = Math.round(deg / 15) * 15;
                     tweenAnim = null;
                     state.focusAngle = deg;
                     syncUIControls();
@@ -3000,17 +3144,15 @@
                     if (!draggingDial) return;
                     updateDialFromPointer(e.clientX, e.clientY, e.shiftKey);
                 });
-                dial.addEventListener('pointerup', () => {
+                const endDialDrag = () => {
                     if (draggingDial) {
                         draggingDial = false;
                         dial.classList.remove('is-dragging');
                         pushHistory();
                     }
-                });
-                dial.addEventListener('pointercancel', () => {
-                    draggingDial = false;
-                    dial.classList.remove('is-dragging');
-                });
+                };
+                dial.addEventListener('pointerup', endDialDrag);
+                dial.addEventListener('pointercancel', endDialDrag);
 
                 document.querySelectorAll('.quick-angle-btn').forEach(btn => {
                     btn.addEventListener('click', () => {
@@ -3019,14 +3161,14 @@
                     });
                 });
 
-                // Спектральный ползунок оттенка, насыщенность и базовый цвет
+                // Спектральный ползунок оттенка
                 const hueSlider = document.getElementById('ctrl-seed-hue');
                 const hueWrap = hueSlider.closest('.m3-slider-wrapper');
                 hueSlider.addEventListener('pointerdown', () => hueWrap && hueWrap.classList.add('is-sliding'));
                 hueSlider.addEventListener('pointerup', () => hueWrap && hueWrap.classList.remove('is-sliding'));
+                hueSlider.addEventListener('pointercancel', () => hueWrap && hueWrap.classList.remove('is-sliding'));
                 hueSlider.addEventListener('input', () => {
                     tweenAnim = null;
-                    if (hueWrap) hueWrap.classList.add('is-sliding');
                     state.seedHue = parseInt(hueSlider.value, 10);
                     if (state.moodMode === 'mono') state.moodMode = 'soft';
                     const pal = buildAuraPaletteFromHue(state.seedHue, state.seedSat, state.moodMode);
@@ -3034,15 +3176,14 @@
                     syncUIControls();
                     renderFrame(canvas.width, canvas.height);
                 });
-                hueSlider.addEventListener('change', () => {
-                    if (hueWrap) hueWrap.classList.remove('is-sliding');
-                    pushHistory();
-                });
+                hueSlider.addEventListener('change', pushHistory);
 
+                // Насыщенность
                 const satSlider = document.getElementById('ctrl-seed-sat');
                 const satWrap = satSlider.closest('.m3-slider-wrapper');
                 satSlider.addEventListener('pointerdown', () => satWrap && satWrap.classList.add('is-sliding'));
                 satSlider.addEventListener('pointerup', () => satWrap && satWrap.classList.remove('is-sliding'));
+                satSlider.addEventListener('pointercancel', () => satWrap && satWrap.classList.remove('is-sliding'));
                 satSlider.addEventListener('input', () => {
                     tweenAnim = null;
                     if (satWrap) satWrap.classList.add('is-sliding');
@@ -3062,6 +3203,7 @@
                     pushHistory();
                 });
 
+                // Базовый цвет Material You
                 const seedInput = document.getElementById('seed-color-input');
                 seedInput.addEventListener('input', () => {
                     tweenAnim = null;
@@ -3076,7 +3218,7 @@
                 });
                 seedInput.addEventListener('change', pushHistory);
 
-                // Кнопки характера палитры
+                // Режимы свечения
                 document.querySelectorAll('.mood-mode-btn').forEach(btn => {
                     btn.addEventListener('click', () => {
                         state.moodMode = btn.dataset.moodMode;
@@ -3117,7 +3259,7 @@
                 // Главная кнопка Микс
                 document.getElementById('btn-randomize').addEventListener('click', randomizeWallpaper);
 
-                // Чипы фиксации параметров на плавающем доке
+                // Чипы фиксации параметров
                 const updateChipVisual = (chip, locked) => {
                     const icon = chip.querySelector('.chip-icon');
                     if (locked) {
@@ -3152,39 +3294,53 @@
                     updateChipVisual(chipColor, state.lockColorOnMix);
                 });
 
-                // Undo / Redo / Центр
+                // Undo / Redo / Центрирование
                 document.getElementById('btn-undo').addEventListener('click', undoHistory);
                 document.getElementById('btn-redo').addEventListener('click', redoHistory);
                 document.getElementById('btn-reset-pos').addEventListener('click', () => {
                     applyState({ offsetX: 0, offsetY: 0 }, { smooth: true });
-                    showCanvasHUD('По центру', 'filter_center_focus');
+                    showToast('Фигура выровнена по центру', 'info', 'filter_center_focus');
                 });
 
-                // Переключение макета экрана блокировки Pixel
+                // Экран блокировки Pixel
                 const toggleLockscreen = () => {
                     state.showLockscreen = !state.showLockscreen;
                     if (state.showLockscreen && state.exportFormat === 'screen') {
                         state.exportFormat = 'phone';
                     }
-                    updatePixelLockClock();
+                    updateLivePixelClock();
                     updateAspectGuide();
                     syncUIControls();
                 };
                 document.getElementById('btn-lockscreen-toggle').addEventListener('click', toggleLockscreen);
                 document.getElementById('switch-lockscreen').addEventListener('click', toggleLockscreen);
 
-                // Модалка горячих клавиш
-                document.getElementById('btn-shortcuts').addEventListener('click', () => toggleShortcutsModal(true));
-                document.getElementById('btn-close-shortcuts').addEventListener('click', () => toggleShortcutsModal(false));
-                document.getElementById('shortcuts-modal').addEventListener('click', (e) => {
-                    if (e.target.id === 'shortcuts-modal') toggleShortcutsModal(false);
-                });
+                // Фильтр рифлёного стекла (Fluted Glass)
+                const toggleFlutedGlass = () => {
+                    state.flutedGlass = !state.flutedGlass;
+                    syncUIControls();
+                    pushHistory();
+                    showToast(state.flutedGlass ? 'Рифлёное стекло включено' : 'Рифлёное стекло выключено', 'info', 'view_week');
+                };
+                document.getElementById('switch-fluted-glass').addEventListener('click', toggleFlutedGlass);
 
-                // Сворачивание / разворачивание плашки настроек
+                // Модальное окно горячих клавиш
+                const btnShortcuts = document.getElementById('btn-shortcuts');
+                const btnCloseShortcuts = document.getElementById('btn-close-shortcuts');
+                const shortcutsModal = document.getElementById('shortcuts-modal');
+                if (btnShortcuts) btnShortcuts.addEventListener('click', () => toggleShortcutsModal(true));
+                if (btnCloseShortcuts) btnCloseShortcuts.addEventListener('click', () => toggleShortcutsModal(false));
+                if (shortcutsModal) {
+                    shortcutsModal.addEventListener('click', (e) => {
+                        if (e.target === shortcutsModal) toggleShortcutsModal(false);
+                    });
+                }
+
+                // Сворачивание / разворачивание панели
                 document.getElementById('btn-collapse-studio').addEventListener('click', () => setPanelCollapsed(true));
                 document.getElementById('btn-expand-studio').addEventListener('click', () => setPanelCollapsed(false));
 
-                // Полное скрытие / показ интерфейса (Zen-режим) с плавной пружиной
+                // Zen-режим (полное скрытие / возврат интерфейса)
                 const toggleUI = (hide) => {
                     state.uiHidden = hide;
                     const panel = document.getElementById('studio-panel');
@@ -3217,12 +3373,16 @@
                     showBtn.classList.toggle('scale-90', !hide);
                     showBtn.classList.toggle('-translate-y-2', !hide);
                     showBtn.classList.toggle('pointer-events-none', !hide);
+                    showBtn.classList.toggle('opacity-100', hide);
+                    showBtn.classList.toggle('scale-100', hide);
+                    showBtn.classList.toggle('translate-y-0', hide);
+                    showBtn.classList.toggle('pointer-events-auto', hide);
                 };
 
                 document.getElementById('btn-hide-ui').addEventListener('click', () => toggleUI(true));
                 document.getElementById('btn-show-ui').addEventListener('click', () => toggleUI(false));
 
-                // Расширенные горячие клавиши
+                // Горячие клавиши
                 window.addEventListener('keydown', (e) => {
                     if (e.target.tagName === 'TEXTAREA' || e.target.tagName === 'INPUT') return;
                     const k = e.key.toLowerCase();
@@ -3246,31 +3406,36 @@
                     } else if ((e.ctrlKey || e.metaKey) && (k === 's' || k === 'ы')) {
                         e.preventDefault();
                         exportHighResWallpaper();
+                    } else if (e.key === ' ') {
+                        e.preventDefault();
+                        randomizeWallpaper();
                     } else if (k === 'h' || k === 'р') {
                         toggleUI(!state.uiHidden);
                     } else if (k === 's' || k === 'ы') {
                         if (state.uiHidden) toggleUI(false);
                         setPanelCollapsed(!state.panelCollapsed);
-                    } else if (k === 'r' || k === 'к' || e.code === 'Space') {
-                        e.preventDefault();
+                    } else if (k === 'r' || k === 'к') {
                         randomizeWallpaper();
                     } else if (k === 'l' || k === 'д') {
                         toggleLockscreen();
+                    } else if (k === 'g' || k === 'п') {
+                        toggleFlutedGlass();
+                    } else if (e.key === '1') {
+                        switchTab('shape');
+                    } else if (e.key === '2') {
+                        switchTab('light');
+                    } else if (e.key === '3') {
+                        switchTab('export');
                     } else if (e.key === '0') {
                         applyState({ offsetX: 0, offsetY: 0 }, { smooth: true });
-                        showCanvasHUD('По центру', 'filter_center_focus');
-                    } else if (e.key === '1') {
-                        switchTabByName('shape');
-                    } else if (e.key === '2') {
-                        switchTabByName('light');
-                    } else if (e.key === '3') {
-                        switchTabByName('export');
+                        showCanvasHud('По центру', 'filter_center_focus');
                     } else if (e.key === '?' || (e.shiftKey && e.key === '/')) {
-                        toggleShortcutsModal();
+                        const modal = document.getElementById('shortcuts-modal');
+                        toggleShortcutsModal(modal && modal.classList.contains('is-hidden'));
                     }
                 });
 
-                // Мобильная шторка
+                // Упрощённая мобильная шторка
                 initMobileBottomSheet();
 
                 // Экспорт и быстрый цикл формата
@@ -3285,6 +3450,7 @@
                     showToast(`Формат: ${nextFmt.name}`, 'info', nextFmt.icon);
                 });
 
+                // Рецепт JSON (копирование и плавный аккордеон импорта)
                 document.getElementById('btn-copy-recipe').addEventListener('click', copyRecipeToClipboard);
 
                 document.getElementById('btn-toggle-import').addEventListener('click', () => {
@@ -3310,14 +3476,14 @@
                         }
                         applyState(clean, { smooth: true });
                         document.getElementById('import-box').classList.remove('is-open');
-                        showToast('Параметры применены', 'info', 'check_circle');
+                        showToast('Параметры успешно применены', 'info', 'check_circle');
                     } catch (err) {
                         showToast('Некорректный JSON-код настроек', 'error', 'error');
                     }
                 });
             }
 
-            // === 9. СВОРАЧИВАНИЕ ПАНЕЛИ И МОБИЛЬНАЯ ШТОРКА ===
+            // === 9. СВОРАЧИВАНИЕ ПАНЕЛИ И УПРОЩЁННАЯ МОБИЛЬНАЯ ШТОРКА (2 СОСТОЯНИЯ) ===
             function setPanelCollapsed(collapsed) {
                 state.panelCollapsed = collapsed;
                 const panel = document.getElementById('studio-panel');
@@ -3445,8 +3611,7 @@
                     const compactH = getDetentHeightPx('compact');
                     const expandedH = getDetentHeightPx('expanded');
 
-                    // Свайп вниз ниже компактного уровня — свернуть в круглую кнопку
-                    if (currentH < compactH * 0.68 || (state.sheetDetent === 'compact' && velocityY < -0.5)) {
+                    if (currentH < compactH * 0.62 || (state.sheetDetent === 'compact' && velocityY < -0.55)) {
                         setMobileSheetDetent('compact');
                         setPanelCollapsed(true);
                         return;
@@ -3499,7 +3664,7 @@
                 });
             }
 
-            // === 11. ЖЕСТЫ НА ХОЛСТЕ + МАГНИТНАЯ ПРИВЯЗКА К ЦЕНТРУ ===
+            // === 11. ЖЕСТЫ НА ХОЛСТЕ (С МАГНИТНОЙ ПРИВЯЗКОЙ И HUD) ===
             function pointFocusToScreenCoords(clientX, clientY) {
                 const minDim = Math.min(window.innerWidth, window.innerHeight);
                 const uvX = (clientX - 0.5 * window.innerWidth) / minDim;
@@ -3510,7 +3675,7 @@
                 const deg = Math.round((Math.atan2(dy, dx) * 180) / Math.PI);
 
                 applyState({ focusAngle: deg }, { smooth: true });
-                showCanvasHUD(`Фокус ${deg}°`, 'explore');
+                showCanvasHud(`Фокус ${deg}°`, 'flare');
 
                 const ring = document.createElement('div');
                 ring.className = 'focus-tap-ring pointer-events-none fixed w-12 h-12 rounded-full border-2 z-20';
@@ -3530,9 +3695,9 @@
                 let rawOffsetY = state.offsetY;
                 let initialPinchDist = null;
                 let initialScale = state.scale;
-                const SNAP_THRESHOLD = 0.022;
+                const SNAP_THRESHOLD = 0.018;
 
-                const applyMagneticDrag = (dx, dy) => {
+                const applyDragOffset = (dx, dy) => {
                     rawOffsetX = Math.max(-0.85, Math.min(0.85, rawOffsetX + dx));
                     rawOffsetY = Math.max(-0.85, Math.min(0.85, rawOffsetY + dy));
 
@@ -3542,11 +3707,11 @@
                     state.offsetX = snapX ? 0 : rawOffsetX;
                     state.offsetY = snapY ? 0 : rawOffsetY;
 
-                    updateCenterGuides(snapX, snapY);
+                    setCenterGuides(snapX, snapY);
                     if (snapX && snapY) {
-                        showCanvasHUD('По центру', 'filter_center_focus');
+                        showCanvasHud('По центру', 'filter_center_focus', true);
                     } else {
-                        showCanvasHUD(`X ${Math.round(state.offsetX * 100)} • Y ${Math.round(state.offsetY * 100)}`, 'open_with');
+                        showCanvasHud(`X ${Math.round(state.offsetX * 100)}  Y ${Math.round(state.offsetY * 100)}`, 'open_with', true);
                     }
                 };
 
@@ -3572,9 +3737,9 @@
                     if (e.shiftKey) {
                         state.focusAngle = ((state.focusAngle + dx * 260 + 540) % 360) - 180;
                         syncUIControls();
-                        showCanvasHUD(`Фокус ${Math.round(state.focusAngle)}°`, 'explore');
+                        showCanvasHud(`Фокус ${Math.round(state.focusAngle)}°`, 'flare', true);
                     } else {
-                        applyMagneticDrag(dx, dy);
+                        applyDragOffset(dx, dy);
                     }
                     renderFrame(canvas.width, canvas.height);
                 });
@@ -3582,7 +3747,8 @@
                 window.addEventListener('mouseup', () => {
                     if (isDragging) {
                         isDragging = false;
-                        updateCenterGuides(false, false);
+                        setCenterGuides(false, false);
+                        hideCanvasHud();
                         if (moved) pushHistory();
                     }
                 });
@@ -3599,7 +3765,7 @@
                     state.scale = Math.max(0.12, Math.min(0.72, state.scale + factor));
                     syncUIControls();
                     renderFrame(canvas.width, canvas.height);
-                    showCanvasHUD(`Масштаб ${state.scale.toFixed(2)}`, 'zoom_in');
+                    showCanvasHud(`Масштаб ${state.scale.toFixed(2)}`, 'zoom_in');
 
                     clearTimeout(wheelTimer);
                     wheelTimer = setTimeout(pushHistory, 250);
@@ -3636,7 +3802,7 @@
                         rawOffsetY = state.offsetY;
                     } else if (e.touches.length === 2) {
                         isDragging = false;
-                        updateCenterGuides(false, false);
+                        setCenterGuides(false, false);
                         initialPinchDist = Math.hypot(
                             e.touches[0].clientX - e.touches[1].clientX,
                             e.touches[0].clientY - e.touches[1].clientY
@@ -3656,7 +3822,7 @@
                         lastY = e.touches[0].clientY;
                         moved = true;
 
-                        applyMagneticDrag(dx, dy);
+                        applyDragOffset(dx, dy);
                         renderFrame(canvas.width, canvas.height);
                     } else if (e.touches.length === 2 && initialPinchDist) {
                         const currentDist = Math.hypot(
@@ -3668,13 +3834,14 @@
                         moved = true;
                         syncUIControls();
                         renderFrame(canvas.width, canvas.height);
-                        showCanvasHUD(`Масштаб ${state.scale.toFixed(2)}`, 'pinch');
+                        showCanvasHud(`Масштаб ${state.scale.toFixed(2)}`, 'pinch', true);
                     }
                 }, { passive: false });
 
                 canvas.addEventListener('touchend', () => {
                     if (isDragging || initialPinchDist) {
-                        updateCenterGuides(false, false);
+                        setCenterGuides(false, false);
+                        hideCanvasHud();
                         if (moved) pushHistory();
                     }
                     isDragging = false;
@@ -3730,12 +3897,12 @@
                 applyState(next, {
                     smooth: true,
                     onComplete: () => {
-                        if (!state.lockShapeOnMix) {
-                            syncMd3ShapesGrid(true);
-                        }
+                        if (!state.lockShapeOnMix) scrollSelectedShapeIntoView();
                     }
                 });
-                const shapeName = next.shapeType !== undefined ? SHAPE_ITEMS[next.shapeType].name : null;
+                const shapeName = next.shapeType !== undefined
+                    ? (SHAPE_ITEMS.find(i => i.id === next.shapeType)?.name || '')
+                    : '';
                 showToast(shapeName ? `Микс: ${shapeName}` : 'Новая палитра', 'info', 'auto_awesome');
             }
 
@@ -3777,12 +3944,12 @@
                 }
             }
 
-            function flashButtonIcon(selector, tempIcon, restoreIcon, duration = 1400) {
+            function flashButtonIcon(selector, tempIcon, originalIcon) {
                 document.querySelectorAll(selector).forEach(icon => {
                     icon.textContent = tempIcon;
-                    icon.style.transform = 'scale(1.18)';
+                    icon.style.transform = 'scale(1.22)';
                     setTimeout(() => { icon.style.transform = 'scale(1)'; }, 180);
-                    setTimeout(() => { icon.textContent = restoreIcon; }, duration);
+                    setTimeout(() => { icon.textContent = originalIcon; }, 1350);
                 });
             }
 
@@ -3801,7 +3968,7 @@
                     canvas.width = targetW;
                     canvas.height = targetH;
                     gl.viewport(0, 0, targetW, targetH);
-                    renderFrame(targetW, targetH);
+                    renderFrame(targetW, targetH, state.flutedGlass ? 1.0 : 0.0);
 
                     const dataUrl = canvas.toDataURL('image/png');
                     const link = document.createElement('a');
@@ -3813,7 +3980,7 @@
                     document.body.removeChild(link);
 
                     flashButtonIcon('.download-icon', 'check', 'download');
-                    showToast(`Сохранено (${targetW}×${targetH} PNG)`, 'info', 'download_done');
+                    showToast(`Обои сохранены (${targetW}×${targetH} PNG)`, 'info', 'download_done');
                 } catch (err) {
                     console.error(err);
                     showToast('Не удалось экспортировать изображение', 'error', 'error');
@@ -3827,28 +3994,17 @@
 
             function copyRecipeToClipboard() {
                 const payload = JSON.stringify(snapshotState());
-                const onSuccess = () => {
-                    flashButtonIcon('#copy-recipe-icon', 'check', 'content_copy');
-                    showToast('JSON-код настроек скопирован', 'info', 'check_circle');
-                };
-
-                if (navigator.clipboard && navigator.clipboard.writeText) {
-                    navigator.clipboard.writeText(payload).then(onSuccess).catch(() => fallbackCopy(payload, onSuccess));
-                } else {
-                    fallbackCopy(payload, onSuccess);
-                }
-            }
-
-            function fallbackCopy(text, onSuccess) {
                 const textarea = document.createElement('textarea');
-                textarea.value = text;
+                textarea.value = payload;
                 textarea.style.position = 'fixed';
                 textarea.style.opacity = '0';
                 document.body.appendChild(textarea);
                 textarea.select();
+
                 try {
                     document.execCommand('copy');
-                    onSuccess();
+                    flashButtonIcon('#copy-recipe-icon', 'check', 'content_copy');
+                    showToast('JSON-код настроек скопирован', 'info', 'content_copy');
                 } catch (e) {
                     showToast('Не удалось скопировать настройки', 'error', 'error');
                 } finally {
@@ -3856,18 +4012,11 @@
                 }
             }
 
-            // === 14. M3 SNACKBAR УВЕДОМЛЕНИЯ (БЕЗ СКАЧКОВ И СПАМА) ===
-            let activeToastEl = null;
-            let activeToastTimer = null;
-
-            function showToast(message, type = 'info', iconName = 'info') {
+            // === 14. M3 SNACKBAR УВЕДОМЛЕНИЯ ===
+            function showToast(message, type = 'info', iconName = '') {
                 const container = document.getElementById('toast-container');
-                if (!container) return;
-
-                if (activeToastEl) {
-                    clearTimeout(activeToastTimer);
-                    activeToastEl.remove();
-                    activeToastEl = null;
+                while (container.children.length >= 2) {
+                    container.firstElementChild.remove();
                 }
 
                 const toast = document.createElement('div');
@@ -3881,25 +4030,22 @@
                     toast.style.color = 'var(--md-on-surface)';
                 }
 
-                const icon = document.createElement('span');
-                icon.className = 'material-symbols-rounded !text-[16px]';
-                icon.textContent = iconName;
-                if (type !== 'error') icon.style.color = 'var(--md-primary)';
+                if (iconName) {
+                    const icon = document.createElement('span');
+                    icon.className = 'material-symbols-rounded !text-[16px]';
+                    icon.style.color = type === 'error' ? '#fda4af' : 'var(--md-primary)';
+                    icon.textContent = iconName;
+                    toast.appendChild(icon);
+                }
 
-                const text = document.createElement('span');
-                text.textContent = message;
-
-                toast.appendChild(icon);
-                toast.appendChild(text);
+                const textSpan = document.createElement('span');
+                textSpan.textContent = message;
+                toast.appendChild(textSpan);
                 container.appendChild(toast);
-                activeToastEl = toast;
 
-                activeToastTimer = setTimeout(() => {
+                setTimeout(() => {
                     toast.classList.add('m3-snackbar-exit');
-                    setTimeout(() => {
-                        toast.remove();
-                        if (activeToastEl === toast) activeToastEl = null;
-                    }, 240);
+                    setTimeout(() => toast.remove(), 240);
                 }, 2200);
             }
 
@@ -3908,8 +4054,9 @@
                 initExpressiveSliders();
                 updateMaterialDynamicTheme();
                 renderFormatCardsUI();
-                updatePixelLockClock();
-                setInterval(updatePixelLockClock, 15000);
+                updateLivePixelClock();
+                setInterval(updateLivePixelClock, 30000);
+
                 bindControls();
                 bindCanvasGestures();
                 initM3Ripples();
