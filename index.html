@@ -50,7 +50,9 @@
 
             /* Пружинящие кривые M3 Expressive */
             --md-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --md-spring-soft: cubic-bezier(0.22, 1.28, 0.36, 1);
             --md-ease-emphasized: cubic-bezier(0.2, 0.0, 0.0, 1.0);
+            --md-ease-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1.0);
         }
 
         * {
@@ -73,14 +75,20 @@
             user-select: none;
         }
 
-        /* Табулярные цифры Google Sans Flex для счётчиков, значений слайдеров и бейджей */
+        /* Доступный фокус с клавиатуры */
+        button:focus-visible, input:focus-visible, textarea:focus-visible {
+            outline: 2px solid var(--md-primary);
+            outline-offset: 2px;
+        }
+
+        /* Табулярные цифры Google Sans Flex */
         .font-mono {
             font-family: 'Google Sans Flex', system-ui, sans-serif !important;
             font-variant-numeric: tabular-nums;
             font-variation-settings: 'ROND' 50, 'wdth' 98;
         }
 
-        /* Фирменные двухстрочные часы Google Pixel на базе вариативных осей Google Sans Flex */
+        /* Фирменные двухстрочные часы Google Pixel на базе Google Sans Flex */
         .pixel-lock-clock {
             font-family: 'Google Sans Flex', system-ui, sans-serif;
             font-weight: 445;
@@ -91,7 +99,6 @@
             letter-spacing: -0.025em;
         }
 
-        /* Текст статус-бара и виджета At a Glance в стиле Pixel */
         .pixel-ui-text {
             font-family: 'Google Sans Flex', system-ui, sans-serif;
             font-variation-settings: 'ROND' 60, 'wdth' 101;
@@ -113,23 +120,23 @@
             direction: ltr;
             -webkit-font-smoothing: antialiased;
             font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
-            transition: font-variation-settings 0.22s ease, transform 0.3s var(--md-spring);
+            transition: font-variation-settings 0.24s ease, transform 0.34s var(--md-spring);
         }
         .icon-filled {
             font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
         }
 
-        /* Чистые матовые тональные поверхности Material Design 3 без стеклянных бликов */
+        /* Чистые матовые тональные поверхности Material Design 3 */
         .m3-surface-tonal {
             background-color: var(--md-surface-container-low);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
-            transition: background-color 0.35s ease;
+            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.56);
+            transition: background-color 0.35s ease, transform 0.38s var(--md-spring-soft), opacity 0.26s ease;
         }
 
         .m3-card {
             background-color: var(--md-surface-container);
             border-radius: 26px;
-            transition: background-color 0.35s ease, transform 0.25s var(--md-spring);
+            transition: background-color 0.35s ease, transform 0.28s var(--md-spring);
         }
 
         /* Android 16 / M3 Expressive Grouped List Containers */
@@ -141,7 +148,7 @@
         .m3-group-item {
             background-color: var(--md-surface-container);
             border-radius: 6px;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.25s ease, transform 0.28s var(--md-spring);
         }
         .m3-group-item:first-child {
             border-top-left-radius: 24px;
@@ -154,12 +161,15 @@
         .m3-group-item:only-child {
             border-radius: 24px;
         }
+        .m3-group-item.is-active-row {
+            background-color: var(--md-surface-container-high);
+        }
 
         /* Пружинящие кнопки и M3 State Layers */
         .m3-btn-spring {
             position: relative;
             overflow: hidden;
-            transition: transform 0.3s var(--md-spring), background-color 0.22s ease, color 0.22s ease, border-radius 0.26s var(--md-spring), opacity 0.2s ease;
+            transition: transform 0.32s var(--md-spring), background-color 0.22s ease, color 0.22s ease, border-radius 0.28s var(--md-spring), opacity 0.22s ease;
         }
         .m3-btn-spring::after {
             content: '';
@@ -174,50 +184,71 @@
             opacity: 0.08;
         }
         .m3-btn-spring:active:not(:disabled)::after {
-            opacity: 0.12;
+            opacity: 0.14;
         }
         .m3-btn-spring:active:not(:disabled) {
-            transform: scale(0.95);
+            transform: scale(0.94);
         }
 
-        /* M3 State Layer Ripple без светового блика */
+        /* M3 State Layer Ripple */
         .m3-ripple-wave {
             position: absolute;
             border-radius: 50%;
             transform: scale(0);
             background-color: currentColor;
-            opacity: 0.14;
+            opacity: 0.16;
             pointer-events: none;
             animation: m3RippleAnim 0.48s cubic-bezier(0.2, 0, 0, 1) forwards;
         }
         @keyframes m3RippleAnim {
             to {
-                transform: scale(2.4);
+                transform: scale(2.5);
                 opacity: 0;
             }
         }
 
-        /* Морфинг карточек фигур MD3 (Круг -> Сквиркл при выборе) */
+        /* Морфинг карточек фигур MD3 */
         .md3-shape-card {
             background-color: var(--md-surface-container-low);
             color: var(--md-on-surface-variant);
-            border-radius: 22px;
-            transition: all 0.26s var(--md-ease-emphasized);
+            border-radius: 20px;
+            transition: transform 0.3s var(--md-spring), background-color 0.22s ease, color 0.22s ease, border-radius 0.28s var(--md-spring);
         }
         .md3-shape-card:hover {
             background-color: var(--md-surface-container-high);
             color: var(--md-on-surface);
+            transform: translateY(-1px);
         }
         .md3-shape-card.active {
             background-color: var(--md-primary);
             color: var(--md-on-primary);
-            border-radius: 15px;
+            border-radius: 14px;
+            transform: scale(0.98);
         }
 
-        /* Скользящий индикатор вкладок */
+        /* Горизонтальная карусель фигур (не перехватывает вертикальный скролл) */
+        .m3-carousel {
+            overscroll-behavior-x: contain;
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+            touch-action: pan-x pan-y;
+        }
+        .m3-scroll-fade-x {
+            mask-image: linear-gradient(to right, transparent 0%, black 10px, black calc(100% - 14px), transparent 100%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10px, black calc(100% - 14px), transparent 100%);
+        }
+        .no-scrollbar {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Скользящие индикаторы (Вкладки и Сегментированные переключатели) */
         .m3-sliding-pill {
-            transition: transform 0.36s var(--md-spring), background-color 0.35s ease;
-            will-change: transform;
+            transition: transform 0.38s var(--md-spring), width 0.34s var(--md-spring), background-color 0.35s ease;
+            will-change: transform, width;
         }
 
         /* Направленная анимация переключения вкладок */
@@ -230,10 +261,10 @@
             100% { opacity: 1; transform: translateX(0) scale(1); }
         }
         .tab-enter-right {
-            animation: m3TabSlideRight 0.3s var(--md-ease-emphasized) forwards;
+            animation: m3TabSlideRight 0.32s var(--md-ease-decelerate) forwards;
         }
         .tab-enter-left {
-            animation: m3TabSlideLeft 0.3s var(--md-ease-emphasized) forwards;
+            animation: m3TabSlideLeft 0.32s var(--md-ease-decelerate) forwards;
         }
 
         /* Каскадное появление карточек */
@@ -243,24 +274,50 @@
         }
         .m3-card-stagger {
             opacity: 0;
-            animation: m3CardPopIn 0.32s var(--md-spring) forwards;
-            animation-delay: calc(var(--stagger, 0) * 28ms);
+            animation: m3CardPopIn 0.34s var(--md-spring-soft) forwards;
+            animation-delay: calc(var(--stagger, 0) * 26ms);
+        }
+
+        /* Плавный аккордеон (CSS Grid rows) */
+        .m3-accordion {
+            display: grid;
+            grid-template-rows: 0fr;
+            opacity: 0;
+            transition: grid-template-rows 0.32s var(--md-ease-emphasized), opacity 0.24s ease;
+        }
+        .m3-accordion.is-open {
+            grid-template-rows: 1fr;
+            opacity: 1;
+        }
+        .m3-accordion-inner {
+            overflow: hidden;
         }
 
         /* Анимация искры на кнопке Микс */
         @keyframes m3SparkleBurst {
             0% { transform: rotate(0deg) scale(1); }
-            45% { transform: rotate(195deg) scale(1.24); }
+            45% { transform: rotate(195deg) scale(1.26); }
             100% { transform: rotate(360deg) scale(1); }
         }
         .sparkle-burst {
-            animation: m3SparkleBurst 0.52s var(--md-spring);
+            animation: m3SparkleBurst 0.54s var(--md-spring);
         }
 
-        /* Кастомный минималистичный скроллбар */
+        /* Импульс при сбросе значения */
+        @keyframes m3ValuePop {
+            0% { transform: scale(1); }
+            40% { transform: scale(1.22); }
+            100% { transform: scale(1); }
+        }
+        .value-pop {
+            animation: m3ValuePop 0.32s var(--md-spring);
+        }
+
+        /* Скроллбар и мягкая маска прокрутки */
         .m3-scroll {
             overscroll-behavior: contain;
             -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
         }
         .m3-scroll::-webkit-scrollbar {
             width: 3px;
@@ -272,10 +329,30 @@
             background: var(--md-surface-container-highest);
             border-radius: 9999px;
         }
+        .m3-scroll-fade {
+            mask-image: linear-gradient(to bottom, transparent 0%, black 10px, black calc(100% - 14px), transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10px, black calc(100% - 14px), transparent 100%);
+        }
 
         /* === ANDROID 16 / MATERIAL DESIGN 3 EXPRESSIVE SPLIT-TRACK SLIDERS === */
         .m3-slider-row {
-            padding: 12px 16px 11px;
+            padding: 11px 16px 10px;
+        }
+
+        .m3-reset-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            padding: 2px 7px;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.24s var(--md-spring);
+        }
+        .m3-reset-badge:hover {
+            background-color: var(--md-surface-container-highest);
+        }
+        .m3-reset-badge:active {
+            transform: scale(0.92);
         }
 
         .m3-slider-wrapper {
@@ -286,14 +363,15 @@
             width: 100%;
             touch-action: pan-x;
             --pct: 50%;
+            --bubble-pct: 50%;
         }
 
-        /* Всплывающий пузырёк точного значения над пальцем */
+        /* Всплывающий пузырёк точного значения (с защитой от выхода за края) */
         .m3-slider-bubble {
             position: absolute;
-            bottom: 34px;
-            left: var(--pct);
-            transform: translateX(-50%) translateY(6px) scale(0.75);
+            bottom: 35px;
+            left: var(--bubble-pct);
+            transform: translateX(-50%) translateY(8px) scale(0.72);
             opacity: 0;
             pointer-events: none;
             padding: 3px 9px;
@@ -305,8 +383,8 @@
             font-weight: 600;
             background-color: var(--md-primary);
             color: var(--md-on-primary);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-            transition: opacity 0.16s ease, transform 0.22s var(--md-spring);
+            box-shadow: 0 5px 14px rgba(0, 0, 0, 0.45);
+            transition: opacity 0.16s ease, transform 0.24s var(--md-spring);
             z-index: 20;
             white-space: nowrap;
         }
@@ -347,13 +425,13 @@
             height: 28px;
             background-color: var(--md-primary);
             border-radius: 999px;
-            transition: width 0.15s ease, height 0.15s ease, background-color 0.3s ease;
+            transition: width 0.18s var(--md-spring), height 0.18s var(--md-spring), background-color 0.3s ease;
         }
 
         .m3-slider-wrapper:active .m3-slider-thumb,
         .m3-slider-wrapper.is-sliding .m3-slider-thumb {
             width: 6px;
-            height: 32px;
+            height: 33px;
         }
 
         .m3-slider-inactive {
@@ -424,47 +502,60 @@
             background-color: var(--md-primary);
             box-shadow: 0 0 0 3px var(--md-surface-container), 0 2px 8px rgba(0, 0, 0, 0.45);
             pointer-events: none;
-            transition: transform 0.15s ease;
+            transition: transform 0.2s var(--md-spring);
         }
 
-        .m3-slider-wrapper:active .m3-hue-thumb {
-            transform: translate(-50%, -50%) scale(1.16);
+        .m3-slider-wrapper:active .m3-hue-thumb,
+        .m3-slider-wrapper.is-sliding .m3-hue-thumb {
+            transform: translate(-50%, -50%) scale(1.18);
+        }
+
+        /* Компас угла фокуса */
+        #focus-dial {
+            transition: transform 0.28s var(--md-spring), background-color 0.25s ease, box-shadow 0.25s ease;
+        }
+        #focus-dial.is-dragging {
+            transform: scale(1.04);
+            box-shadow: 0 0 0 3px var(--md-primary-container);
         }
 
         /* Пружинная физика для студийной панели и мобильной шторки */
         @media (min-width: 640px) {
             #studio-panel {
-                transition: transform 0.42s var(--md-spring), opacity 0.28s ease, background-color 0.35s ease;
+                transition: transform 0.44s var(--md-spring-soft), opacity 0.26s ease, background-color 0.35s ease;
             }
             #floating-mix-dock {
-                transition: left 0.4s var(--md-spring), transform 0.32s var(--md-spring), opacity 0.25s ease, background-color 0.35s ease;
+                transition: left 0.42s var(--md-spring-soft), transform 0.34s var(--md-spring-soft), opacity 0.24s ease, background-color 0.35s ease;
             }
         }
 
         @media (max-width: 639px) {
             #studio-panel {
-                height: var(--sheet-h, 52dvh);
-                max-height: 85dvh;
-                min-height: 132px;
+                height: var(--sheet-h, 42dvh);
+                max-height: 78dvh;
+                min-height: 140px;
             }
             #studio-panel.sheet-spring {
-                transition: height 0.42s var(--md-spring), transform 0.38s var(--md-spring), opacity 0.28s ease;
+                transition: height 0.42s var(--md-spring-soft), transform 0.38s var(--md-spring-soft), opacity 0.26s ease;
             }
             #studio-panel.sheet-dragging {
                 transition: none !important;
             }
             #floating-mix-dock {
-                bottom: calc(var(--sheet-h, 52dvh) + 12px);
+                bottom: calc(var(--sheet-h, 42dvh) + 10px);
             }
             #floating-mix-dock.dock-spring {
-                transition: bottom 0.42s var(--md-spring), transform 0.32s var(--md-spring), opacity 0.25s ease;
+                transition: bottom 0.42s var(--md-spring-soft), transform 0.34s var(--md-spring-soft), opacity 0.24s ease;
             }
             #floating-mix-dock.dock-dragging {
-                transition: transform 0.32s var(--md-spring), opacity 0.25s ease !important;
+                transition: transform 0.34s var(--md-spring-soft), opacity 0.24s ease !important;
+            }
+            .m3-slider-row {
+                padding: 9px 14px 8px;
             }
         }
 
-        /* Круглые свотчи цвета (матовые, без световых бликов) */
+        /* Круглые свотчи цвета */
         .color-swatch-circle {
             position: relative;
             width: 40px;
@@ -472,11 +563,14 @@
             border-radius: 999px;
             overflow: hidden;
             cursor: pointer;
-            transition: transform 0.22s var(--md-spring), border-radius 0.22s ease;
+            transition: transform 0.28s var(--md-spring), border-radius 0.26s var(--md-spring);
         }
         .color-swatch-circle:hover {
-            transform: scale(1.08);
+            transform: scale(1.09);
             border-radius: 14px;
+        }
+        .color-swatch-circle:active {
+            transform: scale(0.95);
         }
         .color-swatch-circle input[type="color"] {
             position: absolute;
@@ -498,10 +592,10 @@
             overflow: hidden;
             cursor: pointer;
             flex-shrink: 0;
-            transition: transform 0.22s var(--md-spring), border-radius 0.22s ease;
+            transition: transform 0.28s var(--md-spring), border-radius 0.26s var(--md-spring);
         }
         .seed-swatch-hero:hover {
-            transform: scale(1.06);
+            transform: scale(1.07);
             border-radius: 23px;
         }
         .seed-swatch-hero input[type="color"] {
@@ -516,22 +610,71 @@
             cursor: pointer;
         }
 
-        /* Анимация M3 Snackbar */
+        /* M3 Snackbar анимация без горизонтальных рывков */
         @keyframes m3SnackbarIn {
-            0% { opacity: 0; transform: translate(-50%, 16px) scale(0.94); }
-            100% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+            0% { opacity: 0; transform: translateY(14px) scale(0.92); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
         }
         .m3-snackbar-enter {
-            animation: m3SnackbarIn 0.3s var(--md-spring) forwards;
+            animation: m3SnackbarIn 0.32s var(--md-spring) forwards;
+        }
+        .m3-snackbar-exit {
+            opacity: 0 !important;
+            transform: translateY(8px) scale(0.95) !important;
+            transition: opacity 0.22s ease, transform 0.22s ease !important;
         }
 
         /* Импульс от двойного нажатия по холсту */
         @keyframes focusPulse {
-            0% { transform: translate(-50%, -50%) scale(0.35); opacity: 0.95; }
-            100% { transform: translate(-50%, -50%) scale(1.9); opacity: 0; }
+            0% { transform: translate(-50%, -50%) scale(0.32); opacity: 0.95; }
+            100% { transform: translate(-50%, -50%) scale(1.95); opacity: 0; }
         }
         .focus-tap-ring {
             animation: focusPulse 0.65s var(--md-ease-emphasized) forwards;
+        }
+
+        /* Магнитные направляющие центра */
+        .center-guide-line {
+            transition: opacity 0.22s ease;
+        }
+
+        /* Живой HUD-индикатор жестов на холсте */
+        #canvas-hud {
+            transition: opacity 0.22s ease, transform 0.3s var(--md-spring-soft);
+        }
+        #canvas-hud.is-visible {
+            opacity: 1;
+            transform: translate(-50%, 0) scale(1);
+        }
+        #canvas-hud:not(.is-visible) {
+            opacity: 0;
+            transform: translate(-50%, 8px) scale(0.94);
+        }
+
+        /* Модальное окно горячих клавиш */
+        #shortcuts-modal {
+            transition: opacity 0.24s ease;
+        }
+        #shortcuts-modal-card {
+            transition: transform 0.36s var(--md-spring-soft), opacity 0.22s ease;
+        }
+        #shortcuts-modal.is-hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        #shortcuts-modal.is-hidden #shortcuts-modal-card {
+            transform: translateY(14px) scale(0.95);
+            opacity: 0;
+        }
+
+        /* Анимация появления экрана блокировки */
+        #lockscreen-overlay {
+            transition: opacity 0.32s ease, transform 0.38s var(--md-spring-soft);
+        }
+        #lockscreen-overlay.lock-hidden {
+            opacity: 0;
+            transform: scale(0.96);
+            pointer-events: none;
         }
     </style>
 </head>
@@ -540,6 +683,22 @@
     <!-- Основной WebGL холст -->
     <div id="canvas-wrapper" class="relative w-full h-full flex items-center justify-center overflow-hidden">
         <canvas id="gl-canvas" class="block w-full h-full cursor-grab active:cursor-grabbing touch-none"></canvas>
+
+        <!-- Магнитные направляющие выравнивания по центру -->
+        <div id="center-guides" class="pointer-events-none fixed inset-0 z-10">
+            <div id="guide-x" class="center-guide-line absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-px opacity-0"
+                 style="background-color: var(--md-primary);"></div>
+            <div id="guide-y" class="center-guide-line absolute left-0 right-0 top-1/2 -translate-y-1/2 h-px opacity-0"
+                 style="background-color: var(--md-primary);"></div>
+        </div>
+
+        <!-- Живой HUD-индикатор при перетаскивании / масштабировании / фокусе на холсте -->
+        <div id="canvas-hud"
+             class="pointer-events-none fixed bottom-20 sm:bottom-6 left-1/2 z-20 px-3.5 py-1.5 rounded-full m3-surface-tonal flex items-center gap-2 text-xs font-mono font-semibold"
+             style="color: var(--md-on-surface);">
+            <span id="canvas-hud-icon" class="material-symbols-rounded !text-[16px]" style="color: var(--md-primary);">open_with</span>
+            <span id="canvas-hud-text">По центру</span>
+        </div>
 
         <!-- Рамка предпросмотра пропорций + Экран блокировки в стиле Google Pixel -->
         <div id="aspect-frame" class="pointer-events-none fixed inset-0 flex items-center justify-center transition-opacity duration-300 opacity-0 z-10">
@@ -550,21 +709,19 @@
                      style="background-color: var(--md-surface-container-high); color: var(--md-on-surface);"
                      id="aspect-label">9:19.5 • 1290×2796</div>
 
-                <!-- Аутентичный макет экрана блокировки Google Pixel (Android 15 / 16 Material You + Google Sans Flex) -->
+                <!-- Аутентичный макет экрана блокировки Google Pixel -->
                 <div id="lockscreen-overlay"
-                     class="hidden absolute inset-0 flex flex-col justify-between select-none overflow-hidden rounded-[34px] pixel-ui-text"
+                     class="lock-hidden absolute inset-0 flex flex-col justify-between select-none overflow-hidden rounded-[34px] pixel-ui-text"
                      style="font-size: 15px; padding: 0.95em 1.15em 0.65em; color: #f4f4f6;">
 
-                    <!-- Верхняя часть: Статус-бар Pixel + Виджет «Самое главное» (At a Glance) -->
+                    <!-- Верхняя часть: Статус-бар Pixel + Виджет At a Glance -->
                     <div class="w-full">
-                        <!-- Статус-бар Google Pixel -->
                         <div class="flex items-center justify-between font-medium tracking-tight opacity-95"
                              style="font-size: 0.66em; margin-bottom: 1.35em;">
                             <span class="truncate">Google Pixel</span>
                             <div class="flex items-center" style="gap: 0.35em;">
                                 <span class="material-symbols-rounded" style="font-size: 1.25em;">signal_cellular_alt</span>
                                 <span class="material-symbols-rounded" style="font-size: 1.25em;">wifi</span>
-                                <!-- Капсульный индикатор батареи Android 15/16 -->
                                 <span class="inline-flex items-center justify-center font-bold rounded-full leading-none"
                                       style="font-size: 0.88em; padding: 0.2em 0.52em; background-color: rgba(255, 255, 255, 0.92); color: #111114;">
                                     84
@@ -572,11 +729,10 @@
                             </div>
                         </div>
 
-                        <!-- Виджет At a Glance (как на Pixel в левом верхнем углу) -->
                         <div class="text-left" style="padding-left: 0.15em;">
-                            <div class="font-medium tracking-tight leading-snug drop-shadow-[0_1px_6px_rgba(0,0,0,0.45)]"
+                            <div class="pixel-date-text font-medium tracking-tight leading-snug drop-shadow-[0_1px_6px_rgba(0,0,0,0.45)]"
                                  style="font-size: 0.84em;">
-                                Ср, 18 нояб.
+                                Чт, 19 нояб.
                             </div>
                             <div class="flex items-center font-medium opacity-95 drop-shadow-[0_1px_6px_rgba(0,0,0,0.45)]"
                                  style="font-size: 0.76em; gap: 0.38em; margin-top: 0.25em;">
@@ -589,30 +745,28 @@
                         </div>
                     </div>
 
-                    <!-- Центр: Фирменные двухстрочные часы Google Pixel на базе Google Sans Flex (wght 445, wdth 108, opsz 144, ROND 100) -->
+                    <!-- Центр: Фирменные двухстрочные часы Google Pixel -->
                     <div class="flex flex-col items-center justify-center my-auto text-center">
                         <div class="pixel-lock-clock select-none drop-shadow-[0_6px_24px_rgba(0,0,0,0.38)]"
                              style="font-size: 5.55em; color: var(--md-primary); transition: color 0.35s ease;">
-                            <div>09</div>
-                            <div>41</div>
+                            <div id="pixel-clock-hours">09</div>
+                            <div id="pixel-clock-minutes">41</div>
                         </div>
                         <div class="flex items-center justify-center font-medium opacity-95 drop-shadow-[0_1px_8px_rgba(0,0,0,0.45)]"
                              style="font-size: 0.74em; gap: 0.45em; margin-top: 0.9em;">
-                            <span>Ср, 18 нояб.</span>
+                            <span class="pixel-date-text">Чт, 19 нояб.</span>
                             <span class="material-symbols-rounded icon-filled" style="font-size: 1.18em; color: #e2e8f0;">partly_cloudy_day</span>
                             <span>18°</span>
                         </div>
                     </div>
 
-                    <!-- Нижняя часть: Подэкранный сканер отпечатка + Кнопки фонарика/камеры + Полоска жестов -->
+                    <!-- Нижняя часть: Сканер отпечатка + Быстрые кнопки + Полоска жестов -->
                     <div class="w-full flex flex-col items-center">
-                        <!-- Круглая кнопка сканера отпечатка пальца Pixel -->
                         <div class="rounded-full flex items-center justify-center shadow-md"
                              style="width: 2.75em; height: 2.75em; margin-bottom: 1.15em; background-color: var(--md-secondary-container); color: var(--md-on-secondary-container); transition: background-color 0.35s ease, color 0.35s ease;">
                             <span class="material-symbols-rounded" style="font-size: 1.55em;">fingerprint</span>
                         </div>
 
-                        <!-- Угловые быстрые кнопки Pixel (Фонарик и Камера) -->
                         <div class="w-full flex items-center justify-between" style="padding: 0 0.1em; margin-bottom: 0.55em;">
                             <div class="rounded-full flex items-center justify-center shadow-sm"
                                  style="width: 2.35em; height: 2.35em; background-color: var(--md-secondary-container); color: var(--md-on-secondary-container); transition: background-color 0.35s ease, color 0.35s ease;">
@@ -624,7 +778,6 @@
                             </div>
                         </div>
 
-                        <!-- Нижняя навигационная полоска жестов Android -->
                         <div class="rounded-full bg-white/85" style="width: 6.2em; height: 0.24em;"></div>
                     </div>
                 </div>
@@ -633,15 +786,13 @@
     </div>
 
     <!-- Единая минималистичная верхняя панель M3 Floating App Bar -->
-    <header id="top-bar" class="fixed top-3 left-3 right-3 sm:top-4 sm:left-4 sm:right-auto z-30 flex items-center justify-between sm:justify-start gap-1.5 p-1.5 rounded-full m3-surface-tonal transition-all duration-300">
-        <!-- Логотип Nimbus (MD3 Fan + MD3 Arrow) и название -->
-        <div class="flex items-center gap-2.5 pl-1 pr-2 py-0.5 min-w-0">
+    <header id="top-bar" class="fixed top-3 left-3 right-3 sm:top-4 sm:left-4 sm:right-auto z-30 flex items-center justify-between sm:justify-start gap-1.5 p-1.5 rounded-full m3-surface-tonal">
+        <!-- Логотип Nimbus -->
+        <div class="flex items-center gap-2 pl-1 pr-1.5 sm:pr-2 py-0.5 min-w-0">
             <div class="w-8 h-8 rounded-[11px] flex items-center justify-center shrink-0 overflow-hidden"
                  style="background-color: var(--md-on-primary); color: var(--md-primary); transition: background-color 0.35s ease, color 0.35s ease;">
                 <svg viewBox="0 0 100 100" class="w-full h-full block" aria-hidden="true">
-                    <!-- MD3 Fan (нижний левый угол) -->
                     <path d="M 0 39 A 61 61 0 0 1 60 100 L 0 100 Z" fill="currentColor"/>
-                    <!-- MD3 Arrow (верхний правый угол, скруглённый наконечник со встречными вогнутыми гранями) -->
                     <path d="M 47 45 L 54 15 C 56.5 4.3 60.5 5.2 65 11 Q 75 24 86 31 C 92.5 35.1 92.5 42.9 85 44 Q 71 46 57 52 C 49.5 55.2 44.8 54.4 47 45 Z"
                           fill="currentColor"/>
                 </svg>
@@ -651,37 +802,42 @@
 
         <div class="hidden sm:block w-px h-4 mx-0.5 opacity-15" style="background-color: var(--md-on-surface);"></div>
 
-        <!-- Компактная группа быстрых M3-действий + мгновенное скачивание в 1 клик -->
+        <!-- Компактная группа быстрых M3-действий -->
         <div class="flex items-center gap-0.5 sm:gap-1 shrink-0">
             <button id="btn-undo" title="Отменить (Ctrl+Z)" disabled
-                    class="m3-btn-spring w-9 h-9 rounded-full flex items-center justify-center disabled:opacity-30 cursor-pointer disabled:cursor-default"
+                    class="m3-btn-spring w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center disabled:opacity-30 cursor-pointer disabled:cursor-default"
                     style="color: var(--md-on-surface);">
-                <span class="material-symbols-rounded !text-[19px]">undo</span>
+                <span class="material-symbols-rounded !text-[18px] sm:!text-[19px]">undo</span>
             </button>
             <button id="btn-redo" title="Повторить (Ctrl+Y)" disabled
-                    class="m3-btn-spring w-9 h-9 rounded-full flex items-center justify-center disabled:opacity-30 cursor-pointer disabled:cursor-default"
+                    class="m3-btn-spring w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center disabled:opacity-30 cursor-pointer disabled:cursor-default"
                     style="color: var(--md-on-surface);">
-                <span class="material-symbols-rounded !text-[19px]">redo</span>
+                <span class="material-symbols-rounded !text-[18px] sm:!text-[19px]">redo</span>
             </button>
             <button id="btn-reset-pos" title="Центрировать фигуру (0)"
-                    class="m3-btn-spring w-9 h-9 rounded-full flex items-center justify-center cursor-pointer"
+                    class="hidden sm:flex m3-btn-spring w-9 h-9 rounded-full items-center justify-center cursor-pointer"
                     style="color: var(--md-on-surface-variant);">
                 <span class="material-symbols-rounded !text-[19px]">filter_center_focus</span>
             </button>
-            <button id="btn-lockscreen-toggle" title="Экран блокировки Pixel"
-                    class="m3-btn-spring w-9 h-9 rounded-full flex items-center justify-center cursor-pointer"
+            <button id="btn-lockscreen-toggle" title="Экран блокировки Pixel (L)"
+                    class="m3-btn-spring w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center cursor-pointer"
                     style="color: var(--md-on-surface-variant);">
-                <span class="material-symbols-rounded !text-[19px]">smartphone</span>
+                <span class="material-symbols-rounded !text-[18px] sm:!text-[19px]">smartphone</span>
+            </button>
+            <button id="btn-shortcuts" title="Горячие клавиши и жесты (?)"
+                    class="hidden sm:flex m3-btn-spring w-9 h-9 rounded-full items-center justify-center cursor-pointer"
+                    style="color: var(--md-on-surface-variant);">
+                <span class="material-symbols-rounded !text-[19px]">keyboard</span>
             </button>
             <button id="btn-hide-ui" title="Скрыть интерфейс (H)"
-                    class="m3-btn-spring w-9 h-9 rounded-full flex items-center justify-center cursor-pointer"
+                    class="m3-btn-spring w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center cursor-pointer"
                     style="color: var(--md-on-surface-variant);">
-                <span class="material-symbols-rounded !text-[19px]">visibility_off</span>
+                <span class="material-symbols-rounded !text-[18px] sm:!text-[19px]">visibility_off</span>
             </button>
             <button id="btn-quick-download" title="Скачать обои PNG (Ctrl+S)"
-                    class="m3-btn-spring h-9 w-9 sm:w-auto sm:px-3.5 rounded-full font-display font-bold text-xs flex items-center justify-center gap-1.5 cursor-pointer ml-0.5"
+                    class="m3-btn-spring h-8 w-8 sm:h-9 sm:w-auto sm:px-3.5 rounded-full font-display font-bold text-xs flex items-center justify-center gap-1.5 cursor-pointer ml-0.5"
                     style="background-color: var(--md-primary); color: var(--md-on-primary);">
-                <span class="material-symbols-rounded icon-filled !text-[18px]">download</span>
+                <span class="download-icon material-symbols-rounded icon-filled !text-[17px] sm:!text-[18px]">download</span>
                 <span class="hidden sm:inline">Скачать</span>
             </button>
         </div>
@@ -697,40 +853,40 @@
     <!-- Круглая M3 FAB-кнопка разворота настроек слева -->
     <button id="btn-expand-studio" title="Открыть панель настроек (S)" aria-label="Открыть панель настроек"
             class="m3-btn-spring fixed bottom-4 left-4 z-30 w-[52px] h-[52px] rounded-full flex items-center justify-center cursor-pointer scale-50 opacity-0 pointer-events-none -translate-x-4"
-            style="background-color: var(--md-primary-container); color: var(--md-on-primary-container); box-shadow: 0 10px 26px rgba(0, 0, 0, 0.52); transition: transform 0.4s var(--md-spring), opacity 0.25s ease, background-color 0.35s ease, color 0.35s ease;">
+            style="background-color: var(--md-primary-container); color: var(--md-on-primary-container); box-shadow: 0 10px 26px rgba(0, 0, 0, 0.52); transition: transform 0.42s var(--md-spring), opacity 0.25s ease, background-color 0.35s ease, color 0.35s ease;">
         <span class="material-symbols-rounded icon-filled !text-[23px]">tune</span>
     </button>
 
     <!-- Единая плавающая M3 Expressive панель генерации -->
     <div id="floating-mix-dock"
-         class="dock-spring fixed right-4 sm:right-auto sm:left-4 sm:bottom-4 z-30 flex items-center gap-1.5 p-1.5 rounded-full m3-surface-tonal">
+         class="dock-spring fixed right-3 sm:right-auto sm:left-4 sm:bottom-4 z-30 flex items-center gap-1 sm:gap-1.5 p-1 sm:p-1.5 rounded-full m3-surface-tonal">
         <button id="chip-lock-shape" data-locked="false" title="Зафиксировать форму при миксе"
-                class="m3-btn-spring h-10 px-3 rounded-full text-[11px] font-semibold flex items-center gap-1 cursor-pointer">
-            <span class="material-symbols-rounded !text-[15px] chip-icon">lock_open</span>
-            <span>Форма</span>
+                class="m3-btn-spring h-9 sm:h-10 px-2.5 sm:px-3 rounded-full text-[11px] font-semibold flex items-center gap-1 cursor-pointer">
+            <span class="material-symbols-rounded !text-[16px] sm:!text-[15px] chip-icon">lock_open</span>
+            <span class="hidden sm:inline">Форма</span>
         </button>
         <button id="chip-lock-color" data-locked="false" title="Зафиксировать цвет при миксе"
-                class="m3-btn-spring h-10 px-3 rounded-full text-[11px] font-semibold flex items-center gap-1 cursor-pointer">
-            <span class="material-symbols-rounded !text-[15px] chip-icon">lock_open</span>
-            <span>Цвет</span>
+                class="m3-btn-spring h-9 sm:h-10 px-2.5 sm:px-3 rounded-full text-[11px] font-semibold flex items-center gap-1 cursor-pointer">
+            <span class="material-symbols-rounded !text-[16px] sm:!text-[15px] chip-icon">lock_open</span>
+            <span class="hidden sm:inline">Цвет</span>
         </button>
-        <button id="btn-randomize" title="Случайная световая композиция (R)"
-                class="m3-btn-spring h-10 px-4 rounded-full font-display font-bold text-xs flex items-center gap-1.5 cursor-pointer"
+        <button id="btn-randomize" title="Случайная световая композиция (R / Пробел)"
+                class="m3-btn-spring h-9 sm:h-10 px-3.5 sm:px-4 rounded-full font-display font-bold text-xs flex items-center gap-1.5 cursor-pointer"
                 style="background-color: var(--md-primary); color: var(--md-on-primary);">
-            <span class="mix-sparkle-icon material-symbols-rounded icon-filled !text-[18px]">auto_awesome</span>
+            <span class="mix-sparkle-icon material-symbols-rounded icon-filled !text-[17px] sm:!text-[18px]">auto_awesome</span>
             <span>Микс</span>
         </button>
     </div>
 
-    <!-- Кнопка возврата интерфейса -->
+    <!-- Кнопка возврата интерфейса (плавное появление в Zen-режиме) -->
     <button id="btn-show-ui"
-            class="hidden fixed top-4 right-4 z-40 m3-btn-spring h-10 px-4 rounded-full m3-surface-tonal font-display text-xs font-semibold flex items-center gap-2 cursor-pointer"
+            class="fixed top-4 right-4 z-40 m3-btn-spring h-10 px-4 rounded-full m3-surface-tonal font-display text-xs font-semibold flex items-center gap-2 cursor-pointer opacity-0 scale-90 -translate-y-2 pointer-events-none"
             style="color: var(--md-on-surface);">
         <span class="material-symbols-rounded icon-filled !text-[18px]" style="color: var(--md-primary);">tune</span>
         <span>Студия</span>
     </button>
 
-    <!-- Студийная панель M3 Expressive (чистая матовая тональная поверхность, сворачивается в круглую кнопку слева) -->
+    <!-- Студийная панель M3 Expressive -->
     <aside id="studio-panel"
            class="sheet-spring fixed bottom-0 left-0 right-0 sm:top-4 sm:right-4 sm:bottom-4 sm:left-auto sm:w-[376px] z-30 flex flex-col rounded-t-[32px] sm:rounded-[32px] m3-surface-tonal">
 
@@ -739,7 +895,7 @@
             <div class="w-10 h-1 rounded-full opacity-40" style="background-color: var(--md-on-surface-variant);"></div>
         </div>
 
-        <!-- Минималистичная навигация M3 сверху панели + кнопка сворачивания в круглую кнопку слева -->
+        <!-- Минималистичная навигация M3 сверху панели -->
         <div id="studio-panel-header" class="px-3.5 pt-1.5 sm:pt-3.5 pb-2.5 shrink-0 flex items-center gap-2 touch-none sm:touch-auto">
             <nav class="relative flex-1 grid grid-cols-3 p-1 rounded-full" style="background-color: var(--md-surface-container);" role="tablist">
                 <div id="tab-indicator" class="m3-sliding-pill absolute top-1 bottom-1 left-1 w-[calc(33.333%-2.67px)] rounded-full pointer-events-none"
@@ -767,28 +923,37 @@
         </div>
 
         <!-- Рабочая область вкладок -->
-        <div id="drawer-content" class="m3-scroll overflow-y-auto px-3.5 pb-3.5 flex-1">
+        <div id="drawer-content" class="m3-scroll overflow-y-auto px-3 sm:px-3.5 pb-3 sm:pb-3.5 flex-1">
 
             <!-- ==================== ВКЛАДКА 1: ФОРМА ==================== -->
-            <div id="tab-panel-shape" class="tab-panel space-y-3.5">
-                <!-- Библиотека 38 световых и MD3 форм -->
-                <div class="m3-card p-3 space-y-2.5">
+            <div id="tab-panel-shape" class="tab-panel space-y-2.5 sm:space-y-3.5">
+                <!-- Библиотека 38 световых и MD3 форм в виде однострочной карусели -->
+                <div class="m3-card p-2.5 sm:p-3 space-y-2">
                     <div class="flex items-center justify-between gap-2">
                         <!-- Фильтр категорий -->
-                        <div class="flex items-center gap-1 overflow-x-auto">
+                        <div class="flex items-center gap-1 overflow-x-auto no-scrollbar">
                             <button data-shape-cat="all" class="shape-cat-btn m3-btn-spring px-2.5 py-1 rounded-full text-[11px] font-semibold whitespace-nowrap cursor-pointer">Все 38</button>
                             <button data-shape-cat="organic" class="shape-cat-btn m3-btn-spring px-2.5 py-1 rounded-full text-[11px] font-semibold whitespace-nowrap cursor-pointer">Плавные</button>
                             <button data-shape-cat="geo" class="shape-cat-btn m3-btn-spring px-2.5 py-1 rounded-full text-[11px] font-semibold whitespace-nowrap cursor-pointer">Геометрия</button>
                         </div>
 
-                        <!-- Переключатель Ореол / Контур -->
-                        <div class="inline-flex p-0.5 rounded-full shrink-0" style="background-color: var(--md-surface-container-low);">
-                            <button data-hollow="0" class="hollow-btn m3-btn-spring px-2.5 py-1 rounded-full text-[11px] font-semibold cursor-pointer">Ореол</button>
-                            <button data-hollow="1" class="hollow-btn m3-btn-spring px-2.5 py-1 rounded-full text-[11px] font-semibold cursor-pointer">Контур</button>
+                        <!-- Переключатель Ореол / Контур со скользящим индикатором -->
+                        <div class="relative inline-grid grid-cols-2 p-0.5 rounded-full shrink-0" style="background-color: var(--md-surface-container-low);">
+                            <div id="hollow-indicator" class="m3-sliding-pill absolute top-0.5 bottom-0.5 left-0.5 w-[calc(50%-2px)] rounded-full pointer-events-none"
+                                 style="background-color: var(--md-secondary-container);"></div>
+                            <button data-hollow="0" class="hollow-btn m3-btn-spring relative z-10 px-2.5 py-1 rounded-full text-[11px] font-semibold cursor-pointer">Ореол</button>
+                            <button data-hollow="1" class="hollow-btn m3-btn-spring relative z-10 px-2.5 py-1 rounded-full text-[11px] font-semibold cursor-pointer">Контур</button>
                         </div>
                     </div>
 
-                    <div id="md3-shapes-grid" class="m3-scroll grid grid-cols-4 gap-1.5 max-h-[236px] overflow-y-auto pr-0.5"></div>
+                    <div id="md3-shapes-grid" class="m3-carousel m3-scroll-fade-x no-scrollbar flex flex-nowrap items-center gap-1.5 overflow-x-auto snap-x snap-proximity py-1 px-1"></div>
+
+                    <!-- Индикатор выбранной фигуры -->
+                    <div class="flex items-center justify-between px-1 text-[11px]" style="color: var(--md-on-surface-variant);">
+                        <span>Форма:</span>
+                        <span id="active-shape-name" class="font-display font-bold px-2 py-0.5 rounded-full"
+                              style="background-color: var(--md-surface-container-high); color: var(--md-on-surface);">Кольцо</span>
+                    </div>
                 </div>
 
                 <!-- Android 16 Grouped Container: Направление фокуса + Геометрия -->
@@ -796,6 +961,7 @@
                     <!-- Интерактивный 360° Компас угла фокуса -->
                     <div class="m3-group-item p-3.5 flex items-center gap-3.5">
                         <div id="focus-dial" class="relative w-20 h-20 rounded-full shrink-0 flex items-center justify-center cursor-pointer touch-none"
+                             title="Тяните для поворота • Удерживайте Shift для шага 15°"
                              style="background-color: var(--md-surface-container-highest);">
                             <div class="w-10 h-10 rounded-full border border-dashed opacity-30" style="border-color: var(--md-on-surface-variant);"></div>
                             <div id="dial-arm" class="absolute inset-0 pointer-events-none">
@@ -816,18 +982,20 @@
                                 <p class="text-[11px] leading-snug mt-0.5" style="color: var(--md-on-surface-variant);">Потяните диск или 2× тапните по холсту</p>
                             </div>
                             <div class="flex items-center gap-1">
-                                <button data-angle="135" class="quick-angle-btn m3-btn-spring flex-1 py-1 rounded-full text-[11px] font-mono cursor-pointer" style="background-color: var(--md-surface-container-high);">↖</button>
-                                <button data-angle="45" class="quick-angle-btn m3-btn-spring flex-1 py-1 rounded-full text-[11px] font-mono cursor-pointer" style="background-color: var(--md-surface-container-high);">↗</button>
-                                <button data-angle="-45" class="quick-angle-btn m3-btn-spring flex-1 py-1 rounded-full text-[11px] font-mono cursor-pointer" style="background-color: var(--md-surface-container-high);">↘</button>
-                                <button data-angle="-135" class="quick-angle-btn m3-btn-spring flex-1 py-1 rounded-full text-[11px] font-mono cursor-pointer" style="background-color: var(--md-surface-container-high);">↙</button>
+                                <button data-angle="135" title="Верхний левый угол (135°)" class="quick-angle-btn m3-btn-spring flex-1 py-1 rounded-full text-[11px] font-mono cursor-pointer" style="background-color: var(--md-surface-container-high);">↖</button>
+                                <button data-angle="45" title="Верхний правый угол (45°)" class="quick-angle-btn m3-btn-spring flex-1 py-1 rounded-full text-[11px] font-mono cursor-pointer" style="background-color: var(--md-surface-container-high);">↗</button>
+                                <button data-angle="-45" title="Нижний правый угол (-45°)" class="quick-angle-btn m3-btn-spring flex-1 py-1 rounded-full text-[11px] font-mono cursor-pointer" style="background-color: var(--md-surface-container-high);">↘</button>
+                                <button data-angle="-135" title="Нижний левый угол (-135°)" class="quick-angle-btn m3-btn-spring flex-1 py-1 rounded-full text-[11px] font-mono cursor-pointer" style="background-color: var(--md-surface-container-high);">↙</button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="m3-group-item m3-slider-row" data-reset-key="scale" title="Двойной клик для сброса">
+                    <div class="m3-group-item m3-slider-row" data-reset-key="scale" title="Двойной клик или нажатие на число — сброс">
                         <div class="flex justify-between items-center text-xs mb-1">
                             <span class="font-medium" style="color: var(--md-on-surface);">Масштаб фигуры</span>
-                            <span id="val-scale" class="font-mono text-xs font-bold" style="color: var(--md-primary);">0.31</span>
+                            <button type="button" data-reset-btn="scale" class="m3-reset-badge font-mono text-xs font-bold" style="color: var(--md-primary);" title="Сбросить к значению по умолчанию">
+                                <span id="val-scale">0.31</span>
+                            </button>
                         </div>
                         <div class="m3-slider-wrapper" data-ticks="5">
                             <div class="m3-slider-bubble">0.31</div>
@@ -841,10 +1009,12 @@
                         </div>
                     </div>
 
-                    <div class="m3-group-item m3-slider-row" data-reset-key="aspect" title="Двойной клик для сброса">
+                    <div class="m3-group-item m3-slider-row" data-reset-key="aspect" title="Двойной клик или нажатие на число — сброс">
                         <div class="flex justify-between items-center text-xs mb-1">
                             <span class="font-medium" style="color: var(--md-on-surface);">Сжатие / Пропорции</span>
-                            <span id="val-aspect" class="font-mono text-xs font-bold" style="color: var(--md-primary);">0.64</span>
+                            <button type="button" data-reset-btn="aspect" class="m3-reset-badge font-mono text-xs font-bold" style="color: var(--md-primary);" title="Сбросить к значению по умолчанию">
+                                <span id="val-aspect">0.64</span>
+                            </button>
                         </div>
                         <div class="m3-slider-wrapper" data-ticks="5">
                             <div class="m3-slider-bubble">0.64</div>
@@ -858,10 +1028,12 @@
                         </div>
                     </div>
 
-                    <div class="m3-group-item m3-slider-row" data-reset-key="rotation" title="Двойной клик для сброса">
+                    <div class="m3-group-item m3-slider-row" data-reset-key="rotation" title="Двойной клик или нажатие на число — сброс">
                         <div class="flex justify-between items-center text-xs mb-1">
                             <span class="font-medium" style="color: var(--md-on-surface);">Наклон фигуры</span>
-                            <span id="val-rotation" class="font-mono text-xs font-bold" style="color: var(--md-primary);">-36°</span>
+                            <button type="button" data-reset-btn="rotation" class="m3-reset-badge font-mono text-xs font-bold" style="color: var(--md-primary);" title="Сбросить к значению по умолчанию">
+                                <span id="val-rotation">-36°</span>
+                            </button>
                         </div>
                         <div class="m3-slider-wrapper" data-ticks="5">
                             <div class="m3-slider-bubble">-36°</div>
@@ -875,10 +1047,12 @@
                         </div>
                     </div>
 
-                    <div class="m3-group-item m3-slider-row" data-reset-key="morph" title="Двойной клик для сброса">
+                    <div class="m3-group-item m3-slider-row" data-reset-key="morph" title="Двойной клик или нажатие на число — сброс">
                         <div class="flex justify-between items-center text-xs mb-1">
                             <span class="font-medium" style="color: var(--md-on-surface);">Органическая пластика</span>
-                            <span id="val-morph" class="font-mono text-xs font-bold" style="color: var(--md-primary);">0.08</span>
+                            <button type="button" data-reset-btn="morph" class="m3-reset-badge font-mono text-xs font-bold" style="color: var(--md-primary);" title="Сбросить к значению по умолчанию">
+                                <span id="val-morph">0.08</span>
+                            </button>
                         </div>
                         <div class="m3-slider-wrapper" data-ticks="5">
                             <div class="m3-slider-bubble">0.08</div>
@@ -895,7 +1069,7 @@
             </div>
 
             <!-- ==================== ВКЛАДКА 2: СВЕТ И ЦВЕТ ==================== -->
-            <div id="tab-panel-light" class="tab-panel hidden space-y-3.5">
+            <div id="tab-panel-light" class="tab-panel hidden space-y-2.5 sm:space-y-3.5">
                 <!-- Карточка палитры Material You -->
                 <div class="m3-card p-3.5 space-y-3">
                     <div class="flex items-center justify-between gap-2.5">
@@ -952,12 +1126,14 @@
                         </div>
                     </div>
 
-                    <!-- Режимы свечения -->
-                    <div class="grid grid-cols-4 gap-1.5">
-                        <button data-mood-mode="soft" class="mood-mode-btn m3-btn-spring py-1.5 px-2 rounded-full text-[11px] font-semibold cursor-pointer">Мягкий</button>
-                        <button data-mood-mode="deep" class="mood-mode-btn m3-btn-spring py-1.5 px-2 rounded-full text-[11px] font-semibold cursor-pointer">Глубокий</button>
-                        <button data-mood-mode="neon" class="mood-mode-btn m3-btn-spring py-1.5 px-2 rounded-full text-[11px] font-semibold cursor-pointer">Неон</button>
-                        <button data-mood-mode="mono" class="mood-mode-btn m3-btn-spring py-1.5 px-2 rounded-full text-[11px] font-semibold cursor-pointer">Монохром</button>
+                    <!-- Режимы свечения со скользящим индикатором -->
+                    <div class="relative grid grid-cols-4 p-0.5 rounded-full" style="background-color: var(--md-surface-container-low);">
+                        <div id="mood-indicator" class="m3-sliding-pill absolute top-0.5 bottom-0.5 left-0.5 w-[calc(25%-1px)] rounded-full pointer-events-none"
+                             style="background-color: var(--md-primary);"></div>
+                        <button data-mood-mode="soft" class="mood-mode-btn m3-btn-spring relative z-10 py-1.5 px-1.5 rounded-full text-[11px] font-semibold cursor-pointer">Мягкий</button>
+                        <button data-mood-mode="deep" class="mood-mode-btn m3-btn-spring relative z-10 py-1.5 px-1.5 rounded-full text-[11px] font-semibold cursor-pointer">Глубокий</button>
+                        <button data-mood-mode="neon" class="mood-mode-btn m3-btn-spring relative z-10 py-1.5 px-1.5 rounded-full text-[11px] font-semibold cursor-pointer">Неон</button>
+                        <button data-mood-mode="mono" class="mood-mode-btn m3-btn-spring relative z-10 py-1.5 px-1.5 rounded-full text-[11px] font-semibold cursor-pointer">Монохром</button>
                     </div>
 
                     <!-- 4 круглых свотча точной подстройки слоёв -->
@@ -991,10 +1167,12 @@
 
                 <!-- Android 16 Grouped Container 1: Оптическое рассеивание -->
                 <div class="m3-group">
-                    <div class="m3-group-item m3-slider-row" data-reset-key="sharpness" title="Двойной клик для сброса">
+                    <div class="m3-group-item m3-slider-row" data-reset-key="sharpness" title="Двойной клик или нажатие на число — сброс">
                         <div class="flex justify-between items-center text-xs mb-1">
                             <span class="font-medium" style="color: var(--md-on-surface);">Резкость каустики</span>
-                            <span id="val-sharpness" class="font-mono text-xs font-bold" style="color: var(--md-primary);">0.96</span>
+                            <button type="button" data-reset-btn="sharpness" class="m3-reset-badge font-mono text-xs font-bold" style="color: var(--md-primary);" title="Сбросить к значению по умолчанию">
+                                <span id="val-sharpness">0.96</span>
+                            </button>
                         </div>
                         <div class="m3-slider-wrapper" data-ticks="5">
                             <div class="m3-slider-bubble">0.96</div>
@@ -1008,10 +1186,12 @@
                         </div>
                     </div>
 
-                    <div class="m3-group-item m3-slider-row" data-reset-key="diffusion" title="Двойной клик для сброса">
+                    <div class="m3-group-item m3-slider-row" data-reset-key="diffusion" title="Двойной клик или нажатие на число — сброс">
                         <div class="flex justify-between items-center text-xs mb-1">
                             <span class="font-medium" style="color: var(--md-on-surface);">Дымка рассеивания</span>
-                            <span id="val-diffusion" class="font-mono text-xs font-bold" style="color: var(--md-primary);">0.88</span>
+                            <button type="button" data-reset-btn="diffusion" class="m3-reset-badge font-mono text-xs font-bold" style="color: var(--md-primary);" title="Сбросить к значению по умолчанию">
+                                <span id="val-diffusion">0.88</span>
+                            </button>
                         </div>
                         <div class="m3-slider-wrapper" data-ticks="5">
                             <div class="m3-slider-bubble">0.88</div>
@@ -1025,10 +1205,12 @@
                         </div>
                     </div>
 
-                    <div class="m3-group-item m3-slider-row" data-reset-key="drift" title="Двойной клик для сброса">
+                    <div class="m3-group-item m3-slider-row" data-reset-key="drift" title="Двойной клик или нажатие на число — сброс">
                         <div class="flex justify-between items-center text-xs mb-1">
                             <span class="font-medium" style="color: var(--md-on-surface);">Вытяжение шлейфа</span>
-                            <span id="val-drift" class="font-mono text-xs font-bold" style="color: var(--md-primary);">0.56</span>
+                            <button type="button" data-reset-btn="drift" class="m3-reset-badge font-mono text-xs font-bold" style="color: var(--md-primary);" title="Сбросить к значению по умолчанию">
+                                <span id="val-drift">0.56</span>
+                            </button>
                         </div>
                         <div class="m3-slider-wrapper" data-ticks="5">
                             <div class="m3-slider-bubble">0.56</div>
@@ -1042,10 +1224,12 @@
                         </div>
                     </div>
 
-                    <div class="m3-group-item m3-slider-row" data-reset-key="intensity" title="Двойной клик для сброса">
+                    <div class="m3-group-item m3-slider-row" data-reset-key="intensity" title="Двойной клик или нажатие на число — сброс">
                         <div class="flex justify-between items-center text-xs mb-1">
                             <span class="font-medium" style="color: var(--md-on-surface);">Яркость экспозиции</span>
-                            <span id="val-intensity" class="font-mono text-xs font-bold" style="color: var(--md-primary);">1.18</span>
+                            <button type="button" data-reset-btn="intensity" class="m3-reset-badge font-mono text-xs font-bold" style="color: var(--md-primary);" title="Сбросить к значению по умолчанию">
+                                <span id="val-intensity">1.18</span>
+                            </button>
                         </div>
                         <div class="m3-slider-wrapper" data-ticks="5">
                             <div class="m3-slider-bubble">1.18</div>
@@ -1062,10 +1246,12 @@
 
                 <!-- Android 16 Grouped Container 2: Атмосфера и текстура -->
                 <div class="m3-group">
-                    <div class="m3-group-item m3-slider-row" data-reset-key="chromatic" title="Двойной клик для сброса">
+                    <div class="m3-group-item m3-slider-row" data-reset-key="chromatic" title="Двойной клик или нажатие на число — сброс">
                         <div class="flex justify-between items-center text-xs mb-1">
                             <span class="font-medium" style="color: var(--md-on-surface);">Хроматический край</span>
-                            <span id="val-chromatic" class="font-mono text-xs font-bold" style="color: var(--md-primary);">0.00</span>
+                            <button type="button" data-reset-btn="chromatic" class="m3-reset-badge font-mono text-xs font-bold" style="color: var(--md-primary);" title="Сбросить к значению по умолчанию">
+                                <span id="val-chromatic">0.00</span>
+                            </button>
                         </div>
                         <div class="m3-slider-wrapper" data-ticks="5">
                             <div class="m3-slider-bubble">0.00</div>
@@ -1079,10 +1265,12 @@
                         </div>
                     </div>
 
-                    <div class="m3-group-item m3-slider-row" data-reset-key="grain" title="Двойной клик для сброса">
+                    <div class="m3-group-item m3-slider-row" data-reset-key="grain" title="Двойной клик или нажатие на число — сброс">
                         <div class="flex justify-between items-center text-xs mb-1">
                             <span class="font-medium" style="color: var(--md-on-surface);">Аналоговое зерно</span>
-                            <span id="val-grain" class="font-mono text-xs font-bold" style="color: var(--md-primary);">0.048</span>
+                            <button type="button" data-reset-btn="grain" class="m3-reset-badge font-mono text-xs font-bold" style="color: var(--md-primary);" title="Сбросить к значению по умолчанию">
+                                <span id="val-grain">0.048</span>
+                            </button>
                         </div>
                         <div class="m3-slider-wrapper" data-ticks="5">
                             <div class="m3-slider-bubble">0.048</div>
@@ -1096,10 +1284,12 @@
                         </div>
                     </div>
 
-                    <div class="m3-group-item m3-slider-row" data-reset-key="vignette" title="Двойной клик для сброса">
+                    <div class="m3-group-item m3-slider-row" data-reset-key="vignette" title="Двойной клик или нажатие на число — сброс">
                         <div class="flex justify-between items-center text-xs mb-1">
                             <span class="font-medium" style="color: var(--md-on-surface);">Глубина виньетки</span>
-                            <span id="val-vignette" class="font-mono text-xs font-bold" style="color: var(--md-primary);">0.22</span>
+                            <button type="button" data-reset-btn="vignette" class="m3-reset-badge font-mono text-xs font-bold" style="color: var(--md-primary);" title="Сбросить к значению по умолчанию">
+                                <span id="val-vignette">0.22</span>
+                            </button>
                         </div>
                         <div class="m3-slider-wrapper" data-ticks="5">
                             <div class="m3-slider-bubble">0.22</div>
@@ -1116,7 +1306,7 @@
             </div>
 
             <!-- ==================== ВКЛАДКА 3: ЭКСПОРТ И ФОРМАТЫ ==================== -->
-            <div id="tab-panel-export" class="tab-panel hidden space-y-3.5">
+            <div id="tab-panel-export" class="tab-panel hidden space-y-2.5 sm:space-y-3.5">
                 <div class="space-y-1.5">
                     <span class="text-[11px] font-bold uppercase tracking-wider px-1 block" style="color: var(--md-on-surface-variant);">Формат и разрешение</span>
                     <div id="format-cards-grid" class="m3-group"></div>
@@ -1124,7 +1314,7 @@
 
                 <!-- Android 16 Grouped Container: Предпросмотр и обмен JSON -->
                 <div class="m3-group">
-                    <!-- Переключатель макета экрана блокировки Pixel (нативный M3 Switch) -->
+                    <!-- Переключатель макета экрана блокировки Pixel -->
                     <div class="m3-group-item p-3.5 flex items-center justify-between gap-3">
                         <div class="flex items-center gap-3">
                             <div class="w-9 h-9 rounded-2xl flex items-center justify-center shrink-0"
@@ -1139,22 +1329,22 @@
                         <button id="switch-lockscreen" role="switch" aria-checked="false"
                                 class="m3-btn-spring relative h-8 rounded-full transition-colors cursor-pointer shrink-0 flex items-center px-1"
                                 style="width: 52px; background-color: var(--md-surface-container-highest); box-shadow: inset 0 0 0 2px var(--md-outline);">
-                            <span id="switch-lockscreen-thumb" class="w-4 h-4 rounded-full transition-all duration-200 flex items-center justify-center"
-                                  style="background-color: var(--md-outline); transform: translateX(2px);">
+                            <span id="switch-lockscreen-thumb" class="w-4 h-4 rounded-full transition-all duration-250 flex items-center justify-center"
+                                  style="background-color: var(--md-outline); transform: translateX(2px); transition-timing-function: var(--md-spring);">
                                 <span id="switch-lockscreen-icon" class="material-symbols-rounded !text-[14px] opacity-0 transition-opacity" style="color: var(--md-primary);">check</span>
                             </span>
                         </button>
                     </div>
 
-                    <!-- Импорт / Экспорт рецепта JSON -->
-                    <div class="m3-group-item p-3.5 space-y-2.5">
+                    <!-- Импорт / Экспорт рецепта JSON с плавным аккордеоном -->
+                    <div class="m3-group-item p-3.5">
                         <div class="flex items-center justify-between">
                             <span class="font-display text-xs font-bold" style="color: var(--md-on-surface);">Рецепт обоев (JSON)</span>
                             <div class="flex items-center gap-1.5">
                                 <button id="btn-copy-recipe"
                                         class="m3-btn-spring h-8 px-3 rounded-full text-[11px] font-semibold flex items-center gap-1 cursor-pointer"
                                         style="background-color: var(--md-secondary-container); color: var(--md-on-secondary-container);">
-                                    <span class="material-symbols-rounded !text-[15px]">content_copy</span>
+                                    <span id="copy-recipe-icon" class="material-symbols-rounded !text-[15px]">content_copy</span>
                                     <span>Копия</span>
                                 </button>
                                 <button id="btn-toggle-import"
@@ -1166,15 +1356,19 @@
                             </div>
                         </div>
 
-                        <div id="import-box" class="hidden pt-1 space-y-2">
-                            <textarea id="import-textarea" rows="3" placeholder='Вставьте JSON-код настроек сюда...'
-                                      class="w-full rounded-2xl p-3 text-[11px] font-mono focus:outline-none resize-none"
-                                      style="background-color: var(--md-surface-container-highest); color: var(--md-on-surface);"></textarea>
-                            <button id="btn-apply-import"
-                                    class="m3-btn-spring w-full h-9 rounded-full text-xs font-semibold cursor-pointer"
-                                    style="background-color: var(--md-primary); color: var(--md-on-primary);">
-                                Применить параметры
-                            </button>
+                        <div id="import-box" class="m3-accordion">
+                            <div class="m3-accordion-inner">
+                                <div class="pt-3 space-y-2">
+                                    <textarea id="import-textarea" rows="3" placeholder='Вставьте JSON-код настроек сюда...'
+                                              class="w-full rounded-2xl p-3 text-[11px] font-mono focus:outline-none resize-none"
+                                              style="background-color: var(--md-surface-container-highest); color: var(--md-on-surface);"></textarea>
+                                    <button id="btn-apply-import"
+                                            class="m3-btn-spring w-full h-9 rounded-full text-xs font-semibold cursor-pointer"
+                                            style="background-color: var(--md-primary); color: var(--md-on-primary);">
+                                        Применить параметры
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1182,23 +1376,72 @@
 
         </div>
 
-        <!-- Нижняя панель с мгновенным скачиванием и быстрым переключением формата в 1 тап -->
-        <div class="px-3.5 pt-2.5 pb-[calc(0.875rem+env(safe-area-inset-bottom))] sm:p-3.5 shrink-0 flex items-center gap-2"
+        <!-- Нижняя панель с мгновенным скачиванием и быстрым переключением формата -->
+        <div class="px-3 sm:px-3.5 pt-2 pb-[calc(0.75rem+env(safe-area-inset-bottom))] sm:p-3.5 shrink-0 flex items-center gap-2 rounded-b-[32px]"
              style="background-color: var(--md-surface-container-low);">
             <button id="btn-cycle-format" title="Быстро сменить формат обоев"
-                    class="m3-btn-spring h-12 px-3.5 rounded-full font-mono text-[11px] font-semibold flex items-center gap-1 shrink-0 cursor-pointer"
+                    class="m3-btn-spring h-10 sm:h-12 px-3 sm:px-3.5 rounded-full font-mono text-[11px] font-semibold flex items-center gap-1 shrink-0 cursor-pointer"
                     style="background-color: var(--md-secondary-container); color: var(--md-on-secondary-container);">
                 <span id="download-res-badge">Экран</span>
                 <span class="material-symbols-rounded !text-[16px] opacity-80">unfold_more</span>
             </button>
             <button id="btn-download"
-                    class="m3-btn-spring flex-1 h-12 px-5 rounded-full font-display font-bold text-[13px] tracking-wide flex items-center justify-center gap-2 cursor-pointer"
+                    class="m3-btn-spring flex-1 h-10 sm:h-12 px-4 sm:px-5 rounded-full font-display font-bold text-xs sm:text-[13px] tracking-wide flex items-center justify-center gap-2 cursor-pointer"
                     style="background-color: var(--md-primary); color: var(--md-on-primary);">
-                <span class="material-symbols-rounded icon-filled !text-[20px]">download</span>
+                <span class="download-icon material-symbols-rounded icon-filled !text-[18px] sm:!text-[20px]">download</span>
                 <span>Скачать PNG</span>
             </button>
         </div>
     </aside>
+
+    <!-- Модальное окно горячих клавиш и жестов M3 -->
+    <div id="shortcuts-modal" class="is-hidden fixed inset-0 z-50 flex items-center justify-center p-4" style="background-color: rgba(0, 0, 0, 0.58);">
+        <div id="shortcuts-modal-card" class="w-full max-w-sm rounded-[28px] p-5 m3-surface-tonal space-y-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-2xl flex items-center justify-center"
+                         style="background-color: var(--md-secondary-container); color: var(--md-on-secondary-container);">
+                        <span class="material-symbols-rounded !text-[19px]">keyboard</span>
+                    </div>
+                    <div>
+                        <h2 class="font-display text-sm font-bold" style="color: var(--md-on-surface);">Клавиши и жесты</h2>
+                        <p class="text-[11px]" style="color: var(--md-on-surface-variant);">Быстрое управление студией</p>
+                    </div>
+                </div>
+                <button id="btn-close-shortcuts" class="m3-btn-spring w-8 h-8 rounded-full flex items-center justify-center cursor-pointer"
+                        style="background-color: var(--md-surface-container-high); color: var(--md-on-surface);">
+                    <span class="material-symbols-rounded !text-[18px]">close</span>
+                </button>
+            </div>
+
+            <div class="m3-group text-xs">
+                <div class="m3-group-item px-3.5 py-2.5 flex items-center justify-between">
+                    <span style="color: var(--md-on-surface-variant);">Новый случайный микс</span>
+                    <kbd class="font-mono text-[11px] font-bold px-2 py-0.5 rounded-lg" style="background-color: var(--md-surface-container-highest); color: var(--md-primary);">R / Space</kbd>
+                </div>
+                <div class="m3-group-item px-3.5 py-2.5 flex items-center justify-between">
+                    <span style="color: var(--md-on-surface-variant);">Переключение вкладок</span>
+                    <kbd class="font-mono text-[11px] font-bold px-2 py-0.5 rounded-lg" style="background-color: var(--md-surface-container-highest); color: var(--md-primary);">1 / 2 / 3</kbd>
+                </div>
+                <div class="m3-group-item px-3.5 py-2.5 flex items-center justify-between">
+                    <span style="color: var(--md-on-surface-variant);">Свернуть панель / Zen-режим</span>
+                    <kbd class="font-mono text-[11px] font-bold px-2 py-0.5 rounded-lg" style="background-color: var(--md-surface-container-highest); color: var(--md-primary);">S / H</kbd>
+                </div>
+                <div class="m3-group-item px-3.5 py-2.5 flex items-center justify-between">
+                    <span style="color: var(--md-on-surface-variant);">Экран блокировки / Центр</span>
+                    <kbd class="font-mono text-[11px] font-bold px-2 py-0.5 rounded-lg" style="background-color: var(--md-surface-container-highest); color: var(--md-primary);">L / 0</kbd>
+                </div>
+                <div class="m3-group-item px-3.5 py-2.5 flex items-center justify-between">
+                    <span style="color: var(--md-on-surface-variant);">Отмена / Повтор / Скачать</span>
+                    <kbd class="font-mono text-[11px] font-bold px-2 py-0.5 rounded-lg" style="background-color: var(--md-surface-container-highest); color: var(--md-primary);">Ctrl+Z / Y / S</kbd>
+                </div>
+                <div class="m3-group-item px-3.5 py-2.5 flex items-center justify-between">
+                    <span style="color: var(--md-on-surface-variant);">Направить фокус света</span>
+                    <span class="font-mono text-[11px] font-semibold" style="color: var(--md-on-surface);">2× клик / Shift+драг</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Контейнер для всплывающих уведомлений M3 Snackbar -->
     <div id="toast-container" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none flex flex-col items-center gap-2"></div>
@@ -1311,7 +1554,6 @@
             return d;
         }
 
-        // === ОФИЦИАЛЬНЫЕ 35 ФИГУР MATERIAL DESIGN 3 (GLSL ES 1.00 SDF) ===
         float sdBox(vec2 p, vec2 b) {
             vec2 d = abs(p) - b;
             return length(max(d, 0.0)) + min(max(d.x, d.y), 0.0);
@@ -1749,6 +1991,7 @@
             ];
 
             const TAB_ORDER = ['shape', 'light', 'export'];
+            const MOOD_ORDER = ['soft', 'deep', 'neon', 'mono'];
 
             const DEFAULT_VALUES = {
                 scale: 0.31,
@@ -1794,7 +2037,7 @@
                 shapeCategory: 'all',
                 uiHidden: false,
                 panelCollapsed: false,
-                sheetDetent: 'half',
+                sheetDetent: 'compact',
                 activeTab: 'shape',
                 exportFormat: 'screen',
                 showLockscreen: false,
@@ -1844,7 +2087,7 @@
                 syncUIControls();
                 renderFrame(canvas.width, canvas.height);
                 updateHistoryButtons();
-                showToast('Действие отменено');
+                showToast('Действие отменено', 'info', 'undo');
             }
 
             function redoHistory() {
@@ -1855,7 +2098,7 @@
                 syncUIControls();
                 renderFrame(canvas.width, canvas.height);
                 updateHistoryButtons();
-                showToast('Действие возвращено');
+                showToast('Действие возвращено', 'info', 'redo');
             }
 
             function updateHistoryButtons() {
@@ -1950,8 +2193,13 @@
 
             let themePrimaryHex = '#e4e1e6';
             let themeOnPrimaryHex = '#1b1b1f';
+            let lastThemeSignature = '';
 
             function updateMaterialDynamicTheme() {
+                const sig = `${state.midColor}|${state.outerColor}`;
+                if (sig === lastThemeSignature) return;
+                lastThemeSignature = sig;
+
                 const [hMid, sMid] = hexToHsl(state.midColor);
                 const [hOut, sOut] = hexToHsl(state.outerColor);
 
@@ -2013,7 +2261,7 @@
                     });
 
                     if (!gl) {
-                        showToast('Ваш браузер не поддерживает WebGL', 'error');
+                        showToast('Ваш браузер не поддерживает WebGL', 'error', 'error');
                         return false;
                     }
 
@@ -2060,7 +2308,7 @@
                     return true;
                 } catch (err) {
                     console.error(err);
-                    showToast('Ошибка графики: ' + err.message, 'error');
+                    showToast('Ошибка графики: ' + err.message, 'error', 'error');
                     return false;
                 }
             }
@@ -2132,7 +2380,8 @@
                 if (tweenAnim) {
                     const elapsed = now - tweenAnim.start;
                     const rawT = Math.min(1, elapsed / tweenAnim.duration);
-                    const t = 1 - Math.pow(1 - rawT, 3);
+                    // Плавная кривая замедления M3 Emphasized Decelerate
+                    const t = 1 - Math.pow(1 - rawT, 3.2);
 
                     for (const key of Object.keys(tweenAnim.to)) {
                         const fromVal = tweenAnim.from[key];
@@ -2146,7 +2395,7 @@
                             }
                         } else if (typeof toVal === 'string' && toVal.startsWith('#')) {
                             state[key] = lerpHexColor(fromVal, toVal, t);
-                        } else if (rawT >= 0.35) {
+                        } else if (rawT >= 0.3) {
                             state[key] = toVal;
                         }
                     }
@@ -2156,17 +2405,19 @@
 
                     if (rawT >= 1) {
                         Object.assign(state, tweenAnim.to);
+                        const onComplete = tweenAnim.onComplete;
                         tweenAnim = null;
                         syncUIControls();
                         pushHistory();
+                        if (onComplete) onComplete();
                     }
                 }
 
                 requestAnimationFrame(animationLoop);
             }
 
-            // === 6. ПРИМЕНЕНИЕ СОСТОЯНИЯ И СИНХРОНИЗАЦИЯ ANDROID 16 СЛАЙДЕРОВ ===
-            function applyState(newPartial, { smooth = false, recordHistory = true } = {}) {
+            // === 6. ПРИМЕНЕНИЕ СОСТОЯНИЯ И ОПТИМИЗИРОВАННАЯ СИНХРОНИЗАЦИЯ UI ===
+            function applyState(newPartial, { smooth = false, recordHistory = true, onComplete = null } = {}) {
                 if (smooth) {
                     const from = {};
                     Object.keys(newPartial).forEach(k => { from[k] = state[k]; });
@@ -2174,7 +2425,8 @@
                         from,
                         to: { ...newPartial },
                         start: performance.now(),
-                        duration: 380
+                        duration: 420,
+                        onComplete
                     };
                 } else {
                     tweenAnim = null;
@@ -2182,6 +2434,7 @@
                     syncUIControls();
                     renderFrame(canvas.width, canvas.height);
                     if (recordHistory) pushHistory();
+                    if (onComplete) onComplete();
                 }
             }
 
@@ -2207,8 +2460,11 @@
                 const val = parseFloat(input.value);
                 const pct = ((val - min) / (max - min)) * 100;
                 const clampedPct = Math.max(0, Math.min(100, pct));
+                // Защита пузырька от обрезки по краям контейнера
+                const bubblePct = Math.max(8, Math.min(92, clampedPct));
 
                 wrap.style.setProperty('--pct', `${clampedPct}%`);
+                wrap.style.setProperty('--bubble-pct', `${bubblePct}%`);
                 const bubble = wrap.querySelector('.m3-slider-bubble');
                 if (bubble && formattedText !== undefined) {
                     bubble.textContent = formattedText;
@@ -2227,10 +2483,96 @@
                 });
             }
 
-            function syncUIControls(animateTabDirection = 0) {
+            // Кэш сетки фигур для 60-120fps без перестройки DOM на каждом кадре
+            let builtShapeCategory = null;
+            let shapeCardCache = [];
+            let lastShapeRenderKey = '';
+
+            function buildMd3ShapesGrid(category) {
+                const grid = document.getElementById('md3-shapes-grid');
+                if (!grid) return;
+                grid.innerHTML = '';
+                shapeCardCache = [];
+                builtShapeCategory = category;
+
+                const filtered = SHAPE_ITEMS.filter(item => category === 'all' || item.cat === category);
+
+                filtered.forEach(item => {
+                    const btn = document.createElement('button');
+                    btn.className = 'md3-shape-card m3-btn-spring p-1.5 flex flex-col items-center justify-center gap-1 w-[66px] h-[66px] sm:w-[70px] sm:h-[70px] shrink-0 snap-center cursor-pointer';
+                    btn.title = item.name;
+                    btn.dataset.shapeId = item.id;
+
+                    const miniCanvas = document.createElement('canvas');
+                    miniCanvas.width = 96;
+                    miniCanvas.height = 96;
+                    miniCanvas.className = 'w-8 h-8 pointer-events-none';
+
+                    const label = document.createElement('span');
+                    label.className = 'text-[10px] font-display font-semibold truncate w-full text-center leading-tight';
+                    label.textContent = item.name;
+
+                    btn.appendChild(miniCanvas);
+                    btn.appendChild(label);
+
+                    btn.addEventListener('click', () => {
+                        state.shapeType = item.id;
+                        if (item.id === 1 && state.morph < 0.2) {
+                            state.morph = 0.32;
+                        }
+                        syncUIControls(0, { scrollToShape: true });
+                        renderFrame(canvas.width, canvas.height);
+                        pushHistory();
+                    });
+
+                    grid.appendChild(btn);
+                    shapeCardCache.push({ item, btn, ctx: miniCanvas.getContext('2d') });
+                });
+
+                lastShapeRenderKey = '';
+            }
+
+            function syncMd3ShapesGrid(scrollToActive = false) {
+                if (builtShapeCategory !== state.shapeCategory) {
+                    buildMd3ShapesGrid(state.shapeCategory);
+                }
+
+                const activeItem = SHAPE_ITEMS.find(s => s.id === state.shapeType);
+                const nameEl = document.getElementById('active-shape-name');
+                if (nameEl && activeItem) {
+                    nameEl.textContent = activeItem.name;
+                }
+
+                const renderKey = `${state.shapeCategory}|${state.shapeType}|${themePrimaryHex}|${themeOnPrimaryHex}`;
+                if (renderKey !== lastShapeRenderKey) {
+                    lastShapeRenderKey = renderKey;
+                    shapeCardCache.forEach(({ item, btn, ctx }) => {
+                        const isSelected = state.shapeType === item.id;
+                        btn.classList.toggle('active', isSelected);
+
+                        ctx.clearRect(0, 0, 96, 96);
+                        ctx.save();
+                        ctx.translate(48, 48);
+                        const color = isSelected ? themeOnPrimaryHex : themePrimaryHex;
+                        ctx.fillStyle = color;
+                        ctx.strokeStyle = color;
+                        item.draw(ctx, 36);
+                        ctx.restore();
+                    });
+                }
+
+                if (scrollToActive) {
+                    const activeEntry = shapeCardCache.find(entry => entry.item.id === state.shapeType);
+                    if (activeEntry) {
+                        activeEntry.btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                    }
+                }
+            }
+
+            function syncUIControls(animateTabDirection = 0, { scrollToShape = false } = {}) {
                 updateMaterialDynamicTheme();
 
-                // 1. 3 вкладки навигации со скользящим индикатором M3
+                // 1. Вкладки навигации со скользящим индикатором M3
                 const tabIndex = TAB_ORDER.indexOf(state.activeTab);
                 const tabIndicator = document.getElementById('tab-indicator');
                 if (tabIndicator && tabIndex >= 0) {
@@ -2266,11 +2608,15 @@
                     }
                 });
 
-                // 2. Карточки 38 фигур MD3 и переключатель Ореол / Контур
-                renderMd3ShapesGrid();
+                // 2. Сетка 38 фигур MD3 и скользящий переключатель Ореол / Контур
+                syncMd3ShapesGrid(scrollToShape);
+
+                const hollowInd = document.getElementById('hollow-indicator');
+                if (hollowInd) {
+                    hollowInd.style.transform = `translateX(${(state.hollowMode || 0) * 100}%)`;
+                }
                 document.querySelectorAll('.hollow-btn').forEach(btn => {
                     const isMatch = parseInt(btn.dataset.hollow, 10) === (state.hollowMode || 0);
-                    btn.style.backgroundColor = isMatch ? 'var(--md-secondary-container)' : 'transparent';
                     btn.style.color = isMatch ? 'var(--md-on-secondary-container)' : 'var(--md-on-surface-variant)';
                 });
                 document.querySelectorAll('.shape-cat-btn').forEach(btn => {
@@ -2317,7 +2663,7 @@
                     }
                 });
 
-                // 5. Спектральный ползунок оттенка, насыщенность + 4 свотча слоёв
+                // 5. Спектральный ползунок оттенка, насыщенность, режимы и 4 свотча
                 const [hMid] = hexToHsl(state.midColor);
                 state.seedHue = hMid;
                 const hueInput = document.getElementById('ctrl-seed-hue');
@@ -2344,9 +2690,13 @@
                 if (seedSwatch) seedSwatch.style.backgroundColor = state.midColor;
                 if (seedInput) seedInput.value = state.midColor;
 
+                const moodIdx = Math.max(0, MOOD_ORDER.indexOf(state.moodMode));
+                const moodInd = document.getElementById('mood-indicator');
+                if (moodInd) {
+                    moodInd.style.transform = `translateX(${moodIdx * 100}%)`;
+                }
                 document.querySelectorAll('.mood-mode-btn').forEach(btn => {
                     const active = btn.dataset.moodMode === state.moodMode;
-                    btn.style.backgroundColor = active ? 'var(--md-primary)' : 'var(--md-surface-container-low)';
                     btn.style.color = active ? 'var(--md-on-primary)' : 'var(--md-on-surface-variant)';
                 });
 
@@ -2363,54 +2713,6 @@
                 // 6. Активный формат и блокировка
                 updateFormatCardsActiveState();
                 syncLockscreenControls();
-            }
-
-            function renderMd3ShapesGrid() {
-                const grid = document.getElementById('md3-shapes-grid');
-                if (!grid) return;
-                grid.innerHTML = '';
-
-                const filtered = SHAPE_ITEMS.filter(item => {
-                    if (state.shapeCategory === 'all') return true;
-                    return item.cat === state.shapeCategory;
-                });
-
-                filtered.forEach(item => {
-                    const isSelected = state.shapeType === item.id;
-                    const btn = document.createElement('button');
-                    btn.className = `md3-shape-card m3-btn-spring p-1.5 flex flex-col items-center justify-center gap-1 aspect-square cursor-pointer ${isSelected ? 'active' : ''}`;
-                    btn.title = item.name;
-
-                    const miniCanvas = document.createElement('canvas');
-                    miniCanvas.width = 96;
-                    miniCanvas.height = 96;
-                    miniCanvas.className = 'w-9 h-9 pointer-events-none';
-                    const mCtx = miniCanvas.getContext('2d');
-                    mCtx.translate(48, 48);
-                    const color = isSelected ? themeOnPrimaryHex : themePrimaryHex;
-                    mCtx.fillStyle = color;
-                    mCtx.strokeStyle = color;
-                    item.draw(mCtx, 36);
-
-                    const label = document.createElement('span');
-                    label.className = 'text-[10px] font-display font-semibold truncate w-full text-center leading-tight';
-                    label.textContent = item.name;
-
-                    btn.appendChild(miniCanvas);
-                    btn.appendChild(label);
-
-                    btn.addEventListener('click', () => {
-                        state.shapeType = item.id;
-                        if (item.id === 1 && state.morph < 0.2) {
-                            state.morph = 0.32;
-                        }
-                        syncUIControls();
-                        renderFrame(canvas.width, canvas.height);
-                        pushHistory();
-                    });
-
-                    grid.appendChild(btn);
-                });
             }
 
             function updateFormatCardsActiveState() {
@@ -2513,23 +2815,84 @@
                 });
             }
 
-            // === 7. ПРИВЯЗКА ВСЕХ ЭЛЕМЕНТОВ УПРАВЛЕНИЯ ===
+            // === 7. ЖИВОЙ HUD НА ХОЛСТЕ И ЧАСЫ PIXEL ===
+            let hudHideTimer = null;
+            function showCanvasHUD(text, iconName = 'open_with') {
+                const hud = document.getElementById('canvas-hud');
+                const hudText = document.getElementById('canvas-hud-text');
+                const hudIcon = document.getElementById('canvas-hud-icon');
+                if (!hud || !hudText || !hudIcon) return;
+
+                hudText.textContent = text;
+                hudIcon.textContent = iconName;
+                hud.classList.add('is-visible');
+
+                clearTimeout(hudHideTimer);
+                hudHideTimer = setTimeout(() => {
+                    hud.classList.remove('is-visible');
+                }, 1150);
+            }
+
+            function updateCenterGuides(snapX, snapY) {
+                const gx = document.getElementById('guide-x');
+                const gy = document.getElementById('guide-y');
+                if (gx) gx.style.opacity = snapX ? '0.32' : '0';
+                if (gy) gy.style.opacity = snapY ? '0.32' : '0';
+            }
+
+            function updatePixelLockClock() {
+                const now = new Date();
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const days = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+                const months = ['янв.', 'февр.', 'мар.', 'апр.', 'мая', 'июн.', 'июл.', 'авг.', 'сент.', 'окт.', 'нояб.', 'дек.'];
+                const dateStr = `${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]}`;
+
+                const hEl = document.getElementById('pixel-clock-hours');
+                const mEl = document.getElementById('pixel-clock-minutes');
+                if (hEl) hEl.textContent = hours;
+                if (mEl) mEl.textContent = minutes;
+                document.querySelectorAll('.pixel-date-text').forEach(el => {
+                    el.textContent = dateStr;
+                });
+            }
+
+            // === 8. ПРИВЯЗКА ВСЕХ ЭЛЕМЕНТОВ УПРАВЛЕНИЯ ===
+            function switchTabByName(tabName) {
+                const prevIdx = TAB_ORDER.indexOf(state.activeTab);
+                const nextIdx = TAB_ORDER.indexOf(tabName);
+                if (nextIdx < 0) return;
+                const dir = nextIdx >= prevIdx ? 1 : -1;
+                state.activeTab = tabName;
+                syncUIControls(dir);
+            }
+
+            function resetSliderKey(key) {
+                if (DEFAULT_VALUES[key] === undefined) return;
+                applyState({ [key]: DEFAULT_VALUES[key] }, { smooth: true });
+                const valEl = document.getElementById(`val-${key}`);
+                if (valEl) {
+                    valEl.classList.remove('value-pop');
+                    void valEl.offsetWidth;
+                    valEl.classList.add('value-pop');
+                }
+                showToast('Параметр сброшен', 'info', 'restart_alt');
+            }
+
+            function toggleShortcutsModal(forceState) {
+                const modal = document.getElementById('shortcuts-modal');
+                if (!modal) return;
+                const willHide = forceState !== undefined ? !forceState : !modal.classList.contains('is-hidden');
+                modal.classList.toggle('is-hidden', willHide);
+            }
+
             function bindControls() {
                 // Вкладки навигации
                 document.querySelectorAll('.m3-tab-btn').forEach(btn => {
-                    btn.addEventListener('click', () => {
-                        const prevIdx = TAB_ORDER.indexOf(state.activeTab);
-                        const nextIdx = TAB_ORDER.indexOf(btn.dataset.tab);
-                        const dir = nextIdx >= prevIdx ? 1 : -1;
-                        state.activeTab = btn.dataset.tab;
-                        if (window.innerWidth < 640 && state.sheetDetent === 'peek') {
-                            setMobileSheetDetent('half');
-                        }
-                        syncUIControls(dir);
-                    });
+                    btn.addEventListener('click', () => switchTabByName(btn.dataset.tab));
                 });
 
-                // Переключатель Ореол / Контур для фигур
+                // Переключатель Ореол / Контур
                 document.querySelectorAll('.hollow-btn').forEach(btn => {
                     btn.addEventListener('click', () => {
                         state.hollowMode = parseInt(btn.dataset.hollow, 10);
@@ -2543,9 +2906,20 @@
                 document.querySelectorAll('.shape-cat-btn').forEach(btn => {
                     btn.addEventListener('click', () => {
                         state.shapeCategory = btn.dataset.shapeCat;
-                        syncUIControls();
+                        syncUIControls(0, { scrollToShape: true });
                     });
                 });
+
+                // Удобная горизонтальная прокрутка карусели фигур колёсиком мыши на десктопе
+                const shapesCarousel = document.getElementById('md3-shapes-grid');
+                if (shapesCarousel) {
+                    shapesCarousel.addEventListener('wheel', (e) => {
+                        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+                            e.preventDefault();
+                            shapesCarousel.scrollLeft += e.deltaY;
+                        }
+                    }, { passive: false });
+                }
 
                 // Слайдеры Android 16 Expressive
                 const numericKeys = [
@@ -2555,9 +2929,17 @@
                 ];
                 numericKeys.forEach(key => {
                     const el = document.getElementById(`ctrl-${key}`);
+                    if (!el) return;
                     const wrap = el.closest('.m3-slider-wrapper');
-                    const showBubble = () => wrap && wrap.classList.add('is-sliding');
-                    const hideBubble = () => wrap && wrap.classList.remove('is-sliding');
+                    const row = el.closest('.m3-group-item');
+                    const showBubble = () => {
+                        if (wrap) wrap.classList.add('is-sliding');
+                        if (row) row.classList.add('is-active-row');
+                    };
+                    const hideBubble = () => {
+                        if (wrap) wrap.classList.remove('is-sliding');
+                        if (row) row.classList.remove('is-active-row');
+                    };
 
                     el.addEventListener('pointerdown', showBubble);
                     el.addEventListener('pointerup', hideBubble);
@@ -2577,28 +2959,31 @@
                     });
                 });
 
-                // Двойной клик по строке слайдера сбрасывает параметр к значению по умолчанию
+                // Сброс параметра двойным кликом по строке или нажатием на числовой бейдж
                 document.querySelectorAll('[data-reset-key]').forEach(row => {
-                    row.addEventListener('dblclick', () => {
-                        const key = row.dataset.resetKey;
-                        if (DEFAULT_VALUES[key] !== undefined) {
-                            applyState({ [key]: DEFAULT_VALUES[key] }, { smooth: true });
-                            showToast('Параметр сброшен');
-                        }
+                    row.addEventListener('dblclick', () => resetSliderKey(row.dataset.resetKey));
+                });
+                document.querySelectorAll('[data-reset-btn]').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        resetSliderKey(btn.dataset.resetBtn);
                     });
                 });
 
-                // 360° Компас угла фокуса
+                // 360° Компас угла фокуса (удержание Shift фиксирует шаг 15°)
                 const dial = document.getElementById('focus-dial');
                 let draggingDial = false;
 
-                const updateDialFromPointer = (clientX, clientY) => {
+                const updateDialFromPointer = (clientX, clientY, snapToStep = false) => {
                     const rect = dial.getBoundingClientRect();
                     const cx = rect.left + rect.width / 2;
                     const cy = rect.top + rect.height / 2;
                     const dx = clientX - cx;
                     const dy = -(clientY - cy);
-                    const deg = Math.round((Math.atan2(dy, dx) * 180) / Math.PI);
+                    let deg = Math.round((Math.atan2(dy, dx) * 180) / Math.PI);
+                    if (snapToStep) {
+                        deg = Math.round(deg / 15) * 15;
+                    }
                     tweenAnim = null;
                     state.focusAngle = deg;
                     syncUIControls();
@@ -2607,18 +2992,24 @@
 
                 dial.addEventListener('pointerdown', (e) => {
                     draggingDial = true;
+                    dial.classList.add('is-dragging');
                     dial.setPointerCapture(e.pointerId);
-                    updateDialFromPointer(e.clientX, e.clientY);
+                    updateDialFromPointer(e.clientX, e.clientY, e.shiftKey);
                 });
                 dial.addEventListener('pointermove', (e) => {
                     if (!draggingDial) return;
-                    updateDialFromPointer(e.clientX, e.clientY);
+                    updateDialFromPointer(e.clientX, e.clientY, e.shiftKey);
                 });
                 dial.addEventListener('pointerup', () => {
                     if (draggingDial) {
                         draggingDial = false;
+                        dial.classList.remove('is-dragging');
                         pushHistory();
                     }
+                });
+                dial.addEventListener('pointercancel', () => {
+                    draggingDial = false;
+                    dial.classList.remove('is-dragging');
                 });
 
                 document.querySelectorAll('.quick-angle-btn').forEach(btn => {
@@ -2630,8 +3021,12 @@
 
                 // Спектральный ползунок оттенка, насыщенность и базовый цвет
                 const hueSlider = document.getElementById('ctrl-seed-hue');
+                const hueWrap = hueSlider.closest('.m3-slider-wrapper');
+                hueSlider.addEventListener('pointerdown', () => hueWrap && hueWrap.classList.add('is-sliding'));
+                hueSlider.addEventListener('pointerup', () => hueWrap && hueWrap.classList.remove('is-sliding'));
                 hueSlider.addEventListener('input', () => {
                     tweenAnim = null;
+                    if (hueWrap) hueWrap.classList.add('is-sliding');
                     state.seedHue = parseInt(hueSlider.value, 10);
                     if (state.moodMode === 'mono') state.moodMode = 'soft';
                     const pal = buildAuraPaletteFromHue(state.seedHue, state.seedSat, state.moodMode);
@@ -2639,7 +3034,10 @@
                     syncUIControls();
                     renderFrame(canvas.width, canvas.height);
                 });
-                hueSlider.addEventListener('change', pushHistory);
+                hueSlider.addEventListener('change', () => {
+                    if (hueWrap) hueWrap.classList.remove('is-sliding');
+                    pushHistory();
+                });
 
                 const satSlider = document.getElementById('ctrl-seed-sat');
                 const satWrap = satSlider.closest('.m3-slider-wrapper');
@@ -2754,14 +3152,12 @@
                     updateChipVisual(chipColor, state.lockColorOnMix);
                 });
 
-                // Undo / Redo
+                // Undo / Redo / Центр
                 document.getElementById('btn-undo').addEventListener('click', undoHistory);
                 document.getElementById('btn-redo').addEventListener('click', redoHistory);
-
-                // Центрирование
                 document.getElementById('btn-reset-pos').addEventListener('click', () => {
                     applyState({ offsetX: 0, offsetY: 0 }, { smooth: true });
-                    showToast('Фигура выровнена по центру');
+                    showCanvasHUD('По центру', 'filter_center_focus');
                 });
 
                 // Переключение макета экрана блокировки Pixel
@@ -2770,21 +3166,25 @@
                     if (state.showLockscreen && state.exportFormat === 'screen') {
                         state.exportFormat = 'phone';
                     }
+                    updatePixelLockClock();
                     updateAspectGuide();
                     syncUIControls();
                 };
                 document.getElementById('btn-lockscreen-toggle').addEventListener('click', toggleLockscreen);
                 document.getElementById('switch-lockscreen').addEventListener('click', toggleLockscreen);
 
-                // Сворачивание / разворачивание плашки настроек в круглую кнопку слева
-                document.getElementById('btn-collapse-studio').addEventListener('click', () => {
-                    setPanelCollapsed(true);
-                });
-                document.getElementById('btn-expand-studio').addEventListener('click', () => {
-                    setPanelCollapsed(false);
+                // Модалка горячих клавиш
+                document.getElementById('btn-shortcuts').addEventListener('click', () => toggleShortcutsModal(true));
+                document.getElementById('btn-close-shortcuts').addEventListener('click', () => toggleShortcutsModal(false));
+                document.getElementById('shortcuts-modal').addEventListener('click', (e) => {
+                    if (e.target.id === 'shortcuts-modal') toggleShortcutsModal(false);
                 });
 
-                // Полное скрытие / показ интерфейса (Zen-режим)
+                // Сворачивание / разворачивание плашки настроек
+                document.getElementById('btn-collapse-studio').addEventListener('click', () => setPanelCollapsed(true));
+                document.getElementById('btn-expand-studio').addEventListener('click', () => setPanelCollapsed(false));
+
+                // Полное скрытие / показ интерфейса (Zen-режим) с плавной пружиной
                 const toggleUI = (hide) => {
                     state.uiHidden = hide;
                     const panel = document.getElementById('studio-panel');
@@ -2813,16 +3213,30 @@
                     topBar.classList.toggle('opacity-0', hide);
                     topBar.classList.toggle('pointer-events-none', hide);
 
-                    showBtn.classList.toggle('hidden', !hide);
+                    showBtn.classList.toggle('opacity-0', !hide);
+                    showBtn.classList.toggle('scale-90', !hide);
+                    showBtn.classList.toggle('-translate-y-2', !hide);
+                    showBtn.classList.toggle('pointer-events-none', !hide);
                 };
 
                 document.getElementById('btn-hide-ui').addEventListener('click', () => toggleUI(true));
                 document.getElementById('btn-show-ui').addEventListener('click', () => toggleUI(false));
 
-                // Горячие клавиши
+                // Расширенные горячие клавиши
                 window.addEventListener('keydown', (e) => {
                     if (e.target.tagName === 'TEXTAREA' || e.target.tagName === 'INPUT') return;
                     const k = e.key.toLowerCase();
+
+                    if (e.key === 'Escape') {
+                        const modal = document.getElementById('shortcuts-modal');
+                        if (modal && !modal.classList.contains('is-hidden')) {
+                            toggleShortcutsModal(false);
+                        } else if (state.uiHidden) {
+                            toggleUI(false);
+                        }
+                        return;
+                    }
+
                     if ((e.ctrlKey || e.metaKey) && k === 'z') {
                         e.preventDefault();
                         if (e.shiftKey) redoHistory(); else undoHistory();
@@ -2837,17 +3251,29 @@
                     } else if (k === 's' || k === 'ы') {
                         if (state.uiHidden) toggleUI(false);
                         setPanelCollapsed(!state.panelCollapsed);
-                    } else if (k === 'r' || k === 'к') {
+                    } else if (k === 'r' || k === 'к' || e.code === 'Space') {
+                        e.preventDefault();
                         randomizeWallpaper();
+                    } else if (k === 'l' || k === 'д') {
+                        toggleLockscreen();
                     } else if (e.key === '0') {
                         applyState({ offsetX: 0, offsetY: 0 }, { smooth: true });
+                        showCanvasHUD('По центру', 'filter_center_focus');
+                    } else if (e.key === '1') {
+                        switchTabByName('shape');
+                    } else if (e.key === '2') {
+                        switchTabByName('light');
+                    } else if (e.key === '3') {
+                        switchTabByName('export');
+                    } else if (e.key === '?' || (e.shiftKey && e.key === '/')) {
+                        toggleShortcutsModal();
                     }
                 });
 
                 // Мобильная шторка
                 initMobileBottomSheet();
 
-                // Мгновенное скачивание из верхней панели, нижней панели и быстрый цикл формата
+                // Экспорт и быстрый цикл формата
                 document.getElementById('btn-quick-download').addEventListener('click', exportHighResWallpaper);
                 document.getElementById('btn-download').addEventListener('click', exportHighResWallpaper);
                 document.getElementById('btn-cycle-format').addEventListener('click', () => {
@@ -2856,13 +3282,18 @@
                     state.exportFormat = nextFmt.id;
                     updateAspectGuide();
                     syncUIControls();
-                    showToast(`Формат: ${nextFmt.name}`);
+                    showToast(`Формат: ${nextFmt.name}`, 'info', nextFmt.icon);
                 });
 
                 document.getElementById('btn-copy-recipe').addEventListener('click', copyRecipeToClipboard);
 
                 document.getElementById('btn-toggle-import').addEventListener('click', () => {
-                    document.getElementById('import-box').classList.toggle('hidden');
+                    const box = document.getElementById('import-box');
+                    const willOpen = !box.classList.contains('is-open');
+                    box.classList.toggle('is-open', willOpen);
+                    if (willOpen) {
+                        setTimeout(() => document.getElementById('import-textarea').focus(), 200);
+                    }
                 });
 
                 document.getElementById('btn-apply-import').addEventListener('click', () => {
@@ -2878,15 +3309,15 @@
                             throw new Error('Не найдены допустимые параметры');
                         }
                         applyState(clean, { smooth: true });
-                        document.getElementById('import-box').classList.add('hidden');
-                        showToast('Параметры успешно применены');
+                        document.getElementById('import-box').classList.remove('is-open');
+                        showToast('Параметры применены', 'info', 'check_circle');
                     } catch (err) {
-                        showToast('Некорректный JSON-код настроек', 'error');
+                        showToast('Некорректный JSON-код настроек', 'error', 'error');
                     }
                 });
             }
 
-            // === 8. СВОРАЧИВАНИЕ ПАНЕЛИ В КРУГЛУЮ КНОПКУ СЛЕВА И МОБИЛЬНАЯ ШТОРКА ===
+            // === 9. СВОРАЧИВАНИЕ ПАНЕЛИ И МОБИЛЬНАЯ ШТОРКА ===
             function setPanelCollapsed(collapsed) {
                 state.panelCollapsed = collapsed;
                 const panel = document.getElementById('studio-panel');
@@ -2917,13 +3348,11 @@
 
             function getDetentHeightPx(detent) {
                 const vh = window.innerHeight;
-                if (detent === 'peek') return 132;
-                if (detent === 'full') return Math.round(vh * 0.84);
-                return Math.round(vh * 0.52);
+                return detent === 'expanded' ? Math.round(vh * 0.76) : Math.round(vh * 0.42);
             }
 
             function setMobileSheetDetent(detent) {
-                state.sheetDetent = detent;
+                state.sheetDetent = detent === 'expanded' ? 'expanded' : 'compact';
                 const panel = document.getElementById('studio-panel');
                 const dock = document.getElementById('floating-mix-dock');
 
@@ -2933,7 +3362,7 @@
                     return;
                 }
 
-                const hPx = getDetentHeightPx(detent);
+                const hPx = getDetentHeightPx(state.sheetDetent);
                 panel.classList.remove('sheet-dragging');
                 panel.classList.add('sheet-spring');
                 panel.style.setProperty('--sheet-h', `${hPx}px`);
@@ -2991,8 +3420,8 @@
                     lastY = currentY;
                     lastTime = now;
 
-                    const minH = 132;
-                    const maxH = window.innerHeight * 0.85;
+                    const minH = 140;
+                    const maxH = window.innerHeight * 0.78;
                     let nextH = startHeight + dy;
                     if (nextH < minH) nextH = minH - (minH - nextH) * 0.25;
                     if (nextH > maxH) nextH = maxH + (nextH - maxH) * 0.25;
@@ -3013,27 +3442,23 @@
                     }
 
                     const currentH = panel.getBoundingClientRect().height;
-                    const peekH = getDetentHeightPx('peek');
-                    const halfH = getDetentHeightPx('half');
-                    const fullH = getDetentHeightPx('full');
+                    const compactH = getDetentHeightPx('compact');
+                    const expandedH = getDetentHeightPx('expanded');
 
-                    if (currentH < peekH - 22 || (state.sheetDetent === 'peek' && velocityY < -0.55)) {
-                        setMobileSheetDetent('half');
+                    // Свайп вниз ниже компактного уровня — свернуть в круглую кнопку
+                    if (currentH < compactH * 0.68 || (state.sheetDetent === 'compact' && velocityY < -0.5)) {
+                        setMobileSheetDetent('compact');
                         setPanelCollapsed(true);
                         return;
                     }
 
-                    if (velocityY > 0.45) {
-                        setMobileSheetDetent(currentH < halfH ? 'half' : 'full');
-                    } else if (velocityY < -0.45) {
-                        setMobileSheetDetent(currentH > halfH ? 'half' : 'peek');
+                    if (velocityY > 0.4) {
+                        setMobileSheetDetent('expanded');
+                    } else if (velocityY < -0.4) {
+                        setMobileSheetDetent('compact');
                     } else {
-                        const dists = [
-                            { id: 'peek', d: Math.abs(currentH - peekH) },
-                            { id: 'half', d: Math.abs(currentH - halfH) },
-                            { id: 'full', d: Math.abs(currentH - fullH) }
-                        ].sort((a, b) => a.d - b.d);
-                        setMobileSheetDetent(dists[0].id);
+                        const mid = (compactH + expandedH) / 2;
+                        setMobileSheetDetent(currentH >= mid ? 'expanded' : 'compact');
                     }
                 };
 
@@ -3047,15 +3472,14 @@
                 if (dragHandle) {
                     dragHandle.addEventListener('click', () => {
                         if (window.innerWidth >= 640) return;
-                        const next = state.sheetDetent === 'peek' ? 'half' : (state.sheetDetent === 'half' ? 'full' : 'peek');
-                        setMobileSheetDetent(next);
+                        setMobileSheetDetent(state.sheetDetent === 'compact' ? 'expanded' : 'compact');
                     });
                 }
 
-                setMobileSheetDetent('half');
+                setMobileSheetDetent('compact');
             }
 
-            // === 9. M3 EXPRESSIVE TOUCH RIPPLE ===
+            // === 10. M3 EXPRESSIVE TOUCH RIPPLE ===
             function initM3Ripples() {
                 document.addEventListener('pointerdown', (e) => {
                     const target = e.target.closest('.m3-btn-spring');
@@ -3075,7 +3499,7 @@
                 });
             }
 
-            // === 10. ЖЕСТЫ НА ХОЛСТЕ ===
+            // === 11. ЖЕСТЫ НА ХОЛСТЕ + МАГНИТНАЯ ПРИВЯЗКА К ЦЕНТРУ ===
             function pointFocusToScreenCoords(clientX, clientY) {
                 const minDim = Math.min(window.innerWidth, window.innerHeight);
                 const uvX = (clientX - 0.5 * window.innerWidth) / minDim;
@@ -3086,6 +3510,7 @@
                 const deg = Math.round((Math.atan2(dy, dx) * 180) / Math.PI);
 
                 applyState({ focusAngle: deg }, { smooth: true });
+                showCanvasHUD(`Фокус ${deg}°`, 'explore');
 
                 const ring = document.createElement('div');
                 ring.className = 'focus-tap-ring pointer-events-none fixed w-12 h-12 rounded-full border-2 z-20';
@@ -3101,14 +3526,37 @@
                 let moved = false;
                 let lastX = 0;
                 let lastY = 0;
+                let rawOffsetX = state.offsetX;
+                let rawOffsetY = state.offsetY;
                 let initialPinchDist = null;
                 let initialScale = state.scale;
+                const SNAP_THRESHOLD = 0.022;
+
+                const applyMagneticDrag = (dx, dy) => {
+                    rawOffsetX = Math.max(-0.85, Math.min(0.85, rawOffsetX + dx));
+                    rawOffsetY = Math.max(-0.85, Math.min(0.85, rawOffsetY + dy));
+
+                    const snapX = Math.abs(rawOffsetX) < SNAP_THRESHOLD;
+                    const snapY = Math.abs(rawOffsetY) < SNAP_THRESHOLD;
+
+                    state.offsetX = snapX ? 0 : rawOffsetX;
+                    state.offsetY = snapY ? 0 : rawOffsetY;
+
+                    updateCenterGuides(snapX, snapY);
+                    if (snapX && snapY) {
+                        showCanvasHUD('По центру', 'filter_center_focus');
+                    } else {
+                        showCanvasHUD(`X ${Math.round(state.offsetX * 100)} • Y ${Math.round(state.offsetY * 100)}`, 'open_with');
+                    }
+                };
 
                 canvas.addEventListener('mousedown', (e) => {
                     isDragging = true;
                     moved = false;
                     lastX = e.clientX;
                     lastY = e.clientY;
+                    rawOffsetX = state.offsetX;
+                    rawOffsetY = state.offsetY;
                 });
 
                 window.addEventListener('mousemove', (e) => {
@@ -3124,9 +3572,9 @@
                     if (e.shiftKey) {
                         state.focusAngle = ((state.focusAngle + dx * 260 + 540) % 360) - 180;
                         syncUIControls();
+                        showCanvasHUD(`Фокус ${Math.round(state.focusAngle)}°`, 'explore');
                     } else {
-                        state.offsetX = Math.max(-0.85, Math.min(0.85, state.offsetX + dx));
-                        state.offsetY = Math.max(-0.85, Math.min(0.85, state.offsetY + dy));
+                        applyMagneticDrag(dx, dy);
                     }
                     renderFrame(canvas.width, canvas.height);
                 });
@@ -3134,6 +3582,7 @@
                 window.addEventListener('mouseup', () => {
                     if (isDragging) {
                         isDragging = false;
+                        updateCenterGuides(false, false);
                         if (moved) pushHistory();
                     }
                 });
@@ -3150,6 +3599,7 @@
                     state.scale = Math.max(0.12, Math.min(0.72, state.scale + factor));
                     syncUIControls();
                     renderFrame(canvas.width, canvas.height);
+                    showCanvasHUD(`Масштаб ${state.scale.toFixed(2)}`, 'zoom_in');
 
                     clearTimeout(wheelTimer);
                     wheelTimer = setTimeout(pushHistory, 250);
@@ -3166,8 +3616,8 @@
 
                 canvas.addEventListener('touchstart', (e) => {
                     dismissHintPill();
-                    if (window.innerWidth < 640 && !state.panelCollapsed && state.sheetDetent === 'full') {
-                        setMobileSheetDetent('half');
+                    if (window.innerWidth < 640 && !state.panelCollapsed && state.sheetDetent === 'expanded') {
+                        setMobileSheetDetent('compact');
                     }
 
                     if (e.touches.length === 1) {
@@ -3182,8 +3632,11 @@
                         moved = false;
                         lastX = e.touches[0].clientX;
                         lastY = e.touches[0].clientY;
+                        rawOffsetX = state.offsetX;
+                        rawOffsetY = state.offsetY;
                     } else if (e.touches.length === 2) {
                         isDragging = false;
+                        updateCenterGuides(false, false);
                         initialPinchDist = Math.hypot(
                             e.touches[0].clientX - e.touches[1].clientX,
                             e.touches[0].clientY - e.touches[1].clientY
@@ -3203,8 +3656,7 @@
                         lastY = e.touches[0].clientY;
                         moved = true;
 
-                        state.offsetX = Math.max(-0.85, Math.min(0.85, state.offsetX + dx));
-                        state.offsetY = Math.max(-0.85, Math.min(0.85, state.offsetY + dy));
+                        applyMagneticDrag(dx, dy);
                         renderFrame(canvas.width, canvas.height);
                     } else if (e.touches.length === 2 && initialPinchDist) {
                         const currentDist = Math.hypot(
@@ -3216,11 +3668,13 @@
                         moved = true;
                         syncUIControls();
                         renderFrame(canvas.width, canvas.height);
+                        showCanvasHUD(`Масштаб ${state.scale.toFixed(2)}`, 'pinch');
                     }
                 }, { passive: false });
 
                 canvas.addEventListener('touchend', () => {
                     if (isDragging || initialPinchDist) {
+                        updateCenterGuides(false, false);
                         if (moved) pushHistory();
                     }
                     isDragging = false;
@@ -3228,7 +3682,7 @@
                 });
             }
 
-            // === 11. УМНЫЙ МИКС ===
+            // === 12. УМНЫЙ МИКС ===
             function randomizeWallpaper() {
                 document.querySelectorAll('.mix-sparkle-icon').forEach(icon => {
                     icon.classList.remove('sparkle-burst');
@@ -3269,15 +3723,23 @@
                 }
 
                 if (Object.keys(next).length === 0) {
-                    showToast('Отключите хотя бы один фильтр фиксации');
+                    showToast('Отключите хотя бы один фильтр фиксации', 'info', 'lock');
                     return;
                 }
 
-                applyState(next, { smooth: true });
-                showToast('Новая световая композиция');
+                applyState(next, {
+                    smooth: true,
+                    onComplete: () => {
+                        if (!state.lockShapeOnMix) {
+                            syncMd3ShapesGrid(true);
+                        }
+                    }
+                });
+                const shapeName = next.shapeType !== undefined ? SHAPE_ITEMS[next.shapeType].name : null;
+                showToast(shapeName ? `Микс: ${shapeName}` : 'Новая палитра', 'info', 'auto_awesome');
             }
 
-            // === 12. РАМКА ПРОПОРЦИЙ, ЭКРАН БЛОКИРОВКИ PIXEL И ЭКСПОРТ ===
+            // === 13. РАМКА ПРОПОРЦИЙ, ЭКРАН БЛОКИРОВКИ PIXEL И ЭКСПОРТ ===
             function updateAspectGuide() {
                 const frame = document.getElementById('aspect-frame');
                 const box = document.getElementById('aspect-box');
@@ -3287,13 +3749,13 @@
 
                 if (!fmt.ratio) {
                     frame.classList.add('opacity-0');
-                    lockOverlay.classList.add('hidden');
+                    lockOverlay.classList.add('lock-hidden');
                     return;
                 }
 
                 frame.classList.remove('opacity-0');
                 label.textContent = `${fmt.name} • ${fmt.w}×${fmt.h}`;
-                lockOverlay.classList.toggle('hidden', !state.showLockscreen);
+                lockOverlay.classList.toggle('lock-hidden', !state.showLockscreen);
 
                 const isDesktop = window.innerWidth >= 640;
                 const availW = window.innerWidth * (isDesktop ? (state.panelCollapsed ? 0.72 : 0.50) : 0.84);
@@ -3309,11 +3771,19 @@
                 box.style.width = `${Math.round(boxW)}px`;
                 box.style.height = `${Math.round(boxH)}px`;
 
-                // Пропорциональное масштабирование элементов экрана блокировки Pixel под любой размер превью
                 if (lockOverlay) {
                     const refSpan = Math.min(boxW, boxH * 0.55);
                     lockOverlay.style.fontSize = `${Math.max(8, refSpan / 18.5).toFixed(2)}px`;
                 }
+            }
+
+            function flashButtonIcon(selector, tempIcon, restoreIcon, duration = 1400) {
+                document.querySelectorAll(selector).forEach(icon => {
+                    icon.textContent = tempIcon;
+                    icon.style.transform = 'scale(1.18)';
+                    setTimeout(() => { icon.style.transform = 'scale(1)'; }, 180);
+                    setTimeout(() => { icon.textContent = restoreIcon; }, duration);
+                });
             }
 
             function exportHighResWallpaper() {
@@ -3342,10 +3812,11 @@
                     link.click();
                     document.body.removeChild(link);
 
-                    showToast(`Обои сохранены (${targetW}×${targetH} PNG)`);
+                    flashButtonIcon('.download-icon', 'check', 'download');
+                    showToast(`Сохранено (${targetW}×${targetH} PNG)`, 'info', 'download_done');
                 } catch (err) {
                     console.error(err);
-                    showToast('Не удалось экспортировать изображение', 'error');
+                    showToast('Не удалось экспортировать изображение', 'error', 'error');
                 } finally {
                     canvas.width = prevW;
                     canvas.height = prevH;
@@ -3356,28 +3827,51 @@
 
             function copyRecipeToClipboard() {
                 const payload = JSON.stringify(snapshotState());
+                const onSuccess = () => {
+                    flashButtonIcon('#copy-recipe-icon', 'check', 'content_copy');
+                    showToast('JSON-код настроек скопирован', 'info', 'check_circle');
+                };
+
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(payload).then(onSuccess).catch(() => fallbackCopy(payload, onSuccess));
+                } else {
+                    fallbackCopy(payload, onSuccess);
+                }
+            }
+
+            function fallbackCopy(text, onSuccess) {
                 const textarea = document.createElement('textarea');
-                textarea.value = payload;
+                textarea.value = text;
                 textarea.style.position = 'fixed';
                 textarea.style.opacity = '0';
                 document.body.appendChild(textarea);
                 textarea.select();
-
                 try {
                     document.execCommand('copy');
-                    showToast('JSON-код настроек скопирован');
+                    onSuccess();
                 } catch (e) {
-                    showToast('Не удалось скопировать настройки', 'error');
+                    showToast('Не удалось скопировать настройки', 'error', 'error');
                 } finally {
                     document.body.removeChild(textarea);
                 }
             }
 
-            // === 13. M3 SNACKBAR УВЕДОМЛЕНИЯ ===
-            function showToast(message, type = 'info') {
+            // === 14. M3 SNACKBAR УВЕДОМЛЕНИЯ (БЕЗ СКАЧКОВ И СПАМА) ===
+            let activeToastEl = null;
+            let activeToastTimer = null;
+
+            function showToast(message, type = 'info', iconName = 'info') {
                 const container = document.getElementById('toast-container');
+                if (!container) return;
+
+                if (activeToastEl) {
+                    clearTimeout(activeToastTimer);
+                    activeToastEl.remove();
+                    activeToastEl = null;
+                }
+
                 const toast = document.createElement('div');
-                toast.className = 'm3-snackbar-enter px-4 py-2.5 rounded-full text-xs font-semibold shadow-xl flex items-center gap-2';
+                toast.className = 'm3-snackbar-enter px-4 py-2.5 rounded-full text-xs font-semibold shadow-xl flex items-center gap-2 whitespace-nowrap';
 
                 if (type === 'error') {
                     toast.style.backgroundColor = '#3f151b';
@@ -3387,22 +3881,35 @@
                     toast.style.color = 'var(--md-on-surface)';
                 }
 
-                toast.textContent = message;
-                container.appendChild(toast);
+                const icon = document.createElement('span');
+                icon.className = 'material-symbols-rounded !text-[16px]';
+                icon.textContent = iconName;
+                if (type !== 'error') icon.style.color = 'var(--md-primary)';
 
-                setTimeout(() => {
-                    toast.style.opacity = '0';
-                    toast.style.transform = 'translate(-50%, 8px)';
-                    toast.style.transition = 'all 0.25s ease';
-                    setTimeout(() => toast.remove(), 260);
-                }, 2300);
+                const text = document.createElement('span');
+                text.textContent = message;
+
+                toast.appendChild(icon);
+                toast.appendChild(text);
+                container.appendChild(toast);
+                activeToastEl = toast;
+
+                activeToastTimer = setTimeout(() => {
+                    toast.classList.add('m3-snackbar-exit');
+                    setTimeout(() => {
+                        toast.remove();
+                        if (activeToastEl === toast) activeToastEl = null;
+                    }, 240);
+                }, 2200);
             }
 
-            // === 14. ЗАПУСК ПРИ ЗАГРУЗКЕ ===
+            // === 15. ЗАПУСК ПРИ ЗАГРУЗКЕ ===
             window.onload = function () {
                 initExpressiveSliders();
                 updateMaterialDynamicTheme();
                 renderFormatCardsUI();
+                updatePixelLockClock();
+                setInterval(updatePixelLockClock, 15000);
                 bindControls();
                 bindCanvasGestures();
                 initM3Ripples();
